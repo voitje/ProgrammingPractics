@@ -1,5 +1,6 @@
 #include "stdafx.h"
-
+//TODO: Замечание ко всей лабораторной. 
+//TODO: Можно больше кода повыносить в функции для уменьшения дублирования.
 void PrintHelloWorld()
 {
 	cout << "Hello, World!\n";
@@ -19,6 +20,7 @@ double MakeCalculation(int value1, int value2)
 
 	switch (key)
 	{
+		//TODO: Поправить форматирование кода по RSDN
 	case '+':
 		return value1 + value2;
 		break;
@@ -74,6 +76,7 @@ int GetRoots(int a, int b, int c, double* x1, double* x2)
 int GetPower(int base, int power)
 {
 	int temp = 1;
+//TODO: Для if-else всегда надо расставлять скобки!
 	if (power == 0)
 		return 1;
 	if (temp == power)
@@ -83,11 +86,13 @@ int GetPower(int base, int power)
 
 void SortArray(double* array, int n)
 {
+//TODO: Для for всегда надо расставлять скобки!
 	for (int i = 1; i < n; i++)
 		for (int j = i; j > 0 && array[j - 1] > array[j]; j--) 
 			swap(array[j - 1], array[j]);        
 }
-
+//TODO: Внимательно прочитайте стандарт оформления кода RSDN https://rsdn.org/article/mag/200401/codestyle.XML
+//TODO: и приведите свой код в соответстие со стандартом
 void MultiplyMatrices(int arrayA [n][m], int arrayB[n][m], int arrayC[n][m], int n11, int m22, int n22)
 {
 	for (int i = 0; i < n11; i++)
@@ -96,6 +101,7 @@ void MultiplyMatrices(int arrayA [n][m], int arrayB[n][m], int arrayC[n][m], int
 		{
 			arrayC[i][j] = 0;
 			for (int k = 0; k < n22 ; k++)
+//TODO: Для for всегда надо расставлять скобки!
 				arrayC[i][j] += arrayA[i][k] * arrayB[k][j];
 		}
 	}
@@ -171,7 +177,7 @@ void MenuSecondLaboratory()
 				cout << "Enter B: "; cin >> b;
 				cout << "Enter C: "; cin >> c;
 				cout << "Number of decisions: " << GetRoots(a, b, c, x1, x2) << endl;
-				if (GetRoots(a, b, c, x1, x2) > 0)
+				if (GetRoots(a, b, c, x1, x2) > 0)//TODO: Для if-else всегда надо расставлять скобки!
 					cout << "\nRadicals: " << *x1 << ' ' << *x2 << endl;
 				char key = _getch();
 				asciiValue = key;
@@ -232,8 +238,9 @@ void MenuSecondLaboratory()
 					asciiValue = key;
 					switch (asciiValue)
 					{
+						//TODO: Поправьте форматирование в соответствии с RSDN.
 					case '1':
-					{
+					{//TODO: Для for всегда надо расставлять скобки!
 						for (int i = 0; i < n1; i++)
 							array[i] = rand() % 100;
 						break;
@@ -250,7 +257,7 @@ void MenuSecondLaboratory()
 					}
 					SortArray(array, n1);
 					cout << "\nThe array was sorted: \n";
-					for (int i = 0; i < n1; i++)
+					for (int i = 0; i < n1; i++)//TODO: Для for всегда надо расставлять скобки!
 						cout << array[i] << ' ';
 					char key = _getch();
 					asciiValue = key;
@@ -265,7 +272,8 @@ void MenuSecondLaboratory()
 			int asciiValue = 0;
 			while (asciiValue != escapeSymbol)
 			{
-
+//TODO: Внимательно прочитайте стандарт оформления кода RSDN https://rsdn.org/article/mag/200401/codestyle.XML
+//TODO: и приведите свой код в соответстие со стандартом
 				system("cls");
 				cout << "Press Esc to quit the program\n"
 					<< "Result of program execution:\n\n";
@@ -274,6 +282,7 @@ void MenuSecondLaboratory()
 				cout << "\nRows: "; cin >> n11; cout << "Columns: "; cin >> m11;
 				cout << "\nThe second matrix:\n";
 				cout << "\nRows: "; cin >> n22; cout << "Columns: "; cin >> m22;
+				//TODO: Ниже много дублирвоания, исправьте!
 				for (int i = 0; i < n11; i++)
 					for (int j = 0; j < m11; j++)
 						arrayA[i][j] = rand() % 10;
