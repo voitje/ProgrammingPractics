@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "lab1.h"
 
 void FirstTask()
 {	
