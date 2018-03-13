@@ -252,7 +252,7 @@ void MenuThirdLaboratory()
 			<< "\n4. Find Substring"
 			<< "\n5. Uppercase"
 			<< "\n6. Lowercase"
-			<< "\n7. Split Filename(in developing)"
+			<< "\n7. Split Filename"
 			<< "\n8. Replace Tabs On Spaces"
 			<< "\n9. Replace Spaces On Tabs(in developing)";
 		key = _getch();
