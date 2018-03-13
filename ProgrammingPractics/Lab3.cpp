@@ -437,8 +437,7 @@ void MenuThirdLaboratory()
 
 					system("cls");
 					char string[100];
-					cout << "Press Esc to quit the program\n\n";
-					// C::ake\t\tis a lie! or Cake::::is::::a:lie! or Cake:is:a:::::::lie! 
+					cout << "Press Esc to quit the program\n\n"; 
 					char* resultOfWork = ":::Cake\tis\ta lie!"; 
 					cout << ReplaceSpacesOnTabs(resultOfWork);
 					char key = _getch();
