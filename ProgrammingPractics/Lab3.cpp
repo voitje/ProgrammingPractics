@@ -10,6 +10,7 @@ int GetLength(char* string)
 	}
 	return length;
 }
+
 void JoingString(char* stringA, char* stringB, int startIndex)
 {	
 	int i = startIndex;
@@ -19,6 +20,7 @@ void JoingString(char* stringA, char* stringB, int startIndex)
 	}
 	stringA[i] = '\0';
 }
+
 char* Concatenate(char* stringA, char* stringB)
 {
 	char* string = new char[8];
