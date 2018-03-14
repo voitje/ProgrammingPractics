@@ -1,0 +1,13 @@
+void FirstTask();
+void SecondTask();
+void ThirdTask();
+void FourthTask();
+void FifthTask();
+void SixthTask();
+void SeventhTask();
+void EighthTask();
+void NinethTask();
+void TenthTask();
+void EleventhTask();
+void TwelfthTask();
+void MenuFirstLaboratory();
