@@ -15,8 +15,10 @@ char* Concatenate(char* stringA, char* stringB)
 	char* string = new char[8];
 	int i = 0;
 	int j = 0;
+	//TODO: Именование не по RSDN.
 	int skaA = strlen(stringA);
 	int skaB = strlen(stringB);
+	//TODO: Ниже дубли. Изменить.
 	for (; stringA[i] != '\0'; i++)
 	{
 		string[i] = stringA[i];
@@ -32,7 +34,7 @@ char* Concatenate(char* stringA, char* stringB)
 char* GetSubstring(char* string, int startIndex, int charCount)
 {
 	if (startIndex < 0 || charCount < 0 || (strlen(string) < startIndex + charCount + 2))
-	{
+	{//TODO: Зачем тут в явном виде указывается NULL строкой
 		string = "NULL";
 		return string;
 	}
@@ -74,11 +76,11 @@ int FindSubstring(char* string, char* substring)
 	}
 	return result;
 }
-
+//TODO: Плохое именование метода - должен быть глагол.
 char* Uppercase(char* string)
 {
 	for (int i = 0; i < strlen(string); i++)
-	{
+	{//TODO: Использование прямых ASCII символов плохо читеается.
 		if (string[i] > 97 && string[i] < 122)
 		{
 			string[i] -= 32;
@@ -86,11 +88,11 @@ char* Uppercase(char* string)
 	}
 	return string;
 }
-
+//TODO: Плохое именование метода - должен быть глагол.
 char* Lowercase(char* string)
 {
 	for (int i = 0; i < strlen(string); i++)
-	{
+	{//TODO: Использование прямых ASCII символов плохо читеается.
 		if (string[i] > 65 && string[i] < 90)
 		{
 			string[i] += 32;
@@ -156,7 +158,7 @@ void SplitFilename(char* source, char* path, char* name, char* extension)
 			}
 		}
 		else
-		{
+		{//TODO: Ниже дублирование
 			path[0] = NULL;
 			extension[0] = NULL;
 			name[0] = NULL;
@@ -174,7 +176,7 @@ void SplitFilename(char* source, char* path, char* name, char* extension)
 char* ReplaceSpacesOnTabs(char* string)
 {
 	for (int i = 0; i < strlen(string); i++)
-	{	
+	{	//TODO: Решение в лоб, т.к. замена может быть не только четырёх символов
 		if (i % 4 == 0)
 		{
 			if (string[i] == ':' && string[i + 1] == ':' && string[i + 2] == ':' && string[i + 3] == ':')
@@ -195,7 +197,7 @@ char* ReplaceTabsOnSpaces(char* string)
 	char* string1 = new char[8];
 	int j = 0;
 	for (int i = 0; i < strlen(string); i++, j++)
-	{
+	{//TODO: Решение в лоб, т.к. замена может быть не только четырёх символов
 		string1[j] = string[i];
 		if (string[i] == '\t')
 		{
@@ -229,6 +231,7 @@ Person ReadPerson()
 	cin >> person.Name;
 	return person;
 }
+//TODO: Передача по значению - не очень хорошая практика
 void PrintPerson(Person person)
 {
 	cout << "\nSurname: ";
@@ -260,7 +263,7 @@ void MenuThirdLaboratory()
 		switch (asciiValue)
 		{
 			case '1':
-			{
+			{//TODO:Зачем дублирование в каждом CASE-e
 				const char escapeSymbol = 27;
 				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
@@ -334,7 +337,7 @@ void MenuThirdLaboratory()
 				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
+					//TODO: Пустая строка
 					system("cls");
 					char string[100];
 					char substring[100];

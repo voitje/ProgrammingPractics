@@ -9,6 +9,8 @@ char* Uppercase(char* string);
 char* Lowercase(char* string);
 char* ReplaceSpacesOnTabs(char* string);
 char* ReplaceTabsOnSpaces(char* string);
+//TODO: Должна быть в отдельном файле
+//TODO: Реализуйте перечисление типа пол.
 struct Person
 {
 	char Surname[40];
