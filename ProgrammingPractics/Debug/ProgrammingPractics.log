@@ -1,4 +1,10 @@
-﻿  Person.cpp
-c:\users\ксения\source\repos\programmingpractics\programmingpractics\person.cpp(19): warning C4101: n: неиспользованная локальная переменная
-c:\users\ксения\source\repos\programmingpractics\programmingpractics\person.cpp(66): warning C4101: person1: неиспользованная локальная переменная
+﻿  Lab3.cpp
+c:\users\ксения\source\repos\programmingpractics\programmingpractics\lab3.cpp(44): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\ксения\source\repos\programmingpractics\programmingpractics\lab3.cpp(63): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\ксения\source\repos\programmingpractics\programmingpractics\lab3.cpp(80): warning C4553: ==: оператор не имеет результата; возможно, имелся в виду "="
+c:\users\ксения\source\repos\programmingpractics\programmingpractics\lab3.cpp(82): warning C4553: ==: оператор не имеет результата; возможно, имелся в виду "="
+c:\users\ксения\source\repos\programmingpractics\programmingpractics\lab3.cpp(91): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\ксения\source\repos\programmingpractics\programmingpractics\lab3.cpp(105): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\ксения\source\repos\programmingpractics\programmingpractics\lab3.cpp(185): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\ксения\source\repos\programmingpractics\programmingpractics\lab3.cpp(215): warning C4018: <: несоответствие типов со знаком и без знака
   ProgrammingPractics.vcxproj -> C:\Users\Ксения\source\repos\ProgrammingPractics\Debug\ProgrammingPractics.exe

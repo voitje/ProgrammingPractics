@@ -10,24 +10,21 @@ int GetLength(char* string)
 	}
 	return length;
 }
+void JoingString(char* stringA, char* stringB, int startIndex)
+{	
+	int i = startIndex;
+	for (int j = 0; stringB[j] != '\0'; i++, j++)
+	{
+		stringA[i] = stringB[j];
+	}
+	stringA[i] = '\0';
+}
 char* Concatenate(char* stringA, char* stringB)
 {
 	char* string = new char[8];
-	int i = 0;
-	int j = 0;
-	//TODO: Именование не по RSDN.
-	int skaA = strlen(stringA);
-	int skaB = strlen(stringB);
-	//TODO: Ниже дубли. Изменить.
-	for (; stringA[i] != '\0'; i++)
-	{
-		string[i] = stringA[i];
-	}
-	for (; stringB[j] != '\0'; j++, i++)
-	{
-		string[i] = stringB[j];
-	}
-	string[i] = '\0';
+	//TODO: Ниже дубли. Изменить. // Вынес в функцию
+	JoingString(string, stringA, 0);
+	JoingString(string, stringB, strlen(stringA));
 	return string;
 }
 
