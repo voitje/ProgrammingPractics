@@ -293,7 +293,6 @@ void MenuThirdLaboratory()
 			{
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
 					char string1[100];
 					char* str;
