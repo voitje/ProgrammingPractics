@@ -34,9 +34,8 @@ char* Concatenate(char* stringA, char* stringB)
 char* GetSubstring(char* string, int startIndex, int charCount)
 {
 	if (startIndex < 0 || charCount < 0 || (strlen(string) < startIndex + charCount + 2))
-	{//TODO: Зачем тут в явном виде указывается NULL строкой
-		string = "NULL";
-		return string;
+	{
+		return NULL;
 	}
 	int i = 0;
 	int j = 0;
@@ -76,24 +75,28 @@ int FindSubstring(char* string, char* substring)
 	}
 	return result;
 }
-//TODO: Плохое именование метода - должен быть глагол.
-char* Uppercase(char* string)
-{
+
+char* ChangeToUppercase(char* string)
+{	
+	int asciiUppercaseA = 97;
+	int asciiUppercaseZ = 122;
 	for (int i = 0; i < strlen(string); i++)
-	{//TODO: Использование прямых ASCII символов плохо читеается.
-		if (string[i] > 97 && string[i] < 122)
+	{
+		if (string[i] >= asciiUppercaseA && string[i] <= asciiUppercaseZ)
 		{
 			string[i] -= 32;
 		}
 	}
 	return string;
 }
-//TODO: Плохое именование метода - должен быть глагол.
-char* Lowercase(char* string)
-{
+
+char* ChangeToLowercase(char* string)
+{	
+	int asciiLowercaseA = 65;
+	int asciiLowercaseZ = 90;
 	for (int i = 0; i < strlen(string); i++)
-	{//TODO: Использование прямых ASCII символов плохо читеается.
-		if (string[i] > 65 && string[i] < 90)
+	{
+		if (string[i] >= asciiLowercaseA && string[i] <= asciiLowercaseZ)
 		{
 			string[i] += 32;
 		}
@@ -110,6 +113,7 @@ int Copy(char * string, char * resString, int i, int j)
 	resString[j] = '\0';
 	return i;
 }
+
 void SplitFilename(char* source, char* path, char* name, char* extension)
 {
 	int index = 0;
@@ -141,7 +145,7 @@ void SplitFilename(char* source, char* path, char* name, char* extension)
 					path[subIndex] = source[subIndex];
 				}
 				path[subIndex] = '\0';
-				for (index = 0; subIndex<pointPlace;)
+				for (index = 0; subIndex < pointPlace;)
 				{
 					name[index++] = source[subIndex++];
 				}
@@ -149,7 +153,7 @@ void SplitFilename(char* source, char* path, char* name, char* extension)
 			}
 			else
 			{
-				for (index = 0; index<pointPlace; index++)
+				for (index = 0; index < pointPlace; index++)
 				{
 					name[index] = source[index];
 				}
@@ -157,39 +161,43 @@ void SplitFilename(char* source, char* path, char* name, char* extension)
 				path[0] = NULL;
 			}
 		}
-		else
-		{//TODO: Ниже дублирование
-			path[0] = NULL;
-			extension[0] = NULL;
-			name[0] = NULL;
-		}
+		return;
 	}
-	else
-	{
-		path[0] = NULL;
-		extension[0] = NULL;
-		name[0] = NULL;
-	}
-
+path[0] = NULL;
+extension[0] = NULL;
+name[0] = NULL;	
 }
 
-char* ReplaceSpacesOnTabs(char* string)
+char* ReplaceSpacesOnTabs(char* string, int countSpace)
 {
+	char* newString = new char[strlen(string)];
+	int endSymbol = 0;
+	int currentSymbolNewString = 0;
+
 	for (int i = 0; i < strlen(string); i++)
-	{	//TODO: Решение в лоб, т.к. замена может быть не только четырёх символов
-		if (i % 4 == 0)
+	{
+		currentSymbolNewString = i;
+		bool isTab = true;
+		for (int i = 0; i < countSpace; i++)
 		{
-			if (string[i] == ':' && string[i + 1] == ':' && string[i + 2] == ':' && string[i + 3] == ':')
+			if (string[currentSymbolNewString++] != ':')
 			{
-				string[i] = '\t';
-				for (int j = i + 2; j < (strlen(string) - 2); j++)
-				{
-					string[j] = string[j + 2];
-				}
+				isTab = false;
 			}
 		}
+
+		if (isTab)
+		{
+			newString[i] = '\t';
+		}
+		else
+		{
+			newString[i] = string[i];
+		}
+		endSymbol++;
 	}
-	return string;
+	newString[endSymbol] = '\0';
+	return newString;
 }
 
 char* ReplaceTabsOnSpaces(char* string)
@@ -197,7 +205,7 @@ char* ReplaceTabsOnSpaces(char* string)
 	char* string1 = new char[8];
 	int j = 0;
 	for (int i = 0; i < strlen(string); i++, j++)
-	{//TODO: Решение в лоб, т.к. замена может быть не только четырёх символов
+	{
 		string1[j] = string[i];
 		if (string[i] == '\t')
 		{
@@ -222,23 +230,6 @@ char* ReplaceTabsOnSpaces(char* string)
 	return string1;
 }
 
-Person ReadPerson()
-{	
-	Person person;
-	cout << "\nSurname: ";
-	cin >> person.Surname;
-	cout << "\nName: ";
-	cin >> person.Name;
-	return person;
-}
-//TODO: Передача по значению - не очень хорошая практика
-void PrintPerson(Person person)
-{
-	cout << "\nSurname: ";
-	cout << person.Surname;
-	cout << "\nName: ";
-	cout << person.Name;
-}
 void MenuThirdLaboratory()
 {
 	const char escapeSymbol = 27;
@@ -263,9 +254,7 @@ void MenuThirdLaboratory()
 		switch (asciiValue)
 		{
 			case '1':
-			{//TODO:Зачем дублирование в каждом CASE-e
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
+			{
 				while (asciiValue != escapeSymbol)
 				{
 					system("cls");
@@ -282,11 +271,8 @@ void MenuThirdLaboratory()
 			}
 			case '2':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
 					char* s2;
 					char stringA[100];
@@ -306,8 +292,6 @@ void MenuThirdLaboratory()
 			}
 			case '3':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
 
@@ -322,9 +306,16 @@ void MenuThirdLaboratory()
 					cout << "\nChar Count: "; cin >> charCount;
 					cout << "\nResult: ";
 					str = GetSubstring(string1, startIndex, charCount);
-					for (int i = 0; i < str[i] != '\0'; i++)
+					if (str == NULL)
 					{
-						cout << str[i];
+						cout << "-1";
+					}
+					else
+					{
+						for (int i = 0; i < str[i] != '\0'; i++)
+						{
+							cout << str[i];
+						}
 					}
 					char key = _getch();
 					asciiValue = key;
@@ -333,11 +324,8 @@ void MenuThirdLaboratory()
 			}
 			case '4':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-					//TODO: Пустая строка
 					system("cls");
 					char string[100];
 					char substring[100];
@@ -353,8 +341,6 @@ void MenuThirdLaboratory()
 			}
 			case '5':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
 					system("cls");
@@ -362,7 +348,7 @@ void MenuThirdLaboratory()
 					cout << "Press Esc to quit the program\n\n";
 					cout << "String: "; cin.getline(string, 100);
 					cout << "\nAfter: ";
-					cout << Uppercase(string);
+					cout << ChangeToUppercase(string);
 					char key = _getch();
 					asciiValue = key;
 
@@ -371,8 +357,6 @@ void MenuThirdLaboratory()
 			}
 			case '6':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
 					system("cls");
@@ -380,7 +364,7 @@ void MenuThirdLaboratory()
 					cout << "Press Esc to quit the program\n\n";
 					cout << "String: "; cin.getline(string, 100);
 					cout << "\nAfter: ";
-					cout << Lowercase(string);
+					cout << ChangeToLowercase(string);
 					char key = _getch();
 					asciiValue = key;
 				}
@@ -388,11 +372,8 @@ void MenuThirdLaboratory()
 			}
 			case '7':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
 					char source[100];
 					char path[100];
@@ -411,11 +392,8 @@ void MenuThirdLaboratory()
 			}
 			case '8':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
 					char string[100];
 					char* resultOfWork;
@@ -433,16 +411,12 @@ void MenuThirdLaboratory()
 			}
 			case '9':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
-					char string[100];
 					cout << "Press Esc to quit the program\n\n"; 
-					char* resultOfWork = ":::Cake\tis\ta lie!"; 
-					cout << ReplaceSpacesOnTabs(resultOfWork);
+					char* resultOfWork = (char*)"Cake::::is::a:lie!";
+					cout << ReplaceSpacesOnTabs(resultOfWork, 4);
 					char key = _getch();
 					asciiValue = key;
 				}

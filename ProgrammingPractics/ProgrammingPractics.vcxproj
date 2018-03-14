@@ -153,6 +153,7 @@
     <ClCompile Include="Lab1.cpp" />
     <ClCompile Include="Lab2.cpp" />
     <ClCompile Include="Lab3.cpp" />
+    <ClCompile Include="Person.cpp" />
     <ClCompile Include="ProgrammingPractics.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
