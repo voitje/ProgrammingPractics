@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Lab3.h"
+#include "Person.h"
 
 int GetLength(char* string)
 {
@@ -24,7 +25,7 @@ void JoingString(char* stringA, char* stringB, int startIndex)
 char* Concatenate(char* stringA, char* stringB)
 {
 	char* string = new char[8];
-	//TODO: Ниже дубли. Изменить. // Вынес в функцию
+	//TODO: Ниже дубли. Изменить. \ DONE
 	JoingString(string, stringA, 0);
 	JoingString(string, stringB, strlen(stringA));
 	return string;
@@ -76,12 +77,10 @@ int FindSubstring(char* string, char* substring)
 }
 
 char* ChangeToUppercase(char* string)
-{	
-	int asciiUppercaseA = 97;
-	int asciiUppercaseZ = 122;
+{
 	for (int i = 0; i < strlen(string); i++)
 	{
-		if (string[i] >= asciiUppercaseA && string[i] <= asciiUppercaseZ)
+		if (string[i] >= 'A' && string[i] <= 'Z')
 		{
 			string[i] -= 32;
 		}
@@ -91,11 +90,9 @@ char* ChangeToUppercase(char* string)
 
 char* ChangeToLowercase(char* string)
 {	
-	int asciiLowercaseA = 65;
-	int asciiLowercaseZ = 90;
 	for (int i = 0; i < strlen(string); i++)
 	{
-		if (string[i] >= asciiLowercaseA && string[i] <= asciiLowercaseZ)
+		if (string[i] >= 'a' && string[i] <= 'z')
 		{
 			string[i] += 32;
 		}
@@ -162,9 +159,10 @@ void SplitFilename(char* source, char* path, char* name, char* extension)
 		}
 		return;
 	}
-path[0] = NULL;
-extension[0] = NULL;
-name[0] = NULL;	
+
+	path[0] = NULL;
+	extension[0] = NULL;
+	name[0] = NULL;	
 }
 
 char* ReplaceSpacesOnTabs(char* string, int countSpace)
@@ -258,7 +256,7 @@ void MenuThirdLaboratory()
 				{
 					system("cls");
 					char string[100];
-					cout << "Press Esc to quit the program\n\n";
+					cout << "Press Esc to quit the program when after running the program\n\n";
 					cout << "\nString: "; 
 					cin >> string;
 					cout << "\nLength of string: "; 
@@ -276,7 +274,7 @@ void MenuThirdLaboratory()
 					char* s2;
 					char stringA[100];
 					char stringB[100];
-					cout << "Press Esc to quit the program\n\n";
+					cout << "Press Esc to quit the program when after running the program\n\n";
 					cout << "\nFirst string: "; cin >> stringA;
 					cout << "\nSecond string: "; cin >> stringB;
 					s2 = Concatenate(stringA, stringB);
@@ -296,7 +294,7 @@ void MenuThirdLaboratory()
 					system("cls");
 					char string1[100];
 					char* str;
-					cout << "Press Esc to quit the program\n\n";
+					cout << "Press Esc to quit the program when after running the program\n\n";
 					cout << "\nWrite string: ";
 					cin.getline(string1, 100);
 					int startIndex; int charCount;
@@ -327,7 +325,7 @@ void MenuThirdLaboratory()
 					system("cls");
 					char string[100];
 					char substring[100];
-					cout << "Press Esc to quit the program\n\n";
+					cout << "Press Esc to quit the program when after running the program\n\n";
 					cout << "\nString: "; cin.getline(string, 100);
 					cout << "\nSubstring: "; cin.getline(substring, 100);
 					cout << "\nResult: ";
@@ -359,7 +357,7 @@ void MenuThirdLaboratory()
 				{
 					system("cls");
 					char string[100];
-					cout << "Press Esc to quit the program\n\n";
+					cout << "Press Esc to quit the program when after running the program\n\n";
 					cout << "String: "; cin.getline(string, 100);
 					cout << "\nAfter: ";
 					cout << ChangeToLowercase(string);
@@ -377,7 +375,7 @@ void MenuThirdLaboratory()
 					char path[100];
 					char name[100];
 					char extension[100];
-					cout << "Press Esc to quit the program\n\n";
+					cout << "Press Esc to quit the program when after running the program\n\n";
 					cout << "\nWay: "; cin >> source;
 					SplitFilename(source, path, name, extension);
 					cout << "\nPath: "; cout << path;
@@ -395,7 +393,7 @@ void MenuThirdLaboratory()
 					system("cls");
 					char string[100];
 					char* resultOfWork;
-					cout << "Press Esc to quit the program\n\n";
+					cout << "Press Esc to quit the program when after running the program\n\n";
 					cout << "\nString: "; cin.getline(string, 100);
 					resultOfWork = ReplaceTabsOnSpaces(string);
 					for (int i = 0; resultOfWork[i] != '\0'; i++)
@@ -412,7 +410,7 @@ void MenuThirdLaboratory()
 				while (asciiValue != escapeSymbol)
 				{
 					system("cls");
-					cout << "Press Esc to quit the program\n\n"; 
+					cout << "Press Esc to quit the program when after running the program\n\n";
 					char* resultOfWork = (char*)"Cake::::is::a:lie!";
 					cout << ReplaceSpacesOnTabs(resultOfWork, 4);
 					char key = _getch();

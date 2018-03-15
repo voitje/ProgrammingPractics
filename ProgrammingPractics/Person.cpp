@@ -1,13 +1,6 @@
 #include "stdafx.h"
-
-enum Sex { Male, Female };
-
-struct Person
-{
-	char Surname[40];
-	char Name[20];
-	Sex SexPerson;
-};
+#include "Person.h"
+#include "Sex.h"
 
 Person ReadPerson()
 {
@@ -21,21 +14,18 @@ Person ReadPerson()
 	char key = NULL;
 	const char escapeSymbol = 27;
 	int asciiValue = 0;
-
 	key = _getch();
 	asciiValue = key;
 	switch (asciiValue)
 	{
 	case 'f':
 	{
-		newPerson.SexPerson = Female;
-		cout << 'F';
+		newPerson.Gender = Female;
 		break;
 	}
 	case 'm':
 	{
-		newPerson.SexPerson = Male;
-		cout << 'M';
+		newPerson.Gender = Male;
 		break;
 	}
 	default:
@@ -43,18 +33,19 @@ Person ReadPerson()
 	}
 	return newPerson;;
 }
-//TODO: ѕередача по значению - не очень хороша€ практика
-void PrintPerson(Person person)
+
+void PrintPerson(Person& person)
 {
 	cout << "\n\nSurname: " << person.Surname << endl;
 	cout << "\nName: " << person.Name << endl;
-	if (person.SexPerson == 0)
+	switch (person.Gender)
 	{
-		cout << "\nSexPerson: " << "Male" << endl;
-	}
-	else
-	{
-		cout << "\nSexPerson: " << "Female" << endl;
+		case 0:
+			cout << "\nSexPerson: " << "Male" << endl;
+			break;
+		case 1:
+			cout << "\nSexPerson: " << "Female" << endl;
+			break;
 	}
 }
 

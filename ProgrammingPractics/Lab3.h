@@ -1,16 +1,3 @@
-#pragma once
-
-enum Sex { Male, Female };
-
-struct Person
-{
-	char Surname[40];
-	char Name[20];
-	Sex SexPerson;
-};
-void MenuPerson();
-Person ReadPerson();
-void PrintPerson(Person person);
 void MenuThirdLaboratory();
 int GetLength(char* string);
 char* Concatenate(char* stringA, char* stringB);
@@ -22,5 +9,5 @@ char* ReplaceSpacesOnTabs(char* string, int countSpace);
 char* ReplaceTabsOnSpaces(char* string);
 void JoingString(char* stringA, char* stringB, int startIndex);
 
-//TODO: Должна быть в отдельном файле
-//TODO: Реализуйте перечисление типа пол.
+//TODO: Должна быть в отдельном файле \ DONE
+//TODO: Реализуйте перечисление типа пол. \ DONE

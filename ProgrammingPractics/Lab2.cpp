@@ -9,34 +9,31 @@ void PrintHelloWorld()
 double MakeCalculation(int value1, int value2)
 {
 	char key;
-	cout << "Enter mathematic operation (+, -, *, /, %): ";
+	cout << "Enter mathematic operation (+, -, *, /, %):";
 	cin >> key;
-
-	while ((key != '+') && (key != '-') && (key != '*') && (key != '/') && (key != '%'))
+	//TODE: Зацикливание \ DONE
+	while((key != '+') && (key != '-') && (key != '*') && (key != '/') && (key != '%'))
 	{
 		cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (+, -, *, /, %):");
-		cin >> key;
+		char newKey;
+		cin >> newKey;
+		key = newKey;
 	}
-
+	
 	switch (key)
 	{
 		case '+':
 			return value1 + value2;
-			break;
 		case '-':
 			return value1 - value2;
-			break;
 		case '*':
 			return value1 * value2;
-			break;
 		case '/':
 			return value1 / value2;
 		case '%':
 			return value1 % value2;
-			break;
 		default:
 			return -1;
-			break;
 	}
 }
 
@@ -66,9 +63,9 @@ int GetRoots(int a, int b, int c, double* x1, double* x2)
 	return 2;
 }
 
-int GetPower(int base, int power)
-{
-	int temp = 1;
+int GetPower(int base, int power, int temp, int tempBase)
+{	
+	//TODO: Не работает \ DONE
 	if (power == 0)
 	{
 		return 1;
@@ -77,7 +74,7 @@ int GetPower(int base, int power)
 	{
 		return base;
 	}
-	return GetPower(base*base, temp++);
+	return GetPower(base*tempBase, power, temp+=1, tempBase);
 }
 
 void SortArray(double* array, int n)
@@ -91,14 +88,14 @@ void SortArray(double* array, int n)
 	}
 }
 
-void MultiplyMatrices(int arrayA [n][m], int arrayB[n][m], int arrayC[n][m], int n11, int m22, int n22)
+void MultiplyMatrices(int arrayA [n][m], int arrayB[n][m], int arrayC[n][m], int rowsA, int columnB, int columnA)
 {
-	for (int i = 0; i < n11; i++)
+	for (int i = 0; i < rowsA; i++)
 	{
-		for (int j = 0; j < m22; j++)
+		for (int j = 0; j < columnB; j++)
 		{
 			arrayC[i][j] = 0;
-			for (int k = 0; k < n22; k++)
+			for (int k = 0; k < columnA; k++)
 			{
 				arrayC[i][j] += arrayA[i][k] * arrayB[k][j];
 			}
@@ -106,12 +103,12 @@ void MultiplyMatrices(int arrayA [n][m], int arrayB[n][m], int arrayC[n][m], int
 	}
 }
 
-void WriteMatrix(int columnMatrix, int rowsMatrix, int arrayName[n][m])
+void WriteMatrix(int rowsMatrix, int columnMatrix, int arrayName[n][m])
 {
-	for (int i = 0; i < columnMatrix; i++)
+	for (int i = 0; i < rowsMatrix; i++)
 	{
 		cout << endl;
-		for (int j = 0; j < rowsMatrix; j++)
+		for (int j = 0; j < columnMatrix; j++)
 		{
 			cout << arrayName[i][j] << ' ';
 		}
@@ -122,11 +119,12 @@ void MenuSecondLaboratory()
 	const char escapeSymbol = 27;
 	char key;
 	int temp = 1;
+	int  temptemp = 0;
 	int asciiValue = 0;
 	while (asciiValue != escapeSymbol)
 	{
 		system("cls");
-		cout << "Press Esc to quit the program\n"
+		cout << "Press Esc to quit the program when after running the program\n"
 			<< "\n1. Print Hello, World!"
 			<< "\n2. Calculator"
 			<< "\n3. Quadratic equation"
@@ -139,13 +137,10 @@ void MenuSecondLaboratory()
 		{
 			case '1':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
-					cout << "Press Esc to quit the program\n"
+					cout << "Press Esc to quit the program when after running the program\n"
 						<< "Result of program execution:\n\n";
 					PrintHelloWorld();
 					char key = _getch();
@@ -155,13 +150,10 @@ void MenuSecondLaboratory()
 			}
 			case '2':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
-					cout << "Press Esc to quit the program\n";
+					cout << "Press Esc to quit the program when after running the program\n";
 					int value1; int value2;
 					cout << "\nFirst digit :"; cin >> value1;
 					cout << "\nSirst digit :"; cin >> value2;
@@ -173,13 +165,10 @@ void MenuSecondLaboratory()
 			}
 			case '3':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
-					cout << "Press Esc to quit the program\n"
+					cout << "Press Esc to quit the program when after running the program\n"
 						<< "Result of program execution:\n\n";
 					int a; int b; int c;
 					double* x1 = new double;
@@ -188,7 +177,11 @@ void MenuSecondLaboratory()
 					cout << "Enter B: "; cin >> b;
 					cout << "Enter C: "; cin >> c;
 					cout << "Number of decisions: " << GetRoots(a, b, c, x1, x2) << endl;
-					if (GetRoots(a, b, c, x1, x2) > 0)
+					if (GetRoots(a, b, c, x1, x2) == 1)
+					{
+						cout << "\nRadical: " << *x1 << endl;
+					}
+					if (GetRoots(a, b, c, x1, x2) == 2)
 					{
 						cout << "\nRadicals: " << *x1 << ' ' << *x2 << endl;
 					}
@@ -199,18 +192,16 @@ void MenuSecondLaboratory()
 			}
 			case '4':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
-					cout << "Press Esc to quit the program\n"
+					cout << "Press Esc to quit the program when after running the program\n"
 						<< "Result of program execution:\n\n";
-					int base; int power;
-					cout << "\nEnter the number that you want to raise to the power of: "; cin >> base;
-					cout << "\nEnter the degree: ";  cin >> power;
-					cout << "\nAnswer: " << GetPower(base, power);
+					int base; int power; int temp = 1; 
+					cout << "\nEnter the number that you want to raise to the power of N: "; cin >> base;
+					int tempBase = base;
+					cout << "\nEnter the power N: ";  cin >> power;
+					cout << "\nAnswer: " << GetPower(base, power,temp, tempBase);
 					char key = _getch();
 					asciiValue = key;
 				}
@@ -218,15 +209,13 @@ void MenuSecondLaboratory()
 			}
 			case '5':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
-
 					system("cls");
-					cout << "Press Esc to quit the program\n";
+					cout << "Press Esc to quit the program when after running the program\n";
 					double array[1000]; 
 					int n1;
+					
 					const char escapeSymbol = 27;
 					char key;
 					int asciiValue = 0;
@@ -237,16 +226,6 @@ void MenuSecondLaboratory()
 					while (asciiValue != escapeSymbol)
 					{
 						system("cls");
-						cout << "\nArray: \n";
-						if (temp == 1)
-						{
-							memset(array, 0, sizeof(array));
-							temp = 0;
-						}
-						for (int i = 0; i < n1; i++)
-						{
-							cout << array[i] << ' ';
-						}
 						cout << "\nFill the array:\n"
 							<< "\n1. Random "
 							<< "\n2. From the keyboard\n";
@@ -272,11 +251,21 @@ void MenuSecondLaboratory()
 								break;
 							}
 						}
-						SortArray(array, n1);
-						cout << "\nThe array was sorted: \n";
+						if (temp == 1)
+						{
+							memset(array, 0, sizeof(array));
+							temp = 0;
+						}
+						cout << "\nArray:\n";
 						for (int i = 0; i < n1; i++)
 						{
 							cout << array[i] << ' ';
+						}
+						SortArray(array, n1);
+						cout << "\n\nThe array was sorted: \n";
+						for (int i = 0; i < n1; i++)
+						{
+								cout << array[i] << ' ';
 						}
 						char key = _getch();
 						asciiValue = key;
@@ -285,12 +274,10 @@ void MenuSecondLaboratory()
 			}
 			case '6':
 			{
-				const char escapeSymbol = 27;
-				int asciiValue = 0;
 				while (asciiValue != escapeSymbol)
 				{
 					system("cls");
-					cout << "Press Esc to quit the program\n"
+					cout << "Press Esc to quit the program when after running the program\n"
 						<< "Result of program execution:\n\n";
 					int arrayA[n][m];
 					int arrayB[n][m];
@@ -299,31 +286,37 @@ void MenuSecondLaboratory()
 					int columnB; int rowsB;
 
 					cout << "The first matrix:\n";
-					cout << "\nRows: "; cin >> columnA;
-					cout << "Columns: "; cin >> rowsB;
+					cout << "\nRows: "; cin >> rowsA;
+					cout << "Columns: "; cin >> columnA; 
 
 					cout << "\nThe second matrix:\n";
-					cout << "\nRows: "; cin >> columnB;
-					cout << "Columns: "; cin >> rowsA;
+					cout << "\nRows: "; cin >> rowsB;
+					cout << "Columns: "; cin >> columnB;
 					
-					for (int i = 0; i < columnA; i++)
+					for (int i = 0; i < rowsA; i++)
 					{
-						for (int j = 0; j < rowsB; j++)
+						for (int j = 0; j < columnA; j++)
 						{
 							arrayA[i][j] = rand() % 10;
+						}
+					}
+					for (int i = 0; i < rowsB; i++)
+					{
+						for (int j = 0; j < columnB; j++)
+						{
 							arrayB[i][j] = rand() % 10;
 						}
 					}
 					cout << "\n\nFirst matrix: ";
-					WriteMatrix(columnA, rowsB, arrayA);
+					WriteMatrix(rowsA, columnA, arrayA);
 
 					cout << "\n\nSecond matrix: ";
-					WriteMatrix(columnB, rowsA, arrayB);
+					WriteMatrix(rowsB, columnB, arrayB);
 
-					MultiplyMatrices(arrayA, arrayB, arrayC, columnA, rowsA, columnB);
+					MultiplyMatrices(arrayA, arrayB, arrayC, rowsA, columnB, columnA);
 
 					cout << "\n\nMultiply the first matrix by the second: ";
-					WriteMatrix(columnA, rowsA, arrayC);
+					WriteMatrix(rowsA, columnB, arrayC);
 
 					char key = _getch();
 					asciiValue = key;
