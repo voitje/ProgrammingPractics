@@ -70,18 +70,17 @@ void Create(List* list)
 
 void Add(List* list)
 {
-	Node *newNode = new Node(); //Выделение памяти под новый элемент структуры
-	newNode->nextItem = nullptr;  //Указываем, что изначально по следующему адресу пусто
+	Node *newNode = new Node(); 
+	newNode->nextItem = nullptr;  
 	newNode->Person = ReadPerson();
-	list->count++;
 	if (list->head != nullptr)
 	{
-		newNode->prevItem = list->tail; //Указываем адрес на предыдущий элемент в соотв. поле
-		list->tail->nextItem = newNode; //Указываем адрес следующего за хвостом элемента
-		list->tail = newNode; //Меняем адрес хвоста
+		newNode->prevItem = list->tail; 
+		list->tail->nextItem = newNode; 
+		list->tail = newNode; 
 		newNode->Person.index = newNode->prevItem->Person.index + 1;
 	}
-	else //Если список пустой
+	else 
 	{
 		newNode->prevItem = nullptr;
 		list->head = newNode; list->tail = newNode;
@@ -95,10 +94,10 @@ void Show(List* list)
 	newNode = list->head;
 	while (newNode != nullptr)
 	{	
-		cout.width(10); cout << newNode->Person.index;
+		cout.width(12); cout << newNode->Person.index;
 		cout.width(12); cout << newNode->Person.Surname ;
-		cout.width(11); cout << newNode->Person.Name ;
-		cout.width(8); 
+		cout.width(12); cout << newNode->Person.Name ;
+		cout.width(12);
 		switch (newNode->Person.Gender)
 		{
 			case 0:
@@ -135,10 +134,34 @@ void CopyConstString(char* string1, const char* string2)
 Person MakeRandomPerson()
 {	
 	Person newPerson;
-	const char* MaleName[] = { "Igor", "Semen", "Alexander", "Slavyan", "Mirey" };
-	const char* MaleSurname[] = { "Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov" };
-	const char* FemaleName[] = { "Yulya", "Olya", "Vika", "Liza", "Lana" };
-	const char* FemaleSurname[] = { "Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko" };
+	const char* MaleName[] =
+	{
+		"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
+		"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
+		"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
+	};
+
+	const char* MaleSurname[] =
+	{
+		"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
+		"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
+		"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
+	};
+
+	const char* FemaleName[] = 
+	{ 
+		"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
+		"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
+		"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
+	};
+
+	const char* FemaleSurname[] = 
+	{ 
+		"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
+		"Mayer", "Vladova", "Evans", "Brown", "Weber", 
+		"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
+	};
+
 	cout << "\nInsert Sex - Male(M)/Female(F):\n> ";
 	char key = _getch();
 	int asciiValue = key;
@@ -149,51 +172,49 @@ Person MakeRandomPerson()
 		newKey = _getch();
 		key = newKey;
 	}
-
 	asciiValue = newKey;
 		switch (asciiValue)
 		{
 			case 'f':
 			{
-				CopyConstString(newPerson.Name, FemaleName[rand() % 5]);
-				CopyConstString(newPerson.Surname, FemaleSurname[rand() % 5]);
+				CopyConstString(newPerson.Name, FemaleName[rand() % 15]);
+				CopyConstString(newPerson.Surname, FemaleSurname[rand() % 15]);
 				newPerson.Gender = Female;
 				break;
 			}
 			case 'm':
 			{
-				CopyConstString(newPerson.Name, MaleName[rand() % 5]);
-				CopyConstString(newPerson.Surname, MaleSurname[rand() % 5]);
+				CopyConstString(newPerson.Name, MaleName[rand() % 15]);
+				CopyConstString(newPerson.Surname, MaleSurname[rand() % 15]);
 				newPerson.Gender = Male;
 				break;
 			}
 			default:
 				break;
 		}
-		return newPerson;
-	
+	return newPerson;
 }
 
 void AddForRandomPerson(List* list)
 {
-	Node *newNode = new Node(); //Выделение памяти под новый элемент структуры
-	newNode->nextItem = nullptr;  //Указываем, что изначально по следующему адресу пусто
+	Node *newNode = new Node(); 
+	newNode->nextItem = nullptr;  
 	newNode->Person = MakeRandomPerson();
 	list->count++;
 	if (list->head != nullptr)
 	{
-		newNode->prevItem = list->tail; //Указываем адрес на предыдущий элемент в соотв. поле
-		list->tail->nextItem = newNode; //Указываем адрес следующего за хвостом элемента
-		list->tail = newNode; //Меняем адрес хвоста
+		newNode->prevItem = list->tail; 
+		list->tail->nextItem = newNode; 
+		list->tail = newNode; 
 		newNode->Person.index = newNode->prevItem->Person.index + 1;
 	}
-	else //Если список пустой
+	else 
 	{
 		newNode->prevItem = nullptr;
 		list->head = newNode; list->tail = newNode;
 		newNode->Person.index = 0;
 	}
-};
+}
 
 void Remove(List* list, int index)
 {
@@ -202,7 +223,6 @@ void Remove(List* list, int index)
 	{
 		newNode = newNode->nextItem;
 	}
-	
 	newNode->prevItem->nextItem = newNode->nextItem;
 	newNode->nextItem->prevItem = newNode->prevItem;
 	delete newNode;
@@ -221,8 +241,22 @@ void Insert(List* list, Person& person, int index)
 	newNode->Person.index = i;
 }
 
+void ClearList(List* list)
+{
+	Node* newNode = list->head;
+	int i = 1;
+	while (i != list->tail->Person.index)
+	{
+		Remove(list, i);
+		i++;
+	}
+	list->head = NULL;
+	list->tail = NULL;
+}
+
 void MenuPerson(List* list)
 {
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	const char escapeSymbol = 27;
 	char key;
 	int temp = 1;
@@ -232,19 +266,29 @@ void MenuPerson(List* list)
 	while (asciiValue != escapeSymbol)
 	{	
 		system("cls");
-		cout << setw(10); cout << "Index:"; 
-		cout << setw(12); cout << "Surname:";
-		cout << setw(11); cout << "Name: ";
-		cout << setw(10); cout << "Sex: \n";
+		
+		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED |  FOREGROUND_INTENSITY);
+		cout.width(12); cout << "Index:";
+		cout.width(12); cout << "Surname:";
+		cout.width(12); cout << "Name: ";
+		cout.width(12); cout << "Sex: \n";
+		
+		SetConsoleTextAttribute(hStdOut, 2); 
 		Show(list);
+
+		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY); 
 		cout << "\n------List of Person: Main Menu------"
 			<< "\n1. Add Person"
 			<< "\n2. Add Random Person"
 			<< "\n3. Insert Person"
 			<< "\n4. Get Pointer On Person By Index"
 			<< "\n5. Remove Person By Index"
-			<< "\n6. Clear List(in developing)"
-			<< "\nChoose action (1-7):\n>";
+			<< "\n6. Clear List"
+			<< "\n------List of Person : Main Menu------";
+
+		SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		cout << "\n\n\nChoose action (1-7):\n>";
+
 		key = _getch();
 		asciiValue = key;
 		switch (asciiValue)
@@ -312,10 +356,8 @@ void MenuPerson(List* list)
 			case '6':
 			{	
 				cout << '6';
-				cout << "\nPress Esc to quit the program\n"
-					<< "Result of program execution:\n\n";
-				cout << "\nList of persons\n";
-				Show(list);
+				ClearList(list);
+				cout << "\nList is empty";
 				break;
 			}
 		}
