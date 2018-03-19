@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Person.h"
 #include "Sex.h"
-
+//TODO: Название не корректное. Нужно разделять Persona и 4 лабу
 Person ReadPerson()
 {
 	Person newPerson;
@@ -61,7 +61,7 @@ void PrintPerson(Person& person)
 void Create(List* list)
 {
 	Node *newNode = new Node();
-	newNode->prevItem = nullptr;
+	newNode->prevItem = nullptr;//TODO: Чем отличается от NULL
 	newNode->nextItem = nullptr;
 	list->head = nullptr;
 	list->tail = nullptr;
@@ -112,7 +112,7 @@ void Show(List* list)
 	}
 	cout << endl;
 }
-
+//TODO: Странная логика метода, почему возвращается указатель на Person, а не на ноду? В чём смысл?
 Person& GetPointer(List* list, int index)
 {
 	Node *newNode = list->head;
@@ -219,6 +219,7 @@ void AddForRandomPerson(List* list)
 void Remove(List* list, int index)
 {
 	Node *newNode = list->head;
+	//TODO: Нет проверки на границы индекса
 	while(index != newNode->Person.index)
 	{
 		newNode = newNode->nextItem;
@@ -232,6 +233,7 @@ void Insert(List* list, Person& person, int index)
 {	
 	Node *newNode = list->head;
 	int i = 0;
+	//TODO: Нет проверки на границы индекса.
 	while (index != newNode->Person.index)
 	{
 		i++;
@@ -242,7 +244,7 @@ void Insert(List* list, Person& person, int index)
 }
 
 void ClearList(List* list)
-{
+{//TODO: Нет проверки на пустой список
 	Node* newNode = list->head;
 	int i = 1;
 	while (i != list->tail->Person.index)

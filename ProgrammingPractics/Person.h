@@ -1,24 +1,26 @@
 #pragma once
 #include "Sex.h"
-
+//TODO: Каждая сущность (перечисление/структура) должна быть в отдельном файле
 struct Person
 {
 	char Surname[40];
 	char Name[20];
 	Sex Gender;
 	int Age;
+	//TODO: Именование по RSDN
 	int index = 0;
 };
 
 struct Node
 {
 	Person Person; 
+	//TODO: Именование по RSDN
 	Node* nextItem; 
 	Node* prevItem; 
 };
 
 struct List
-{
+{//TODO: Именование по RSDN
 	Node* head;
 	Node* tail;
 	int count = 0;

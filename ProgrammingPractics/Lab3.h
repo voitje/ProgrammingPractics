@@ -8,6 +8,3 @@ char* ChangeToLowercase(char* string);
 char* ReplaceSpacesOnTabs(char* string, int countSpace);
 char* ReplaceTabsOnSpaces(char* string);
 void JoingString(char* stringA, char* stringB, int startIndex);
-
-//TODO: Должна быть в отдельном файле \ DONE
-//TODO: Реализуйте перечисление типа пол. \ DONE

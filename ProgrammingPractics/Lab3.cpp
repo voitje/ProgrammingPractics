@@ -25,7 +25,6 @@ void JoingString(char* stringA, char* stringB, int startIndex)
 char* Concatenate(char* stringA, char* stringB)
 {
 	char* string = new char[8];
-	//TODO: Ниже дубли. Изменить. \ DONE
 	JoingString(string, stringA, 0);
 	JoingString(string, stringB, strlen(stringA));
 	return string;
@@ -205,7 +204,7 @@ char* ReplaceTabsOnSpaces(char* string)
 	{
 		string1[j] = string[i];
 		if (string[i] == '\t')
-		{
+		{//TODO: Всё ещё жёстко прибито, что 4 пробела, меняются на табы.
 			if (j % 4 == 0)
 			{ 
 				string1[j] = ':'; string1[j + 1] = ':';
@@ -213,7 +212,7 @@ char* ReplaceTabsOnSpaces(char* string)
 				j = j + 3;
 			}
 			else
-			{
+			{//TODO: Всё ещё жёстко прибито, что 4 пробела, меняются на табы.
 				while (j % 4 != 0)
 				{
 					string1[j] = ':';
@@ -249,7 +248,7 @@ void MenuThirdLaboratory()
 		key = _getch();
 		asciiValue = key;
 		switch (asciiValue)
-		{
+		{//TODO: После некоторых манипуляций - лаба перестала работать. Оттестируйте лучше!
 			case '1':
 			{
 				while (asciiValue != escapeSymbol)
