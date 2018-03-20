@@ -1,10 +1,8 @@
 #pragma once
+#include "SexLab3.h"
 
-#include "SexLab4.h"
-
-namespace lab4
+namespace lab3
 {
-	//TODO: Каждая сущность (перечисление/структура) должна быть в отдельном файле \ DONE
 	struct Person
 	{
 		char Surname[40];

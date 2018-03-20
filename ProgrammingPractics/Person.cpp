@@ -1,178 +1,184 @@
 #include "stdafx.h"
-#include "Person.h"
-#include "Sex.h"
+#include "List.h"
 
-Person ReadPerson()
+//TODO: Название не корректное. Нужно разделять Persona и 4 лабу \ DONE
+namespace lab4
 {
-	Person newPerson;
-	cout << "\nPlease enter name and surname (ex. “Jack Bauer”):\n>";
-	cin >> newPerson.Name; cin >> newPerson.Surname;
-	cout << "\nInsert Sex - Male(M)/Female(F):\n>";
-	int n;
-	char key = NULL;
-	const char escapeSymbol = 27;
-	int asciiValue = 0;
-	key = _getch();
-	asciiValue = key;
-	char newKey = key;
-	while ((key != 'f') && (key != 'm'))
+	Person ReadPerson()
 	{
-		cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'F' or Button 'M'):\n>");
-		newKey = _getch();
-		key = newKey;
-	}
-	asciiValue = newKey;
-	switch (asciiValue)
-	{
-		case 'f':
+		Person newPerson;
+		cout << "\nPlease enter name and surname (ex. “Jack Bauer”):\n>";
+		cin >> newPerson.Name; cin >> newPerson.Surname;
+		cout << "\nInsert Sex - Male(M)/Female(F):\n>";
+		int n;
+		char key = NULL;
+		const char escapeSymbol = 27;
+		int asciiValue = 0;
+		key = _getch();
+		asciiValue = key;
+		char newKey = key;
+		while ((key != 'f') && (key != 'm'))
 		{
-			cout << 'F';
-			newPerson.Gender = Female;
-			break;
+			cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'F' or Button 'M'):\n>");
+			newKey = _getch();
+			key = newKey;
 		}
-		case 'm':
+		asciiValue = newKey;
+		switch (asciiValue)
 		{
-			cout << 'M';
-			newPerson.Gender = Male;
-			break;
+			case 'f':
+			{
+				cout << 'F';
+				newPerson.Gender = Female;
+				break;
+			}
+			case 'm':
+			{
+				cout << 'M';
+				newPerson.Gender = Male;
+				break;
+			}
+			default:
+				break;
 		}
-		default:
-			break;
+		return newPerson;
+
 	}
-	return newPerson;
 
-}
-
-void PrintPerson(Person& person)
-{
-	cout << "\n\nSurname: " << person.Surname << endl;
-	cout << "\nName: " << person.Name << endl;
-	switch (person.Gender)
+	void PrintPerson(Person& person)
 	{
-		case 0:
-			cout << "\nSexPerson: " << "Male" << endl;
-			break;
-		case 1:
-			cout << "\nSexPerson: " << "Female" << endl;
-			break;
-	}
-}
-
-void Create(List* list)
-{
-	Node *newNode = new Node();
-	newNode->prevItem = nullptr;
-	newNode->nextItem = nullptr;
-	list->head = nullptr;
-	list->tail = nullptr;
-	list->count = NULL;
-}
-
-void Add(List* list)
-{
-	Node *newNode = new Node(); 
-	newNode->nextItem = nullptr;  
-	newNode->Person = ReadPerson();
-	if (list->head != nullptr)
-	{
-		newNode->prevItem = list->tail; 
-		list->tail->nextItem = newNode; 
-		list->tail = newNode; 
-		newNode->Person.index = newNode->prevItem->Person.index + 1;
-	}
-	else 
-	{
-		newNode->prevItem = nullptr;
-		list->head = newNode; list->tail = newNode;
-		newNode->Person.index = 0;
-	}
-};
-
-void Show(List* list)
-{
-	Node *newNode = list->tail;
-	newNode = list->head;
-	while (newNode != nullptr)
-	{	
-		cout.width(12); cout << newNode->Person.index;
-		cout.width(12); cout << newNode->Person.Surname ;
-		cout.width(12); cout << newNode->Person.Name ;
-		cout.width(12);
-		switch (newNode->Person.Gender)
+		cout << "\n\nSurname: " << person.Surname << endl;
+		cout << "\nName: " << person.Name << endl;
+		switch (person.Gender)
 		{
 			case 0:
-				cout << "Male";
+				cout << "\nSexPerson: " << "Male" << endl;
 				break;
 			case 1:
-				cout << "Female";
+				cout << "\nSexPerson: " << "Female" << endl;
 				break;
 		}
-		newNode = newNode->nextItem;
+	}
+
+	void Create(List* list)
+	{
+		Node *newNode = new Node();
+		newNode->PrevItem = NULL;//TODO: Чем отличается от NULL \ DONE
+		newNode->NextItem = NULL;
+		list->Head = NULL;
+		list->Tail = NULL;
+		//list->count = NULL;
+	}
+
+	void Add(List* list)
+	{
+		Node *newNode = new Node();
+		newNode->NextItem = NULL;
+		newNode->Person = ReadPerson();
+		if (list->Head != NULL)
+		{
+			newNode->PrevItem = list->Tail;
+			list->Tail->NextItem = newNode;
+			list->Tail = newNode;
+			newNode->Person.Index = newNode->PrevItem->Person.Index + 1;
+		}
+		else
+		{
+			newNode->PrevItem = NULL;
+			list->Head = newNode; list->Tail = newNode;
+			newNode->Person.Index = 0;
+		}
+	};
+
+	void Show(List* list)
+	{
+		Node *newNode = list->Tail;
+		newNode = list->Head;
+		while (newNode != NULL)
+		{
+			cout.width(12); cout << newNode->Person.Index;
+			cout.width(12); cout << newNode->Person.Surname;
+			cout.width(12); cout << newNode->Person.Name;
+			cout.width(12);
+			switch (newNode->Person.Gender)
+			{
+				case 0:
+					cout << "Male";
+					break;
+				case 1:
+					cout << "Female";
+					break;
+			}
+			newNode = newNode->NextItem;
+			cout << endl;
+		}
 		cout << endl;
 	}
-	cout << endl;
-}
-
-Person& GetPointer(List* list, int index)
-{
-	Node *newNode = list->head;
-	if (index == newNode->Person.index)
+	//TODO: Странная логика метода, почему возвращается указатель на Person, а не на ноду? В чём смысл?
+	// "Создать функцию Person& Get(int index), возвращающую ссылку 
+	//(или указатель) на элемент списка по указанному индексу" - задание. Разве не указатель на Person?
+	Person& GetPointer(List* list, int index)
 	{
-		return newNode->Person;
+		Node *newNode = list->Head;
+		if (index == newNode->Person.Index)
+		{
+			return newNode->Person;
+		}
+		newNode = newNode->NextItem;
 	}
-	newNode = newNode->nextItem;
-}
-void CopyConstString(char* string1, const char* string2)
-{
-	int i = 0;
-	for (; string2[i]; i++)
+
+	void CopyConstString(char* string1, const char* string2)
 	{
-		string1[i] = string2[i];
+		int i = 0;
+		for (; string2[i]; i++)
+		{
+			string1[i] = string2[i];
+		}
+		string1[i] = '\0';
 	}
-	string1[i] = '\0';
-}
-Person MakeRandomPerson()
-{	
-	Person newPerson;
-	const char* MaleName[] =
+
+	Person MakeRandomPerson()
 	{
-		"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
-		"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
-		"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
-	};
+		Person newPerson;
+		const char* MaleName[] =
+		{
+			"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
+			"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
+			"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
+		};
 
-	const char* MaleSurname[] =
-	{
-		"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
-		"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
-		"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
-	};
+		const char* MaleSurname[] =
+		{
+			"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
+			"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
+			"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
+		};
 
-	const char* FemaleName[] = 
-	{ 
-		"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
-		"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
-		"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
-	};
+		const char* FemaleName[] =
+		{
+			"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
+			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
+			"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
+		};
 
-	const char* FemaleSurname[] = 
-	{ 
-		"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
-		"Mayer", "Vladova", "Evans", "Brown", "Weber", 
-		"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
-	};
+		const char* FemaleSurname[] =
+		{
+			"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
+			"Mayer", "Vladova", "Evans", "Brown", "Weber",
+			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
+		};
 
-	cout << "\nInsert Sex - Male(M)/Female(F):\n> ";
-	char key = _getch();
-	int asciiValue = key;
-	char newKey = key;
-	while ((key != 'f') && (key != 'm'))
-	{
-		cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'F' or Button 'M'):\n>");
-		newKey = _getch();
-		key = newKey;
-	}
-	asciiValue = newKey;
+		cout << "\nInsert Sex - Male(M)/Female(F):\n> ";
+		char key = _getch();
+		int asciiValue = key;
+		char newKey = key;
+		while ((key != 'f') && (key != 'm'))
+		{
+			cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'F' or Button 'M'):\n>");
+			newKey = _getch();
+			key = newKey;
+		}
+		asciiValue = newKey;
 		switch (asciiValue)
 		{
 			case 'f':
@@ -192,173 +198,209 @@ Person MakeRandomPerson()
 			default:
 				break;
 		}
-	return newPerson;
-}
-
-void AddForRandomPerson(List* list)
-{
-	Node *newNode = new Node(); 
-	newNode->nextItem = nullptr;  
-	newNode->Person = MakeRandomPerson();
-	list->count++;
-	if (list->head != nullptr)
-	{
-		newNode->prevItem = list->tail; 
-		list->tail->nextItem = newNode; 
-		list->tail = newNode; 
-		newNode->Person.index = newNode->prevItem->Person.index + 1;
+		return newPerson;
 	}
-	else 
+
+	void AddForRandomPerson(List* list)
 	{
-		newNode->prevItem = nullptr;
-		list->head = newNode; list->tail = newNode;
-		newNode->Person.index = 0;
-	}
-}
-
-void Remove(List* list, int index)
-{
-	Node *newNode = list->head;
-	while(index != newNode->Person.index)
-	{
-		newNode = newNode->nextItem;
-	}
-	newNode->prevItem->nextItem = newNode->nextItem;
-	newNode->nextItem->prevItem = newNode->prevItem;
-	delete newNode;
-}
-
-void Insert(List* list, Person& person, int index)
-{	
-	Node *newNode = list->head;
-	int i = 0;
-	while (index != newNode->Person.index)
-	{
-		i++;
-		newNode = newNode->nextItem;
-	}
-	newNode->Person = person;
-	newNode->Person.index = i;
-}
-
-void ClearList(List* list)
-{
-	Node* newNode = list->head;
-	int i = 1;
-	while (i != list->tail->Person.index)
-	{
-		Remove(list, i);
-		i++;
-	}
-	list->head = NULL;
-	list->tail = NULL;
-}
-
-void MenuPerson(List* list)
-{
-	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	const char escapeSymbol = 27;
-	char key;
-	int temp = 1;
-	int numberCase;
-	int asciiValue = 0;
-	Person person1;
-	while (asciiValue != escapeSymbol)
-	{	
-		system("cls");
-		
-		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED |  FOREGROUND_INTENSITY);
-		cout.width(12); cout << "Index:";
-		cout.width(12); cout << "Surname:";
-		cout.width(12); cout << "Name: ";
-		cout.width(12); cout << "Sex: \n";
-		
-		SetConsoleTextAttribute(hStdOut, 2); 
-		Show(list);
-
-		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY); 
-		cout << "\n------List of Person: Main Menu------"
-			<< "\n1. Add Person"
-			<< "\n2. Add Random Person"
-			<< "\n3. Insert Person"
-			<< "\n4. Get Pointer On Person By Index"
-			<< "\n5. Remove Person By Index"
-			<< "\n6. Clear List"
-			<< "\n------List of Person : Main Menu------";
-
-		SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << "\n\n\nChoose action (1-7):\n>";
-
-		key = _getch();
-		asciiValue = key;
-		switch (asciiValue)
+		Node *newNode = new Node();
+		newNode->NextItem = NULL;
+		newNode->Person = MakeRandomPerson();
+		//list->count++;
+		if (list->Head != NULL)
 		{
-			case '1':
-			{	
-				cout << '1';
-				Add(list);
-				cout << "\nPerson added\n";
-				break;
+			newNode->PrevItem = list->Tail;
+			list->Tail->NextItem = newNode;
+			list->Tail = newNode;
+			newNode->Person.Index = newNode->PrevItem->Person.Index + 1;
+		}
+		else
+		{
+			newNode->PrevItem = NULL;
+			list->Head = newNode; list->Tail = newNode;
+			newNode->Person.Index = 0;
+		}
+	}
+
+	void Remove(List* list, int index)
+	{
+		Node *newNode = list->Head;
+		//TODO: Нет проверки на границы индекса \ DONE
+		int newIndex;
+		if (index > list->Tail->Person.Index || index < list->Head->Person.Index)
+		{
+			while ((index > list->Tail->Person.Index) || (index < list->Head->Person.Index))
+			{
+				cout << "\nINCORRECT SYMBOL!!!\nPlease, enter index index from 0 to " << list->Tail->Person.Index << ":\n>";
+				cin >> newIndex;
+				index = newIndex;
 			}
-			case '2':
-			{	
-				cout << '2';
-				AddForRandomPerson(list);
-				break;
+		}
+		while (index != newNode->Person.Index)
+		{
+			newNode = newNode->NextItem;
+		}
+		newNode->PrevItem->NextItem = newNode->NextItem;
+		newNode->NextItem->PrevItem = newNode->PrevItem;
+		delete newNode;
+	}
+
+	void Insert(List* list, Person& person, int index)
+	{
+		Node *newNode = list->Head;
+		int i = 0;
+		//TODO: Нет проверки на границы индекса. \ DONE
+		int newIndex;
+		if (index > list->Tail->Person.Index || index < list->Head->Person.Index)
+		{
+			while ((index > list->Tail->Person.Index) || (index < list->Head->Person.Index))
+			{
+				cout << "\nINCORRECT SYMBOL!!!\nPlease, enter index index from 0 to " << list->Tail->Person.Index << ":\n>";
+				cin >> newIndex;
+				index = newIndex;
 			}
-			case '3':
-			{	
-				cout << '3';
-				int index;
-				cout << "\nInsert index:\n>";
-				cin >> index;
-				cout << "\n Enter a person from the keyboard or generate randomly?"
-					<< "\nPress the R button to randomly generate"
-					<< "\nPress the K button to enter from the keyboard\n>";
-				char key = _getch();
-				asciiValue = key;
-				switch (asciiValue)
+		}
+		while (index != newNode->Person.Index)
+		{
+			i++;
+			newNode = newNode->NextItem;
+		}
+		newNode->Person = person;
+		newNode->Person.Index = i;
+	}
+
+	void ClearList(List* list)
+	{//TODO: Нет проверки на пустой список \ DONE
+		if (list->Head == NULL && list->Tail == NULL)
+		{
+			char key = _getch();
+			int asciiValue = key;
+			char newKey = key;
+			while ((key != 'e'))
+			{
+				cout << ("\nList is empty, press the E button to exit the function.\n>");
+				newKey = _getch();
+				key = newKey;
+			}
+			return;
+		}
+		Node* newNode = list->Head;
+		int i = 1;
+		while (i != list->Tail->Person.Index)
+		{
+			Remove(list, i);
+			i++;
+		}
+		list->Head = NULL;
+		list->Tail = NULL;
+	}
+
+	void MenuPerson(List* list)
+	{
+		HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+		const char escapeSymbol = 27;
+		char key;
+		int temp = 1;
+		int numberCase;
+		int asciiValue = 0;
+		Person person1;
+		while (asciiValue != escapeSymbol)
+		{
+			system("cls");
+
+			SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
+			cout.width(12); cout << "Index:";
+			cout.width(12); cout << "Surname:";
+			cout.width(12); cout << "Name: ";
+			cout.width(12); cout << "Sex: \n";
+
+			SetConsoleTextAttribute(hStdOut, 2);
+			Show(list);
+
+			SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			cout << "\n------List of Person: Main Menu------"
+				<< "\n1. Add Person"
+				<< "\n2. Add Random Person"
+				<< "\n3. Insert Person"
+				<< "\n4. Get Pointer On Person By Index"
+				<< "\n5. Remove Person By Index"
+				<< "\n6. Clear List"
+				<< "\n------List of Person : Main Menu------";
+
+			SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			cout << "\n\n\nChoose action (1-7):\n>";
+
+			key = _getch();
+			asciiValue = key;
+			switch (asciiValue)
+			{
+				case '1':
 				{
-					case 'r':
-					{
-						Insert(list, MakeRandomPerson(), index);
-						break;
-					}
-					case 'k':
-					{
-						Insert(list, ReadPerson(), index);
-						break;
-					}
+					cout << '1';
+					Add(list);
+					cout << "\nPerson added\n";
+					break;
 				}
-				break;
-			}
-			case '4':
-			{		
-				cout << '4';
-				int index;
-				cout << "\n Insert index:\n>";
-				cin >> index;
-				cout << "Link on element:\n>";
-				cout << &GetPointer(list, index);
-				char key = _getch();
-				asciiValue = key;
-				break;
-			}
-			case '5':
-			{	
-				cout << '5';
-				int index;
-				cout << "\nInsert index:\n>";
-				cin >> index;
-				Remove(list, index);
-				break;
-			}
-			case '6':
-			{	
-				cout << '6';
-				ClearList(list);
-				cout << "\nList is empty";
-				break;
+				case '2':
+				{
+					cout << '2';
+					AddForRandomPerson(list);
+					break;
+				}
+				case '3':
+				{
+					cout << '3';
+					int index;
+					cout << "\nInsert index:\n>";
+					cin >> index;
+					cout << "\n Enter a person from the keyboard or generate randomly?"
+						<< "\nPress the R button to randomly generate"
+						<< "\nPress the K button to enter from the keyboard\n>";
+					char key = _getch();
+					asciiValue = key;
+					switch (asciiValue)
+					{
+						case 'r':
+						{
+							Insert(list, MakeRandomPerson(), index);
+							break;
+						}
+						case 'k':
+						{
+							Insert(list, ReadPerson(), index);
+							break;
+					}
+					}
+					break;
+				}
+				case '4':
+				{
+					cout << '4';
+					int index;
+					cout << "\n Insert index:\n>";
+					cin >> index;
+					cout << "Link on element:\n>";
+					cout << &GetPointer(list, index);
+					char key = _getch();
+					asciiValue = key;
+					break;
+				}
+				case '5':
+				{
+					cout << '5';
+					int index;
+					cout << "\nInsert index:\n>";
+					cin >> index;
+					Remove(list, index);
+					break;
+				}
+				case '6':
+				{
+					cout << '6';
+					ClearList(list);
+					cout << "\nList is empty";
+					break;
+				}
 			}
 		}
 	}
