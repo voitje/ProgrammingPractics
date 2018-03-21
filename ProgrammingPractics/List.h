@@ -4,8 +4,9 @@
 
 namespace lab4
 {
+	//TODO: Должно быть в отдельном файле!
 	struct List
-	{//TODO: Именование по RSDN \ DONE
+	{
 		Node* Head;
 		Node* Tail;
 	};

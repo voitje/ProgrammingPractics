@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "List.h"
 
-//TODO: Название не корректное. Нужно разделять Persona и 4 лабу \ DONE
 namespace lab4
 {
 	Person ReadPerson()
@@ -63,10 +62,13 @@ namespace lab4
 	void Create(List* list)
 	{
 		Node *newNode = new Node();
-		newNode->PrevItem = NULL;//TODO: Чем отличается от NULL \ DONE
+		//TODO: Чем отличается от NULL \ DONE
+		//TODO: Это был вопрос, на ГПО расскажите =)
+		newNode->PrevItem = NULL;
 		newNode->NextItem = NULL;
 		list->Head = NULL;
 		list->Tail = NULL;
+		//TODO: Не нужно в тексте оставлять такие комментарии.
 		//list->count = NULL;
 	}
 
@@ -117,6 +119,8 @@ namespace lab4
 	//TODO: Странная логика метода, почему возвращается указатель на Person, а не на ноду? В чём смысл?
 	// "Создать функцию Person& Get(int index), возвращающую ссылку 
 	//(или указатель) на элемент списка по указанному индексу" - задание. Разве не указатель на Person?
+	//TODO: В задании опечатка. В списке у вас хранятся элементы, а уже в элементе есть персона
+	//TODO: Возвращать по заданию нужно ссылку (или указатель) на элемент списка по указанному индексу
 	Person& GetPointer(List* list, int index)
 	{
 		Node *newNode = list->Head;
@@ -206,6 +210,7 @@ namespace lab4
 		Node *newNode = new Node();
 		newNode->NextItem = NULL;
 		newNode->Person = MakeRandomPerson();
+		//TODO: Не нужно оставлять такие комментарии!
 		//list->count++;
 		if (list->Head != NULL)
 		{
@@ -225,7 +230,6 @@ namespace lab4
 	void Remove(List* list, int index)
 	{
 		Node *newNode = list->Head;
-		//TODO: Нет проверки на границы индекса \ DONE
 		int newIndex;
 		if (index > list->Tail->Person.Index || index < list->Head->Person.Index)
 		{
@@ -249,7 +253,6 @@ namespace lab4
 	{
 		Node *newNode = list->Head;
 		int i = 0;
-		//TODO: Нет проверки на границы индекса. \ DONE
 		int newIndex;
 		if (index > list->Tail->Person.Index || index < list->Head->Person.Index)
 		{
@@ -270,7 +273,7 @@ namespace lab4
 	}
 
 	void ClearList(List* list)
-	{//TODO: Нет проверки на пустой список \ DONE
+	{
 		if (list->Head == NULL && list->Tail == NULL)
 		{
 			char key = _getch();

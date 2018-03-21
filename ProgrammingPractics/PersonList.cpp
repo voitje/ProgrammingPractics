@@ -1,4 +1,5 @@
 #include "stdafx.h"
+//TODO: Зачем этот файл?
 //#include "PersonList.h"
 //
 //namespace labFive

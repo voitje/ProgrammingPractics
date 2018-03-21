@@ -4,14 +4,13 @@
 
 namespace lab4
 {
-	//TODO: Каждая сущность (перечисление/структура) должна быть в отдельном файле \ DONE
 	struct Person
 	{
 		char Surname[40];
 		char Name[20];
 		Sex Gender;
 		int Age;
-		//TODO: Именование по RSDN \ DONE
+		//TODO: Вообще индекс - это не часть персоны, это часть контейнера, содержащего персону
 		int Index = 0;
 	};
 }

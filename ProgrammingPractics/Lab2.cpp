@@ -65,7 +65,6 @@ int GetRoots(int a, int b, int c, double* x1, double* x2)
 
 int GetPower(int base, int power, int temp, int tempBase)
 {	
-	//TODO: Не работает \ DONE
 	if (power == 0)
 	{
 		return 1;

@@ -1,3 +1,4 @@
+//TODO: Зачем этот файл?
 //#pragma once
 //#include "Sex.h"
 ////#include "Person.h"

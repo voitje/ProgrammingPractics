@@ -125,7 +125,7 @@ namespace lab3
 		resString[j] = '\0';
 		return i;
 	}
-
+	//TODO: Не работает при сложных путях с пробелами, сложными расширениями
 	void SplitFilename(char* source, char* path, char* name, char* extension)
 	{
 		int index = 0;
@@ -180,7 +180,7 @@ namespace lab3
 		extension[0] = NULL;
 		name[0] = NULL;
 	}
-
+	//TODO: Не работает! Проверьте на тестовых данных.
 	char* ReplaceSpacesOnTabs(char* string, int countSpace)
 	{
 		char* newString = new char[strlen(string)];
@@ -212,7 +212,7 @@ namespace lab3
 		newString[endSymbol] = '\0';
 		return newString;
 	}
-
+	//TODO: Не работает! Проверьте на тестовых данных.
 	char* ReplaceTabsOnSpaces(char* string)
 	{
 		char* string1 = new char[8];
@@ -221,7 +221,7 @@ namespace lab3
 		{
 			string1[j] = string[i];
 			if (string[i] == '\t')
-			{//TODO: Всё ещё жёстко прибито, что 4 пробела, меняются на табы.
+			{
 				if (j % 4 == 0)
 				{	
 					int temp = j;
@@ -233,7 +233,7 @@ namespace lab3
 					}
 				}
 				else
-				{//TODO: Всё ещё жёстко прибито, что 4 пробела, меняются на табы. \ в else не 4 пробела
+				{
 					while (j % 4 != 0)
 					{
 						string1[j] = ':';
