@@ -8,7 +8,7 @@ namespace lab3
 	void MenuThirdLaboratory();
 	int GetLength(char* string);
 	char* Concatenate(char* stringA, char* stringB);
-	char* GetSubstring(/*char* string*//*, int startIndex, int charCount*/);
+	char* GetSubstring();
 	int FindSubstring(char* string, char* substring);
 	char* ChangeToUppercase(char* string);
 	char* ChangeToLowercase(char* string);

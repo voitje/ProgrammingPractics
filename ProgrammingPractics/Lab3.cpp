@@ -31,14 +31,11 @@ namespace lab3
 		return string;
 	}
 
-
-
-	char* GetSubstring(/*char* string*//*, int startIndex, int charCount**/)
+	char* GetSubstring()
 	{
-
 		cin.ignore(4096, '\n');
 		cout << "\nWrite string: ";
-		char* string1 = new char[8];
+		char* string1 = new char[32];
 		cin.getline(string1, 100);
 		int startIndex; int charCount;
 		cout << "\nStart Index: "; cin >> startIndex;
@@ -57,11 +54,7 @@ namespace lab3
 		}
 		temp[j] = '\0';
 		cin.ignore(4096, '\n');
-		delete string1;
 		return temp;
-
-
-
 	}
 
 	int FindSubstring(char* string, char* substring)
@@ -125,7 +118,7 @@ namespace lab3
 		resString[j] = '\0';
 		return i;
 	}
-	//TODO: Не работает при сложных путях с пробелами, сложными расширениями
+	//TODO: Не работает при сложных путях с пробелами, сложными расширениями \ DONE
 	void SplitFilename(char* source, char* path, char* name, char* extension)
 	{
 		int index = 0;
@@ -180,39 +173,41 @@ namespace lab3
 		extension[0] = NULL;
 		name[0] = NULL;
 	}
-	//TODO: Не работает! Проверьте на тестовых данных.
+	
+	//TODO: Не работает! Проверьте на тестовых данных. \ Переделал, показал, что все работает
+	//"Учтите, что замена пробелов на табуляции возможна не во всех случаях, 
+	//а только если последовательность пробельных символов находиться на кратной 8(!) позиции." - условие задания
 	char* ReplaceSpacesOnTabs(char* string, int countSpace)
 	{
-		char* newString = new char[strlen(string)];
-		int endSymbol = 0;
-		int currentSymbolNewString = 0;
-
-		for (int i = 0; i < strlen(string); i++)
+		char* newString = new char[100];
+		int j = 0;
+		int newStringIndex = 0;
+		for (int i = 0; i < GetLength(string); i++)
 		{
-			currentSymbolNewString = i;
-			bool isTab = true;
-			for (int i = 0; i < countSpace; i++)
+			if (string[i] == ':' && (i + 1) % countSpace == 0 && i != 0)
 			{
-				if (string[currentSymbolNewString++] != ':')
-				{
-					isTab = false;
-				}
-			}
-
-			if (isTab)
-			{
-				newString[i] = '\t';
+				newStringIndex = newStringIndex - j;
+				newString[newStringIndex++] = '\t';
+				j = 0;
 			}
 			else
 			{
-				newString[i] = string[i];
+				newString[newStringIndex++] = string[i];
 			}
-			endSymbol++;
+			if (string[i] == ':')
+			{
+				j++;
+			}
+			else
+			{
+				j = 0;
+			}
+
 		}
-		newString[endSymbol] = '\0';
+		newString[newStringIndex] = 0;
 		return newString;
 	}
-	//TODO: Не работает! Проверьте на тестовых данных.
+	//TODO: Не работает! Проверьте на тестовых данных. \ Все тесты с лабы работают, сам не придумал.
 	char* ReplaceTabsOnSpaces(char* string)
 	{
 		char* string1 = new char[8];
@@ -245,6 +240,15 @@ namespace lab3
 		}
 		string1[j] = '\0';
 		return string1;
+	}
+
+	char* func(char* str, size_t n)
+	{
+		int len = strlen(str) - n;
+		if (len>0)
+			memmove(str + n, str + n + 1, len);
+
+		return str;
 	}
 
 	lab3::Person ReadPerson()
@@ -333,9 +337,9 @@ namespace lab3
 						system("cls");
 						char string[100];
 						cout << "Press Esc to quit the program when after running the program\n\n";
-						cout << "\nString: ";
+						cout << "\nString:\n>";
 						cin >> string;
-						cout << "\nLength of string: ";
+						cout << "\nLength of string:\n>";
 						cout << GetLength(string);
 						char key = _getch();
 						asciiValue = key;
@@ -351,8 +355,8 @@ namespace lab3
 						char stringA[100];
 						char stringB[100];
 						cout << "Press Esc to quit the program when after running the program\n\n";
-						cout << "\nFirst string: "; cin >> stringA;
-						cout << "\nSecond string: "; cin >> stringB;
+						cout << "\nFirst string:\n>"; cin >> stringA;
+						cout << "\nSecond string:\n>"; cin >> stringB;
 						s2 = Concatenate(stringA, stringB);
 						for (int i = 0; s2[i] != '\0'; i++)
 						{
@@ -360,8 +364,8 @@ namespace lab3
 						}
 						char key = _getch();
 						asciiValue = key;
-						break;
 					}
+					break;
 				}
 				case '3':
 				{
@@ -397,9 +401,9 @@ namespace lab3
 						char string[100];
 						char substring[100];
 						cout << "Press Esc to quit the program when after running the program\n\n";
-						cout << "\nString: "; cin.getline(string, 100);
-						cout << "\nSubstring: "; cin.getline(substring, 100);
-						cout << "\nResult: ";
+						cout << "\nString:\n>"; cin.getline(string, 100);
+						cout << "\nSubstring:\n>"; cin.getline(substring, 100);
+						cout << "\nResult:\n>";
 						cout << FindSubstring(string, substring);
 						char key = _getch();
 						asciiValue = key;
@@ -413,8 +417,8 @@ namespace lab3
 						system("cls");
 						char string[100];
 						cout << "Press Esc to quit the program when after running the program\n\n";
-						cout << "String: "; cin.getline(string, 100);
-						cout << "\nAfter: ";
+						cout << "Insert string:\n>";; cin.getline(string, 100);
+						cout << "\nAfter:\n>";
 						cout << ChangeToUppercase(string);
 						char key = _getch();
 						asciiValue = key;
@@ -429,8 +433,8 @@ namespace lab3
 						system("cls");
 						char string[100];
 						cout << "Press Esc to quit the program when after running the program\n\n";
-						cout << "String: "; cin.getline(string, 100);
-						cout << "\nAfter: ";
+						cout << "Insert string:\n>"; cin.getline(string, 100);
+						cout << "\nAfter:\n>";
 						cout << ChangeToLowercase(string);
 						char key = _getch();
 						asciiValue = key;
@@ -447,7 +451,8 @@ namespace lab3
 						char name[100];
 						char extension[100];
 						cout << "Press Esc to quit the program when after running the program\n\n";
-						cout << "\nWay: "; cin >> source;
+						cout << "\nWay: "; 
+						cin.getline(source, 100, '\n');
 						SplitFilename(source, path, name, extension);
 						cout << "\nPath: "; cout << path;
 						cout << "\nName: "; cout << name;
@@ -465,7 +470,7 @@ namespace lab3
 						char string[100];
 						char* resultOfWork;
 						cout << "Press Esc to quit the program when after running the program\n\n";
-						cout << "\nString: "; cin.getline(string, 100);
+						cout << "Insert string:\n>"; cin.getline(string, 100);
 						resultOfWork = ReplaceTabsOnSpaces(string);
 						for (int i = 0; resultOfWork[i] != '\0'; i++)
 						{
@@ -482,8 +487,11 @@ namespace lab3
 					{
 						system("cls");
 						cout << "Press Esc to quit the program when after running the program\n\n";
-						char* resultOfWork = (char*)"Cake::::is::a:lie!";
-						cout << ReplaceSpacesOnTabs(resultOfWork, 4);
+						char resultOfWork[100];
+						cout << "Insert string:\n>";
+						cin.getline(resultOfWork, 100);
+						cout << "!\t!\t!\t!\t!\t!\n";
+						cout << ReplaceSpacesOnTabs(resultOfWork, 8);
 						char key = _getch();
 						asciiValue = key;
 					}
