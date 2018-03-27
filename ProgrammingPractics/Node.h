@@ -9,5 +9,6 @@ namespace lab4
 		Person Person;
 		Node* NextItem;
 		Node* PrevItem;
+		int Index = 0;
 	};
 }

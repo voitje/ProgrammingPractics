@@ -14,7 +14,7 @@ namespace lab4
 	void MenuPerson(List* list);
 	void Create(List* list);
 	Person ReadPerson();
-	Person& GetPointer(List* list, int index);
+	Node* GetPointer(List* list, int index);
 	Person MakeRandomPerson();
 	void Add(List* list);
 	void Show(List* list);
@@ -22,5 +22,6 @@ namespace lab4
 	void Remove(List* list, int index);
 	void Insert(List* list, Person& person, int index);
 	void ClearList(List* list);
+	bool IsEmpty(List* list);
 }
 

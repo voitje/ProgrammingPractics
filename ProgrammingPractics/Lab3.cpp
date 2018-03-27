@@ -174,9 +174,6 @@ namespace lab3
 		name[0] = NULL;
 	}
 	
-	//TODO: Не работает! Проверьте на тестовых данных. \ Переделал, показал, что все работает
-	//"Учтите, что замена пробелов на табуляции возможна не во всех случаях, 
-	//а только если последовательность пробельных символов находиться на кратной 8(!) позиции." - условие задания
 	char* ReplaceSpacesOnTabs(char* string, int countSpace)
 	{
 		char* newString = new char[100];
@@ -207,10 +204,10 @@ namespace lab3
 		newString[newStringIndex] = 0;
 		return newString;
 	}
-	//TODO: Не работает! Проверьте на тестовых данных. \ Все тесты с лабы работают, сам не придумал.
+	//TODO: Не работает! Проверьте на тестовых данных. \ DONE
 	char* ReplaceTabsOnSpaces(char* string)
 	{
-		char* string1 = new char[8];
+		char* string1 = new char[20];
 		int j = 0;
 		for (int i = 0; i < strlen(string); i++, j++)
 		{
@@ -242,19 +239,10 @@ namespace lab3
 		return string1;
 	}
 
-	char* func(char* str, size_t n)
-	{
-		int len = strlen(str) - n;
-		if (len>0)
-			memmove(str + n, str + n + 1, len);
-
-		return str;
-	}
-
 	lab3::Person ReadPerson()
 	{
 		lab3::Person newPerson;
-		cout << "\nPlease enter name and surname (ex. “Jack Bauer”):\n>";
+		cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
 		cin >> newPerson.Name; cin >> newPerson.Surname;
 		cout << "\nInsert Sex - Male(M)/Female(F):\n>";
 		int n;
@@ -329,7 +317,7 @@ namespace lab3
 			key = _getch();
 			asciiValue = key;
 			switch (asciiValue)
-			{//TODO: После некоторых манипуляций - лаба перестала работать. Оттестируйте лучше!
+			{//TODO: После некоторых манипуляций - лаба перестала работать. Оттестируйте лучше! \ DONE
 				case '1':
 				{
 					while (asciiValue != escapeSymbol)

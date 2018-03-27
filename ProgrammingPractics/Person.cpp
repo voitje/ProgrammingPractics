@@ -6,7 +6,7 @@ namespace lab4
 	Person ReadPerson()
 	{
 		Person newPerson;
-		cout << "\nPlease enter name and surname (ex. “Jack Bauer”):\n>";
+		cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
 		cin >> newPerson.Name; cin >> newPerson.Surname;
 		cout << "\nInsert Sex - Male(M)/Female(F):\n>";
 		int n;
@@ -68,8 +68,7 @@ namespace lab4
 		newNode->NextItem = NULL;
 		list->Head = NULL;
 		list->Tail = NULL;
-		//TODO: Не нужно в тексте оставлять такие комментарии.
-		//list->count = NULL;
+		//TODO: Не нужно в тексте оставлять такие комментарии. \ DONE
 	}
 
 	void Add(List* list)
@@ -82,23 +81,24 @@ namespace lab4
 			newNode->PrevItem = list->Tail;
 			list->Tail->NextItem = newNode;
 			list->Tail = newNode;
-			newNode->Person.Index = newNode->PrevItem->Person.Index + 1;
+			//newNode->Person.Index = newNode->PrevItem->Person.Index + 1;
+			newNode->Index = newNode->PrevItem->Index + 1;
 		}
 		else
 		{
 			newNode->PrevItem = NULL;
 			list->Head = newNode; list->Tail = newNode;
-			newNode->Person.Index = 0;
+			newNode->Index = 0;
 		}
 	};
 
 	void Show(List* list)
 	{
 		Node *newNode = list->Tail;
-		newNode = list->Head;
+		newNode = list->Head; 
 		while (newNode != NULL)
 		{
-			cout.width(12); cout << newNode->Person.Index;
+			cout.width(12); cout << newNode->Index;
 			cout.width(12); cout << newNode->Person.Surname;
 			cout.width(12); cout << newNode->Person.Name;
 			cout.width(12);
@@ -111,7 +111,7 @@ namespace lab4
 					cout << "Female";
 					break;
 			}
-			newNode = newNode->NextItem;
+			newNode = newNode->NextItem; 
 			cout << endl;
 		}
 		cout << endl;
@@ -120,14 +120,39 @@ namespace lab4
 	// "Создать функцию Person& Get(int index), возвращающую ссылку 
 	//(или указатель) на элемент списка по указанному индексу" - задание. Разве не указатель на Person?
 	//TODO: В задании опечатка. В списке у вас хранятся элементы, а уже в элементе есть персона
-	//TODO: Возвращать по заданию нужно ссылку (или указатель) на элемент списка по указанному индексу
-	Person& GetPointer(List* list, int index)
+	//TODO: Возвращать по заданию нужно ссылку (или указатель) на элемент списка по указанному индексу \ DONE
+	Node* GetPointer(List* list, int index)
 	{
 		Node *newNode = list->Head;
-		if (index == newNode->Person.Index)
+		char key = _getch();
+		int asciiValue = key;
+		char newKey = key;
+		if (IsEmpty(list) == true)
 		{
-			return newNode->Person;
+			while ((key != 'e'))
+			{
+				cout << ("\nList is empty, press the E button to exit the function.\n>");
+				newKey = _getch();
+				key = newKey;
+			}
+			return NULL;
 		}
+		if (index < 0)
+		{
+			while ((key != 'e'))
+			{
+				cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter E for exit (index only from 0 to infinity):\n>");
+				newKey = _getch();
+				key = newKey;
+			}
+			return NULL;
+		}
+		if (index == newNode->Index)
+		{
+			cout << "Link on element:\n";
+			return newNode;
+		}
+
 		newNode = newNode->NextItem;
 	}
 
@@ -210,20 +235,19 @@ namespace lab4
 		Node *newNode = new Node();
 		newNode->NextItem = NULL;
 		newNode->Person = MakeRandomPerson();
-		//TODO: Не нужно оставлять такие комментарии!
-		//list->count++;
+		//TODO: Не нужно оставлять такие комментарии! \ DONE
 		if (list->Head != NULL)
 		{
 			newNode->PrevItem = list->Tail;
 			list->Tail->NextItem = newNode;
 			list->Tail = newNode;
-			newNode->Person.Index = newNode->PrevItem->Person.Index + 1;
+			newNode->Index = newNode->PrevItem->Index + 1;
 		}
 		else
 		{
 			newNode->PrevItem = NULL;
 			list->Head = newNode; list->Tail = newNode;
-			newNode->Person.Index = 0;
+			newNode->Index = 0;
 		}
 	}
 
@@ -231,16 +255,42 @@ namespace lab4
 	{
 		Node *newNode = list->Head;
 		int newIndex;
-		if (index > list->Tail->Person.Index || index < list->Head->Person.Index)
+		if (IsEmpty(list) == true)
 		{
-			while ((index > list->Tail->Person.Index) || (index < list->Head->Person.Index))
+			char key = _getch();
+			int asciiValue = key;
+			char newKey = key;
+			while ((key != 'e'))
 			{
-				cout << "\nINCORRECT SYMBOL!!!\nPlease, enter index index from 0 to " << list->Tail->Person.Index << ":\n>";
+				cout << ("\nList is empty, press the E button to exit the function.\n>");
+				newKey = _getch();
+				key = newKey;
+			}
+			return;
+		}
+		if (index < 0)
+		{
+			char key = _getch();
+			int asciiValue = key;
+			char newKey = key;
+			while ((key != 'e'))
+			{
+				cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter E for exit (index only from 0 to infinity):\n>");
+				newKey = _getch();
+				key = newKey;
+			}
+			return;
+		}
+		if (index > list->Tail->Index || index < list->Head->Index)
+		{
+			while ((index > list->Tail->Index) || (index < list->Head->Index))
+			{
+				cout << "\nINCORRECT SYMBOL!!!\nPlease, enter index index from 0 to " << list->Tail->Index << ":\n>";
 				cin >> newIndex;
 				index = newIndex;
 			}
 		}
-		while (index != newNode->Person.Index)
+		while (index != newNode->Index)
 		{
 			newNode = newNode->NextItem;
 		}
@@ -254,22 +304,35 @@ namespace lab4
 		Node *newNode = list->Head;
 		int i = 0;
 		int newIndex;
-		if (index > list->Tail->Person.Index || index < list->Head->Person.Index)
+		char key = _getch();
+		int asciiValue = key;
+		char newKey = key;
+		if (IsEmpty(list) == true)
 		{
-			while ((index > list->Tail->Person.Index) || (index < list->Head->Person.Index))
+			while ((key != 'e'))
 			{
-				cout << "\nINCORRECT SYMBOL!!!\nPlease, enter index index from 0 to " << list->Tail->Person.Index << ":\n>";
+				cout << ("\nList is empty, press the E button to exit the function.\n>");
+				newKey = _getch();
+				key = newKey;
+			}
+			return;
+		}
+		if (index > list->Tail->Index || index < list->Head->Index)
+		{
+			while ((index > list->Tail->Index) || (index < list->Head->Index))
+			{
+				cout << "\nINCORRECT SYMBOL!!!\nPlease, enter index index from 0 to " << list->Tail->Index << ":\n>";
 				cin >> newIndex;
 				index = newIndex;
 			}
 		}
-		while (index != newNode->Person.Index)
+		while (index != newNode->Index)
 		{
 			i++;
 			newNode = newNode->NextItem;
 		}
 		newNode->Person = person;
-		newNode->Person.Index = i;
+		newNode->Index = i;
 	}
 
 	void ClearList(List* list)
@@ -289,13 +352,22 @@ namespace lab4
 		}
 		Node* newNode = list->Head;
 		int i = 1;
-		while (i != list->Tail->Person.Index)
+		while (i != list->Tail->Index)
 		{
 			Remove(list, i);
 			i++;
 		}
 		list->Head = NULL;
 		list->Tail = NULL;
+	}
+
+	bool IsEmpty(List* list)
+	{
+		if (list->Head == NULL && list->Tail == NULL)
+		{
+			return 1;
+		}
+		return 0;
 	}
 
 	void MenuPerson(List* list)
@@ -372,7 +444,7 @@ namespace lab4
 						{
 							Insert(list, ReadPerson(), index);
 							break;
-					}
+						}
 					}
 					break;
 				}
@@ -382,8 +454,14 @@ namespace lab4
 					int index;
 					cout << "\n Insert index:\n>";
 					cin >> index;
-					cout << "Link on element:\n>";
-					cout << &GetPointer(list, index);
+					if (GetPointer(list, index) == NULL)
+					{
+						cout << "\nPlease insert correct date!\n";
+					}
+					else 
+					{
+						cout << GetPointer(list, index);
+					}
 					char key = _getch();
 					asciiValue = key;
 					break;
