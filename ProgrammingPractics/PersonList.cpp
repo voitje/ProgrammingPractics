@@ -1,5 +1,4 @@
 #include "stdafx.h"
-//TODO: Зачем этот файл? \DONE	
 #include "PersonList.h"
 
 
@@ -17,6 +16,7 @@ namespace lab5
 			_tail->Next = NULL;
 			cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
 			cin >> name; cin >> surname;
+			//TODO: Дублируется ниже!
 			if ((name[0] >= 'A' && name[0] <= 'Z') || (surname[0] >= 'A' && surname[0] <= 'Z'))
 			{
 				newItem->Value.Name = name;
@@ -260,7 +260,6 @@ namespace lab5
 		PersonListItem* newItem = new PersonListItem(person);
 		newItem->Next = NULL;
 		newItem->Value = MakeRandomPerson();
-		//TODO: Не нужно оставлять такие комментарии! \ DONE
 		if (_head != NULL)
 		{
 			newItem->Prev = _tail; 
@@ -278,7 +277,7 @@ namespace lab5
 	}
 
 	void PersonList::MenuForClass(Person& person)
-	{
+	{//TODO: Совмещение менюшек и целевой функциональности - усложняет понимание программы
 		HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 		const char escapeSymbol = 27;
 		char key;

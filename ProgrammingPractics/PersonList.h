@@ -1,4 +1,4 @@
-//TODO: Зачем этот файл?
+//TODO: Почему отключена директива?
 //#pragma once
 #include "SexLab3.h"
 #include "PersonLab5.h"
@@ -6,8 +6,9 @@
 
 namespace lab5
 {	
+	//TODO: В отдельный файл!
 	class PersonListItem
-	{
+	{//TODO: Форматирование не по RSDN!
 	public:
 		PersonListItem(Person person)
 		{
@@ -17,14 +18,15 @@ namespace lab5
 		PersonListItem* Next = NULL;
 		PersonListItem* Prev = NULL;
 	};
-
+	//TODO: В отдельный файл!
 	class PersonList
-	{
+	{//TODO: Форматирование не по RSDN!
 	private:
 		PersonListItem* _head; 
 		PersonListItem* _tail;
 		int _count = NULL;
 	public:
+		//TODO: Зачем эти комменты в коде?
 		//PersonList();
 		void Add(Person& person);
 		Person& Find(int index);

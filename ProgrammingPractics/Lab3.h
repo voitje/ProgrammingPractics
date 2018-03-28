@@ -15,6 +15,7 @@ namespace lab3
 	char* ReplaceSpacesOnTabs(char* string, int countSpace);
 	char* ReplaceTabsOnSpaces(char* string);
 	void JoingString(char* stringA, char* stringB, int startIndex);
+	//TODO: Нет такого метода
 	bool check();
 }
 

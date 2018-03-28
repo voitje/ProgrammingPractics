@@ -68,7 +68,6 @@ namespace lab4
 		newNode->NextItem = NULL;
 		list->Head = NULL;
 		list->Tail = NULL;
-		//TODO: Не нужно в тексте оставлять такие комментарии. \ DONE
 	}
 
 	void Add(List* list)
@@ -81,6 +80,7 @@ namespace lab4
 			newNode->PrevItem = list->Tail;
 			list->Tail->NextItem = newNode;
 			list->Tail = newNode;
+			//TODO: Не нужно в тексте оставлять такие комментарии.
 			//newNode->Person.Index = newNode->PrevItem->Person.Index + 1;
 			newNode->Index = newNode->PrevItem->Index + 1;
 		}
@@ -116,11 +116,7 @@ namespace lab4
 		}
 		cout << endl;
 	}
-	//TODO: Странная логика метода, почему возвращается указатель на Person, а не на ноду? В чём смысл?
-	// "Создать функцию Person& Get(int index), возвращающую ссылку 
-	//(или указатель) на элемент списка по указанному индексу" - задание. Разве не указатель на Person?
-	//TODO: В задании опечатка. В списке у вас хранятся элементы, а уже в элементе есть персона
-	//TODO: Возвращать по заданию нужно ссылку (или указатель) на элемент списка по указанному индексу \ DONE
+	
 	Node* GetPointer(List* list, int index)
 	{
 		Node *newNode = list->Head;
@@ -200,7 +196,7 @@ namespace lab4
 		cout << "\nInsert Sex - Male(M)/Female(F):\n> ";
 		char key = _getch();
 		int asciiValue = key;
-		char newKey = key;
+		char newKey = key;//TODO: Договаривались, что персона должна быть полностью рандомной. А у вас так и нужно водить пол.
 		while ((key != 'f') && (key != 'm'))
 		{
 			cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'F' or Button 'M'):\n>");
@@ -230,12 +226,12 @@ namespace lab4
 		return newPerson;
 	}
 
+	//TODO: Плохое название метода, for - обозначает "для" лучше без for
 	void AddForRandomPerson(List* list)
 	{
 		Node *newNode = new Node();
 		newNode->NextItem = NULL;
 		newNode->Person = MakeRandomPerson();
-		//TODO: Не нужно оставлять такие комментарии! \ DONE
 		if (list->Head != NULL)
 		{
 			newNode->PrevItem = list->Tail;
@@ -371,7 +367,7 @@ namespace lab4
 	}
 
 	void MenuPerson(List* list)
-	{
+	{//TODO: Совмещение менюшек и целевой функциональности - усложняет понимание программы
 		HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 		const char escapeSymbol = 27;
 		char key;
@@ -403,6 +399,7 @@ namespace lab4
 				<< "\n------List of Person : Main Menu------";
 
 			SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			//TODO: Почему от 1 до 7?
 			cout << "\n\n\nChoose action (1-7):\n>";
 
 			key = _getch();

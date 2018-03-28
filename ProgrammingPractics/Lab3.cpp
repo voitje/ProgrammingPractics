@@ -118,7 +118,7 @@ namespace lab3
 		resString[j] = '\0';
 		return i;
 	}
-	//TODO: Не работает при сложных путях с пробелами, сложными расширениями \ DONE
+	
 	void SplitFilename(char* source, char* path, char* name, char* extension)
 	{
 		int index = 0;
@@ -204,7 +204,7 @@ namespace lab3
 		newString[newStringIndex] = 0;
 		return newString;
 	}
-	//TODO: Не работает! Проверьте на тестовых данных. \ DONE
+	
 	char* ReplaceTabsOnSpaces(char* string)
 	{
 		char* string1 = new char[20];
@@ -317,7 +317,7 @@ namespace lab3
 			key = _getch();
 			asciiValue = key;
 			switch (asciiValue)
-			{//TODO: После некоторых манипуляций - лаба перестала работать. Оттестируйте лучше! \ DONE
+			{
 				case '1':
 				{
 					while (asciiValue != escapeSymbol)
