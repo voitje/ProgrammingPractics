@@ -3,58 +3,28 @@
 namespace lab5
 {
 	class Person
-	{//TODO: Не по RSDN форматирование
-	public:
-		//TODO: Публичные поля. Нарушение инкапсуляции!
-		string Name;
-		string Surname;
-		int Age;
-		//TODO: Всё что ниже должно быть перенесено в cpp.
-		string GetName()
-		{
-			return Name;
-		}
+	{//TODO: Не по RSDN форматирование \ DONE
+		private:
+			//TODO: Публичные поля. Нарушение инкапсуляции! \ DONE
+			string Name;
+			string Surname;
+			int Age;
+			//TODO: Всё что ниже должно быть перенесено в cpp. \ DONE
+		public:
+			string GetName();
 
-		string GetSurname()
-		{
-			return Surname;
-		}
+			string GetSurname();
 
-		int GetAge()
-		{
-			return Age;
-		}
+			int GetAge();
 
-		void SetName(string name)
-		{
-			Name = name;
-		}
+			void SetName(string name);
 
-		void SetSurname(string surname)
-		{
-			Surname = surname;
-		}
+			void SetSurname(string surname);
 
-		void SetAge(int age)
-		{
-			Age = age;
-		}
-		//TODO: Метод записывает данные о другом объекте, а должен о текущем.
-		void Read(Person& person)
-		{
-			//TODO: Не по RSDN.
-			int age;  string surname; string name;
-			cout << "\nИмя\n>"; cin >> name; person.SetName(name);
-			cout << "Фамилия\n>"; cin >> surname; person.SetSurname(surname);
-			cout << "Возраст\n>"; cin >> age; person.SetAge(age);
-		}
-		//TODO: Метод работает некорректно. Получается, что один объект человека должен рассказать о другом объекте человека, но не о себе. 
-		//TODO: А метод предполагает выдачу информации о себе.
-		 void Show(Person& person)
-		{
-			cout << "\nИмя\n>" << person.GetName();
-			cout << "Фамилия\n>" << person.GetSurname();
-			cout << "Возраст\n>" << person.GetAge();
-		}
+			void SetAge(int age);
+
+			void Read();
+
+			void Show();
 	};
 }

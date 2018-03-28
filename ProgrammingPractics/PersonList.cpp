@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "PersonList.h"
+#include "CheckNameSurname.h"
 
 
 namespace lab5
@@ -8,38 +9,35 @@ namespace lab5
 	{
 		string name;
 		string surname;
+		cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
+		cin >> name; cin >> surname;
+		if (CheckNameSurname(name, surname) == 0)
+		{
+			cout << "\nPress any key to continue working\n";
+			char key = _getch();
+			return;
+		}
 		PersonListItem* newItem = new PersonListItem(person);
 		if (_head != NULL)
 		{
 			_tail->Next = newItem;
 			_tail = newItem;
 			_tail->Next = NULL;
-			cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
-			cin >> name; cin >> surname;
-			//TODO: Дублируется ниже!
-			if ((name[0] >= 'A' && name[0] <= 'Z') || (surname[0] >= 'A' && surname[0] <= 'Z'))
-			{
-				newItem->Value.Name = name;
-				newItem->Value.Surname = surname;
-				_count++;
-				return;
-			}
-			cout << "\nEnter first and last name with a capital letter!\n";
+			//TODO: Дублируется ниже!  \ DONE
+			newItem->Value.SetName(name);
+			newItem->Value.SetSurname(surname); 
+			_count++;
 			cout << "\nPress any key to continue working\n";
 			char key = _getch();
 			return;
 		}
 		else
 		{
-			cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
-			cin >> name; cin >> surname;
-			if ((!name[0] >= 'A' && !name[0] <= 'Z') || (surname[0] >= 'A' && surname[0] <= 'Z'))
-			{
-				_head = newItem;
-				_tail = newItem;
-				_count++;
-			}
-			cout << "\nEnter first and last name with a capital letter!\n";
+			newItem->Value.SetName(name);
+			newItem->Value.SetSurname(surname);
+			_head = newItem;
+			_tail = newItem;
+			_count++;
 			cout << "\nPress any key to continue working\n";
 			char key = _getch();
 			return;
@@ -75,17 +73,23 @@ namespace lab5
 			cout << "\nWho u want find?\n";
 			cout << "Name\n>"; cin >> name;
 			cout << "Surname\n>"; cin >> surname;
+			if (CheckNameSurname(name, surname) == 0)
+			{
+				cout << "\nPress any key to continue working\n";
+				char key = _getch();
+				return NULL;
+			}
 			int indexItem = 0;
 			while (newItem != NULL)
 			{
-				if (name == newItem->Value.Name && surname == newItem->Value.Surname)
+				if (name == newItem->Value.GetName() && surname == newItem->Value.GetSurname())
 				{
 					return indexItem;
 				}
 				indexItem++;
 				newItem = newItem->Next;
 			}
-			cout << "\nMan not found\n";
+			cout << "\nMan not found\n"; 
 			return NULL;
 		}
 		cout << "\nLIST IS EMPTY!\n";
@@ -103,7 +107,7 @@ namespace lab5
 		cout << "Surname\n>"; cin >> surname;
 		PersonListItem* newItem = _head;
 
-		if (name == _head->Value.Name && surname == _head->Value.Surname)
+		if (name == _head->Value.GetName() && surname == _head->Value.GetSurname())
 		{
 			PersonListItem* tmp = _head->Next;
 			delete _head;
@@ -112,7 +116,7 @@ namespace lab5
 			return;
 		}
 
-		if (name == _tail->Value.Name && surname == _tail->Value.Surname)
+		if (name == _tail->Value.GetName() && surname == _tail->Value.GetSurname())
 		{
 			PersonListItem* tmp = _tail->Prev;
 			delete _tail;
@@ -123,7 +127,7 @@ namespace lab5
 		}
 		while (newItem != NULL)
 		{
-			if (name == newItem->Value.Name && surname == newItem->Value.Surname)
+			if (name == newItem->Value.GetName() && surname == newItem->Value.GetSurname())
 			{
 				newItem->Prev->Next = newItem->Next;
 				newItem->Next->Prev = newItem->Prev;
@@ -195,8 +199,8 @@ namespace lab5
 		}
 		while (newItem != NULL)
 		{
-			cout.width(12); cout << newItem->Value.Surname;
-			cout.width(12); cout << newItem->Value.Name;
+			cout.width(12); cout << newItem->Value.GetSurname();
+			cout.width(12); cout << newItem->Value.GetName();
 			cout.width(12);
 			newItem = newItem->Next;
 			cout << endl;
@@ -239,14 +243,14 @@ namespace lab5
 		{
 			case 1:
 			{
-				newPerson.Name = MaleName[rand() % 15];
-				newPerson.Surname = MaleSurname[rand() % 15];
+				newPerson.SetName(MaleName[rand() % 15]);
+				newPerson.SetSurname(MaleSurname[rand() % 15]);
 				break;
 			}
 			case 2:
 			{
-				newPerson.Name = FemaleName[rand() % 15];
-				newPerson.Surname = FemaleSurname[rand() % 15];
+				newPerson.SetName(FemaleName[rand() % 15]);
+				newPerson.SetSurname(FemaleSurname[rand() % 15]);
 				break;
 			}
 			default:
@@ -327,9 +331,9 @@ namespace lab5
 					cin >> index;
 					PersonListItem tmp = p1.Find(index);
 					cout << "\nName:\n>";
-					cout << tmp.Value.Name;
+					cout << tmp.Value.GetName();
 					cout << "\nSurname:\n>";
-					cout << tmp.Value.Surname;
+					cout << tmp.Value.GetSurname();
 					cout << "\nPress any key to continue working\n";
 					key = _getch();
 					break;
