@@ -6,8 +6,8 @@ namespace lab4
 {
 	struct Person
 	{
-		char Surname[40];
-		char Name[20];
+		string Surname;
+		string Name;
 		Sex Gender;
 		int Age;
 	};

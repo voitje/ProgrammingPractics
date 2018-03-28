@@ -80,8 +80,7 @@ namespace lab4
 			newNode->PrevItem = list->Tail;
 			list->Tail->NextItem = newNode;
 			list->Tail = newNode;
-			//TODO: Не нужно в тексте оставлять такие комментарии.
-			//newNode->Person.Index = newNode->PrevItem->Person.Index + 1;
+			//TODO: Не нужно в тексте оставлять такие комментарии. \ DONE
 			newNode->Index = newNode->PrevItem->Index + 1;
 		}
 		else
@@ -165,58 +164,48 @@ namespace lab4
 	Person MakeRandomPerson()
 	{
 		Person newPerson;
-		const char* MaleName[] =
+		string MaleName[] =
 		{
 			"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
 			"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
 			"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
 		};
 
-		const char* MaleSurname[] =
+		string MaleSurname[] =
 		{
 			"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
 			"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
 			"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
 		};
 
-		const char* FemaleName[] =
+		string FemaleName[] =
 		{
 			"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
 			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
 			"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
 		};
 
-		const char* FemaleSurname[] =
+		string FemaleSurname[] =
 		{
 			"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
 			"Mayer", "Vladova", "Evans", "Brown", "Weber",
 			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
 		};
 
-		cout << "\nInsert Sex - Male(M)/Female(F):\n> ";
-		char key = _getch();
-		int asciiValue = key;
-		char newKey = key;//TODO: Договаривались, что персона должна быть полностью рандомной. А у вас так и нужно водить пол.
-		while ((key != 'f') && (key != 'm'))
+		//TODO: Договаривались, что персона должна быть полностью рандомной. А у вас так и нужно водить пол. \ DONE
+		switch (rand() % 2 + 1)
 		{
-			cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'F' or Button 'M'):\n>");
-			newKey = _getch();
-			key = newKey;
-		}
-		asciiValue = newKey;
-		switch (asciiValue)
-		{
-			case 'f':
+			case 1:
 			{
-				CopyConstString(newPerson.Name, FemaleName[rand() % 15]);
-				CopyConstString(newPerson.Surname, FemaleSurname[rand() % 15]);
+				newPerson.Name = (MaleName[rand() % 15]);
+				newPerson.Surname = (MaleSurname[rand() % 15]);
 				newPerson.Gender = Female;
-				break;
+				break;	
 			}
-			case 'm':
+			case 2:
 			{
-				CopyConstString(newPerson.Name, MaleName[rand() % 15]);
-				CopyConstString(newPerson.Surname, MaleSurname[rand() % 15]);
+				newPerson.Name = (FemaleName[rand() % 15]);
+				newPerson.Surname = (FemaleSurname[rand() % 15]);
 				newPerson.Gender = Male;
 				break;
 			}
@@ -226,8 +215,8 @@ namespace lab4
 		return newPerson;
 	}
 
-	//TODO: Плохое название метода, for - обозначает "для" лучше без for
-	void AddForRandomPerson(List* list)
+	//TODO: Плохое название метода, for - обозначает "для" лучше без for \ DONE
+	void AddRandomPerson(List* list)
 	{
 		Node *newNode = new Node();
 		newNode->NextItem = NULL;
@@ -399,8 +388,8 @@ namespace lab4
 				<< "\n------List of Person : Main Menu------";
 
 			SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-			//TODO: Почему от 1 до 7?
-			cout << "\n\n\nChoose action (1-7):\n>";
+			//TODO: Почему от 1 до 7? \ DONE
+			cout << "\n\n\nChoose action (1-6):\n>";
 
 			key = _getch();
 			asciiValue = key;
@@ -416,7 +405,7 @@ namespace lab4
 				case '2':
 				{
 					cout << '2';
-					AddForRandomPerson(list);
+					AddRandomPerson(list);
 					break;
 				}
 				case '3':

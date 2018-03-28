@@ -18,7 +18,7 @@ namespace lab4
 	Person MakeRandomPerson();
 	void Add(List* list);
 	void Show(List* list);
-	void AddForRandomPerson(List* list);
+	void AddRandomPerson(List* list);
 	void Remove(List* list, int index);
 	void Insert(List* list, Person& person, int index);
 	void ClearList(List* list);
