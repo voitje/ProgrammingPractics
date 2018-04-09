@@ -2,17 +2,16 @@
 #include "SexLab4.h"
 namespace lab5
 {
+	//TODO: Если идёт наследование от этого класса - должны ли мы иметь возможность создавать экземпляр класса Person
+	//TODO: Имеет ли это смысл?
 	class Person
-	{//TODO: Не по RSDN форматирование \ DONE
+	{
 		protected:
-			//TODO: Публичные поля. Нарушение инкапсуляции! \ DONE
 			string _name;
 			string _surname;
 			int _age;
 			lab4::Sex _sex;
-
-			//TODO: Всё что ниже должно быть перенесено в cpp. \ DONE
-		public:
+		public://TODO: Нарушение форматирования, зачем пустые строки между сигнатурами?
 			string GetName();
 
 			string GetSurname();
@@ -29,6 +28,6 @@ namespace lab5
 
 			void SetSex(lab4::Sex sex);
 
-			string GetDescription();
+			string GetDescription();//TODO: Где конструктор и деструктор?
 	};
 }

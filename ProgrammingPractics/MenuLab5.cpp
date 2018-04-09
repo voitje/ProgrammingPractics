@@ -4,7 +4,7 @@
 namespace lab5
 {
 	void MenuLabFive()
-	{//TODO: Совмещение менюшек и целевой функциональности - усложняет понимание программы \ DONE
+	{
 		HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 		const char escapeSymbol = 27;
 		char key;

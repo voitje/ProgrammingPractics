@@ -3,6 +3,6 @@
 #include "PersonList.h"
 
 namespace lab5
-{
+{//TODO: В таком случае можно не выносить отдельный заголовочный файл
 	void MenuLabFive();
 }

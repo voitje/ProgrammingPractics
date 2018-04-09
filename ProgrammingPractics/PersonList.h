@@ -1,5 +1,5 @@
-//TODO: Почему отключена директива? \ В двух файлах подключаю
 #pragma once
+
 #include "SexLab3.h"
 #include "PersonLab5.h" 
 #include "PersonListItem.h"
@@ -14,7 +14,7 @@ namespace lab5
 			PersonListItem* _head; 
 			PersonListItem* _tail;
 			int _count = NULL;
-		public:
+		public://TODO: Где конструктор и деструктор?
 			void Add(Person* person);
 			Person* Find(int index);
 			int IndexOf();
@@ -22,15 +22,16 @@ namespace lab5
 			void RemoveAt(int index);
 			void Clear();
 			int GetCount();
-			//TODO: перенести из класса \ DONE
 			void Show();
+			//TODO: перенести из класса, на ГПО говорили, почему этих методов здесь быть не должно.
 			static Person* MakeRandomPerson();
 			static Person* MakeRandomPerson(lab4::Sex tempSex);
-			//TODO: for убрать \ DONE
+			//TODO: Этого метода здесь быть не должно!
 			void AddRandomPerson(Person* person);
 			PersonListItem* GetHead();
 			PersonListItem* GetTail();
 			void SetCountList();
+			//TODO: Зачем тут эти два метода?
 			void SetHead(PersonListItem* item);
 			void SetTail(PersonListItem* item);
 			void ShowDescriptions();

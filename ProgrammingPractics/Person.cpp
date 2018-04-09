@@ -62,8 +62,6 @@ namespace lab4
 	void Create(List* list)
 	{
 		Node *newNode = new Node();
-		//TODO: Чем отличается от NULL \ DONE
-		//TODO: Это был вопрос, на ГПО расскажите =)
 		newNode->PrevItem = NULL;
 		newNode->NextItem = NULL;
 		list->Head = NULL;
@@ -386,7 +384,7 @@ namespace lab4
 				<< "\n------List of Person : Main Menu------";
 
 			SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-			//TODO: Почему от 1 до 7? \ DONE
+
 			cout << "\n\n\nChoose action (1-6):\n>";
 
 			key = _getch();

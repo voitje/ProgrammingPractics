@@ -21,12 +21,12 @@ namespace lab5
 	}
 
 	void PersonList::SetHead(PersonListItem* item)
-	{
+	{//TODO: Никакой защиты приватных полей!
 		_head = item;
 	}
 
 	void PersonList::SetTail(PersonListItem* item)
-	{
+	{//TODO: Никакой защиты приватных полей!
 		_tail = item;
 	}
 
@@ -226,7 +226,7 @@ namespace lab5
 		}
 		cout << endl;
 	}
-
+	//TODO: Этот метод и метод ниже - дублируются, зачем?
 	Person* PersonList::MakeRandomPerson()
 	{
 		Person* newPerson = new Person();
@@ -258,7 +258,7 @@ namespace lab5
 			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
 		};
 		switch (rand() % 2 + 1)
-		{
+		{//TODO: Ниже дублирование, исправить.
 			case 1:
 			{
 				newPerson->SetSex(lab4::Male);
@@ -332,7 +332,7 @@ namespace lab5
 		newPerson->SetAge(1 + rand() % 100);
 		return newPerson;
 	}
-
+	//TODO: Person тут даже не используется.
 	void PersonList::AddRandomPerson(Person* person)
 	{
 		PersonListItem* newItem = new PersonListItem(MakeRandomPerson());

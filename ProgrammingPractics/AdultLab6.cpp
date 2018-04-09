@@ -15,26 +15,26 @@ namespace lab6
 		SetMarriedOn(marriedOn);
 		SetWorkPlace(workPlace);
 	}
-
+	//TODO: Лучше беззнаковое
 	void Adult::SetAge(int age)
 	{
 		if (age >= 18)
 		{
 			_age = age;
 		}
-		else
+		else//TODO: Правильно ли присваивать значение по умолчанию, ничего не сообщая пользователю?
 		{
 			_age = 18;
 		}
 	}
 
 	void Adult::SetMarriedOn(Person* marriedOn)
-	{
+	{//TODO: Никакой защиты приватных полей!
 		_marriedOn = marriedOn;
 	}
 
 	void Adult::SetWorkPlace(string workPlace)
-	{
+	{//TODO: Никакой защиты приватных полей!
 		_workPlace = workPlace;
 	}
 
@@ -60,7 +60,7 @@ namespace lab6
 			result = result + "single, " + GetWorkPlace();
 		}
 		else
-		{
+		{//TODO: Длинная строка
 			result = result + "mirried on, " + GetMarriedOn()->GetName() + " " + GetMarriedOn()->GetSurname() + ", " + GetWorkPlace();
 		}
 		return result;

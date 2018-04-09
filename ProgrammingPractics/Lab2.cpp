@@ -11,7 +11,7 @@ double MakeCalculation(int value1, int value2)
 	char key;
 	cout << "Enter mathematic operation (+, -, *, /, %):";
 	cin >> key;
-	//TODE: Зацикливание \ DONE
+
 	while((key != '+') && (key != '-') && (key != '*') && (key != '/') && (key != '%'))
 	{
 		cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (+, -, *, /, %):");

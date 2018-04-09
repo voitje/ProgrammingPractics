@@ -5,11 +5,11 @@ namespace lab5
 {
 	class PersonListItem
 	{
-		private:
+		private://TODO: Именование приватного поля не по RSDN!
 			Person* Value;
-		public:
+		public://TODO: Где деструктор?
 			PersonListItem(Person* person)
-			{
+			{//TODO: Никакой защиты приватных полей!
 				Value = person;
 			}
 			Person* GetValue()

@@ -16,7 +16,7 @@ namespace lab6
 	};
 
 	void Child::SetAge(int age)
-	{
+	{//TODO: Замечания такие же, как и в Adult
 		if (age <= 17)
 		{
 			_age = age;
@@ -28,12 +28,12 @@ namespace lab6
 	}
 
 	void Child::SetMother(Person* mother)
-	{
+	{//TODO: Никакой защиты приватных полей!
 		_mother = mother;
 	}
 
 	void Child::SetFather(Person* father)
-	{
+	{//TODO: Никакой защиты приватных полей!
 		_father = father;
 	}
 
@@ -79,13 +79,13 @@ namespace lab6
 
 		string tempName;
 		string tempSurname;
-
+		//TODO: 17 используется несколько раз - правильнее вынести число в приватную константу
 		int tempAge = 1 + rand() % 17;
 		lab4::Sex tempSex = lab4::Sex(rand() % 2);
 
 		Person* tempMother;
 		Person* tempFather;
-
+		//TODO: Дублируется ниже!
 		if (rand() % 3)
 		{
 			tempMother = lab5::PersonList::MakeRandomPerson((lab4::Sex)1);
@@ -103,7 +103,7 @@ namespace lab6
 		{
 			tempFather = nullptr;
 		}
-
+		//TODO: Дублируется ниже
 		if (tempSex)
 		{
 			tempName = FemaleName[rand() % 15];
@@ -140,7 +140,7 @@ namespace lab6
 			parents = parents + "Parents are not specified…";
 		}
 		else if (_mother == nullptr)
-		{
+		{//TODO: Дублируется ниже!
 			parents = parents + "Father is " + _father->GetName() + ' ' + _father->GetSurname() + "\n\n";
 		}
 		else if (_father == nullptr)
