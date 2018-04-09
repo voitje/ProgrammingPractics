@@ -1,30 +1,38 @@
 //TODO: Почему отключена директива? \ В двух файлах подключаю
-//#pragma once
+#pragma once
 #include "SexLab3.h"
 #include "PersonLab5.h" 
 #include "PersonListItem.h"
+#include "AdultLab6.h"
+#include "ChildLab6.h"
 
 namespace lab5
 {	
-	//TODO: В отдельный файл! \ DONE
 	class PersonList
-	{//TODO: Форматирование не по RSDN! \ DONE
+	{
 		private:
 			PersonListItem* _head; 
 			PersonListItem* _tail;
 			int _count = NULL;
 		public:
-			//TODO: Зачем эти комменты в коде? \ DONE
-			void Add(Person& person);
-			Person& Find(int index);
-			int IndexOf(Person& person);
-			void Remove(Person& person);
+			void Add(Person* person);
+			Person* Find(int index);
+			int IndexOf();
+			void Remove(Person* person);
 			void RemoveAt(int index);
 			void Clear();
 			int GetCount();
-			static void MenuForClass(Person& person);
-			void Show(Person& person);
-			Person MakeRandomPerson();
-			void AddForRandomPerson(Person& person);
+			//TODO: перенести из класса \ DONE
+			void Show();
+			static Person* MakeRandomPerson();
+			static Person* MakeRandomPerson(lab4::Sex tempSex);
+			//TODO: for убрать \ DONE
+			void AddRandomPerson(Person* person);
+			PersonListItem* GetHead();
+			PersonListItem* GetTail();
+			void SetCountList();
+			void SetHead(PersonListItem* item);
+			void SetTail(PersonListItem* item);
+			void ShowDescriptions();
 	};
 }

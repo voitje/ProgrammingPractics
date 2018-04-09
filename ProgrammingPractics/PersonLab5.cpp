@@ -4,50 +4,52 @@ namespace lab5
 {
 	string Person::GetName()
 	{
-		return Name;
+		return _name;
 	}
 
 	string Person::GetSurname()
 	{
-		return Surname;
+		return _surname;
 	}
 
 	int Person::GetAge()
 	{
-		return Age;
+		return _age;
 	}
 
 	void Person::SetName(string name)
 	{
-		Name = name;
+		_name = name;
+	}
+
+	lab4::Sex Person::GetSex()
+	{
+		return _sex;
 	}
 
 	void Person::SetSurname(string surname)
 	{
-		Surname = surname;
+		_surname = surname;
 	}
 
 	void Person::SetAge(int age)
 	{
-		Age = age;
+		if (age <= 0)
+		{
+			cout << "\nNegative age\n";
+			return;
+		}
+		_age = age;
 	}
-	//TODO: Метод записывает данные о другом объекте, а должен о текущем.
-	void Person::Read()
+
+	void Person::SetSex(lab4::Sex sex)
 	{
-		//TODO: Не по RSDN. \ DONE
-		int age;  
-		string surname; 
-		string name;
-		cout << "\nИмя\n>"; cin >> name; SetName(name);
-		cout << "Фамилия\n>"; cin >> surname; SetSurname(surname);
-		cout << "Возраст\n>"; cin >> age; SetAge(age);
+		_sex = sex;
 	}
-	//TODO: Метод работает некорректно. Получается, что один объект человека должен рассказать о другом объекте человека, но не о себе. 
-	//TODO: А метод предполагает выдачу информации о себе.
-	void Person::Show()
+
+	string Person::GetDescription()
 	{
-		cout << "\nИмя\n>" << GetName();
-		cout << "Фамилия\n>" << GetSurname();
-		cout << "Возраст\n>" << GetAge();
+		string result = _name + " " + " " + _surname;
+		return result;
 	}
 }

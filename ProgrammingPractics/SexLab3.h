@@ -1,3 +1,4 @@
+//TODO одно перечисление сделать
 #pragma once
 
 enum Sex 

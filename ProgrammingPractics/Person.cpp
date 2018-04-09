@@ -80,7 +80,6 @@ namespace lab4
 			newNode->PrevItem = list->Tail;
 			list->Tail->NextItem = newNode;
 			list->Tail = newNode;
-			//TODO: Не нужно в тексте оставлять такие комментарии. \ DONE
 			newNode->Index = newNode->PrevItem->Index + 1;
 		}
 		else
@@ -192,7 +191,7 @@ namespace lab4
 			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
 		};
 
-		//TODO: Договаривались, что персона должна быть полностью рандомной. А у вас так и нужно водить пол. \ DONE
+		//TODO: Дублирование
 		switch (rand() % 2 + 1)
 		{
 			case 1:
@@ -215,7 +214,6 @@ namespace lab4
 		return newPerson;
 	}
 
-	//TODO: Плохое название метода, for - обозначает "для" лучше без for \ DONE
 	void AddRandomPerson(List* list)
 	{
 		Node *newNode = new Node();

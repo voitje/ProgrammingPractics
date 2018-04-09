@@ -4,28 +4,40 @@
 
 
 namespace lab5
-{
-	void PersonList::Add(Person& person)
+{	
+	PersonListItem* PersonList::GetHead()
 	{
-		string name;
-		string surname;
-		cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
-		cin >> name; cin >> surname;
-		if (CheckNameSurname(name, surname) == 0)
-		{
-			cout << "\nPress any key to continue working\n";
-			char key = _getch();
-			return;
-		}
+		return _head;
+	}
+
+	PersonListItem* PersonList::GetTail()
+	{
+		return _tail;
+	}
+
+	void PersonList::SetCountList()
+	{
+		_count++;
+	}
+
+	void PersonList::SetHead(PersonListItem* item)
+	{
+		_head = item;
+	}
+
+	void PersonList::SetTail(PersonListItem* item)
+	{
+		_tail = item;
+	}
+
+	void PersonList::Add(Person* person)
+	{	
 		PersonListItem* newItem = new PersonListItem(person);
-		if (_head != NULL)
+		if (_head != nullptr)
 		{
 			_tail->Next = newItem;
+			newItem->Prev = _tail;
 			_tail = newItem;
-			_tail->Next = NULL;
-			//TODO: Дублируется ниже!  \ DONE
-			newItem->Value.SetName(name);
-			newItem->Value.SetSurname(surname); 
 			_count++;
 			cout << "\nPress any key to continue working\n";
 			char key = _getch();
@@ -33,8 +45,6 @@ namespace lab5
 		}
 		else
 		{
-			newItem->Value.SetName(name);
-			newItem->Value.SetSurname(surname);
 			_head = newItem;
 			_tail = newItem;
 			_count++;
@@ -44,17 +54,17 @@ namespace lab5
 		}
 	}
 
-	Person& PersonList::Find(int index)
+	Person* PersonList::Find(int index)
 	{	
 		while (GetCount() != 0 && index <= _count)
 		{
 			PersonListItem* newItem = _head;
 			int indexItem = 1;
-			while (newItem != NULL)
+			while (newItem != nullptr)
 			{
 				if (index == indexItem)
 				{
-					return newItem->Value;
+					return newItem->GetValue();
 				}
 				newItem = newItem->Next;
 				indexItem++;
@@ -64,7 +74,7 @@ namespace lab5
 		cout << "\nLIST EMPTY! or index is greater than the maximum index of the list\n";
 	}
 
-	int PersonList::IndexOf(Person& person)
+	int PersonList::IndexOf()
 	{
 		while (GetCount() != 0)
 		{
@@ -80,9 +90,9 @@ namespace lab5
 				return NULL;
 			}
 			int indexItem = 0;
-			while (newItem != NULL)
+			while (newItem != nullptr)
 			{
-				if (name == newItem->Value.GetName() && surname == newItem->Value.GetSurname())
+				if (name == newItem->GetValue()->GetName() && surname == newItem->GetValue()->GetSurname())
 				{
 					return indexItem;
 				}
@@ -94,7 +104,7 @@ namespace lab5
 		}
 		cout << "\nLIST IS EMPTY!\n";
 	}
-	void PersonList::Remove(Person& person)
+	void PersonList::Remove(Person* person)
 	{
 		if (GetCount() == 0)
 		{
@@ -107,7 +117,7 @@ namespace lab5
 		cout << "Surname\n>"; cin >> surname;
 		PersonListItem* newItem = _head;
 
-		if (name == _head->Value.GetName() && surname == _head->Value.GetSurname())
+		if ((name == _head->GetValue()->GetName()) && (surname == _head->GetValue()->GetSurname()))
 		{
 			PersonListItem* tmp = _head->Next;
 			delete _head;
@@ -116,18 +126,18 @@ namespace lab5
 			return;
 		}
 
-		if (name == _tail->Value.GetName() && surname == _tail->Value.GetSurname())
+		if (name == _tail->GetValue()->GetName() && surname == _tail->GetValue()->GetSurname())
 		{
 			PersonListItem* tmp = _tail->Prev;
 			delete _tail;
 			_tail = tmp;
-			_tail->Next = NULL;
+			_tail->Next = nullptr;
 			_count--;
 			return;
 		}
-		while (newItem != NULL)
+		while (newItem != nullptr)
 		{
-			if (name == newItem->Value.GetName() && surname == newItem->Value.GetSurname())
+			if ((name == newItem->GetValue()->GetName()) && (surname == newItem->GetValue()->GetSurname()))
 			{
 				newItem->Prev->Next = newItem->Next;
 				newItem->Next->Prev = newItem->Prev;
@@ -150,12 +160,12 @@ namespace lab5
 		}
 		PersonListItem* newItem = _head;
 		int indexItem = 0;
-		while (newItem != NULL)
+		while (newItem != nullptr)
 		{
 			if (index == indexItem)
 			{
 				newItem->Next->Prev = newItem->Prev->Next;
-				newItem = NULL;
+				newItem = nullptr;
 				cout << "\nMan is delete\n";
 				return;
 			}
@@ -171,16 +181,24 @@ namespace lab5
 			cout.width(12); cout << "\n\nLIST IS EMPTY\n";
 			return;
 		}
-		PersonListItem* newItem = _head;
+		PersonListItem* newItem = _head->Next;
+		if (_count == 1)
+		{
+			delete newItem;
+			_count = 0;
+			_head = nullptr;
+			_tail = nullptr;
+			return;
+		}
 		while (newItem != _tail)
 		{
 			newItem->Prev->Next = newItem->Next;
 			newItem->Next->Prev = newItem->Prev;
 			newItem = newItem->Next;
-			delete newItem;
 		}
-		_head = NULL;
-		_tail = NULL;
+		_count = 0;
+		_head = nullptr;
+		_tail = nullptr;
 	}
 
 	int PersonList::GetCount()
@@ -188,7 +206,7 @@ namespace lab5
 		return _count;
 	}
 
-	void PersonList::Show(Person& person)
+	void PersonList::Show()
 	{
 		PersonListItem* newItem = _head;
 		newItem = _head;
@@ -197,10 +215,11 @@ namespace lab5
 			cout.width(12); cout << "\n\nLIST IS EMPTY\n";
 			return;
 		}
-		while (newItem != NULL)
+		while (newItem != nullptr)
 		{
-			cout.width(12); cout << newItem->Value.GetSurname();
-			cout.width(12); cout << newItem->Value.GetName();
+			cout.width(12); cout << newItem->GetValue()->GetSurname();
+			cout.width(12); cout << newItem->GetValue()->GetName();
+			cout.width(12); cout << newItem->GetValue()->GetAge();
 			cout.width(12);
 			newItem = newItem->Next;
 			cout << endl;
@@ -208,9 +227,9 @@ namespace lab5
 		cout << endl;
 	}
 
-	Person PersonList::MakeRandomPerson()
+	Person* PersonList::MakeRandomPerson()
 	{
-		Person newPerson;
+		Person* newPerson = new Person();
 		string MaleName[] =
 		{
 			"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
@@ -238,154 +257,126 @@ namespace lab5
 			"Mayer", "Vladova", "Evans", "Brown", "Weber",
 			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
 		};
-
 		switch (rand() % 2 + 1)
 		{
 			case 1:
 			{
-				newPerson.SetName(MaleName[rand() % 15]);
-				newPerson.SetSurname(MaleSurname[rand() % 15]);
+				newPerson->SetSex(lab4::Male);
+				newPerson->SetName(MaleName[rand() % 15]);
+				newPerson->SetSurname(MaleSurname[rand() % 15]);
 				break;
 			}
 			case 2:
 			{
-				newPerson.SetName(FemaleName[rand() % 15]);
-				newPerson.SetSurname(FemaleSurname[rand() % 15]);
+				newPerson->SetSex(lab4::Female);
+				newPerson->SetName(FemaleName[rand() % 15]);
+				newPerson->SetSurname(FemaleSurname[rand() % 15]);
 				break;
 			}
 			default:
 				break;
 		}
+		newPerson->SetAge(1 + rand() % 100);
 		return newPerson;
 	}
 
-	void PersonList::AddForRandomPerson(Person& person)
+	Person* PersonList::MakeRandomPerson(lab4::Sex tempSex)
 	{
-		PersonListItem* newItem = new PersonListItem(person);
-		newItem->Next = NULL;
-		newItem->Value = MakeRandomPerson();
-		if (_head != NULL)
+		Person* newPerson = new Person();
+		string MaleName[] =
 		{
-			newItem->Prev = _tail; 
-			_tail->Next = newItem; 
+			"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
+			"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
+			"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
+		};
+
+		string MaleSurname[] =
+		{
+			"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
+			"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
+			"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
+		};
+
+		string FemaleName[] =
+		{
+			"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
+			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
+			"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
+		};
+
+		string FemaleSurname[] =
+		{
+			"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
+			"Mayer", "Vladova", "Evans", "Brown", "Weber",
+			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
+		};
+		switch (tempSex)
+		{
+		case Male:
+		{
+			newPerson->SetSex(lab4::Male);
+			newPerson->SetName(MaleName[rand() % 15]);
+			newPerson->SetSurname(MaleSurname[rand() % 15]);
+			break;
+		}
+		case Female:
+		{
+			newPerson->SetSex(lab4::Female);
+			newPerson->SetName(FemaleName[rand() % 15]);
+			newPerson->SetSurname(FemaleSurname[rand() % 15]);
+			break;
+		}
+		default:
+			break;
+		}
+		newPerson->SetAge(1 + rand() % 100);
+		return newPerson;
+	}
+
+	void PersonList::AddRandomPerson(Person* person)
+	{
+		PersonListItem* newItem = new PersonListItem(MakeRandomPerson());
+		if (_head != nullptr)
+		{
+			_tail->Next = newItem;
+			newItem->Prev = _tail;
 			_tail = newItem;
 			_count++;
 		}
 		else
 		{
-			newItem->Prev = NULL;
 			_head = newItem;
 			_tail = newItem;
 			_count++;
 		}
 	}
 
-	void PersonList::MenuForClass(Person& person)
-	{//TODO: Совмещение менюшек и целевой функциональности - усложняет понимание программы
-		HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-		const char escapeSymbol = 27;
-		char key;
-		int temp = 1;
-		int numberCase;
-		int asciiValue = 0;
-		PersonList p1;
-		while (asciiValue != escapeSymbol)
+	void PersonList::ShowDescriptions()
+	{
+		PersonListItem* temp = _head;
+
+		if (temp)
 		{
-			system("cls");
-
-			SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
-			cout.width(12); cout << "Surname:";
-			cout.width(12); cout << "Name: \n";
-
-			SetConsoleTextAttribute(hStdOut, 2);
-			p1.Show(person);
-
-			SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-			cout << "\n------List of Person: Main Menu------"
-				<< "\n1. Add Person"
-				<< "\n2. Find a person at the specified index"
-				<< "\n3. Return the index of the person, if it is in the list"
-				<< "\n4. Remove a person from the list"
-				<< "\n5. Remove a person from the list by index"
-				<< "\n6. Clear List"
-				<< "\n7. Get the number of items"
-				<< "\n------List of Person : Main Menu------";
-
-			SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-			cout << "\n\n\nChoose action (1-7):\n>";
-
-			key = _getch();
-			asciiValue = key;
-			switch (asciiValue)
+			cout << "\n\nPersons:\n";
+			while (temp)
 			{
-				case '1':
+				if (temp->GetValue()->GetAge() < 18)
 				{
-					p1.Add(person);
-					cout << "\nPerson added\n";
-					break;
+					lab6::Child* child = (lab6::Child*)temp->GetValue();
+					cout << child->GetDescriptionChild() << endl;
 				}
-				case '2':
+				else
 				{
-					int index;
-					cout << "\nInsert index:\n>";
-					cin >> index;
-					PersonListItem tmp = p1.Find(index);
-					cout << "\nName:\n>";
-					cout << tmp.Value.GetName();
-					cout << "\nSurname:\n>";
-					cout << tmp.Value.GetSurname();
-					cout << "\nPress any key to continue working\n";
-					key = _getch();
-					break;
+					lab6::Adult* adult = (lab6::Adult*)temp->GetValue();
+					cout << adult->GetDescriptionAdult() << endl;
 				}
-				case '3':
-				{
-					cout << p1.IndexOf(person);
-					cout << "\nPress any key to continue working\n";
-					key = _getch();
-					break;
-				}
-				case '4':
-				{
-					int index;
-					p1.Remove(person);
-					cout << "\nPress any key to continue working\n";
-					key = _getch();
-					break;
-				}
-				case '5':
-				{
-					int index;
-					cout << "\nInsert index:\n>";
-					cin >> index;
-					p1.RemoveAt(index);
-					cout << "\nPress any key to continue working\n";
-					key = _getch();
-					break;
-				}
-				case '6':
-				{
-					p1.Clear();
-					cout << "\nList is empty";
-					cout << "\nPress any key to continue working\n";
-					key = _getch();
-					break;
-				}
-				case '7':
-				{
-					cout << p1.GetCount();
-					cout << "\nPress any key to continue working\n";
-					key = _getch();
-					break;
-				}
-				case '8':
-				{
-					p1.AddForRandomPerson(person);
-					cout << "\nPress any key to continue working\n";
-					key = _getch();
-					break;
-				}
+				temp = temp->Next;
 			}
 		}
+		else
+		{
+			cout << "No person found\n";
+		}
+		cout << endl;
 	}
 }

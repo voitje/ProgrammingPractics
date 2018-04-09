@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 
-bool CheckNameSurname(string name, string surname)
+static bool CheckNameSurname(string name, string surname)
 {
 	if (!(name[0] >= 'A' && name[0] <= 'Z') || !(surname[0] >= 'A' && surname[0] <= 'Z'))
 	{

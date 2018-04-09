@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\Lab1">
+      <UniqueIdentifier>{a3ae2405-d9af-4866-8e18-16504c44f003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Lab2">
+      <UniqueIdentifier>{7c3d3d15-7220-495e-b83b-23c7bed0d26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Lab3">
+      <UniqueIdentifier>{5f3181ce-8043-42a9-9b98-018f5cfb66c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Lab4">
+      <UniqueIdentifier>{88c6df06-e0af-4f36-b32b-9dbb36e26db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Lab5">
+      <UniqueIdentifier>{12369075-c27c-4a1a-a73c-204bd0a60984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Lab6">
+      <UniqueIdentifier>{debbd4e2-da48-4e02-b964-590d5ffe4e3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -21,44 +39,56 @@
     <ClInclude Include="targetver.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="lab1.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lab2.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lab3.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Person.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="PersonList.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="List.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="PersonLab3.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="SexLab3.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="SexLab4.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="PersonLab5.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="PersonListItem.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="CheckNameSurname.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="lab1.h">
+      <Filter>Исходные файлы\Lab1</Filter>
+    </ClInclude>
+    <ClInclude Include="Lab2.h">
+      <Filter>Исходные файлы\Lab2</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonLab3.h">
+      <Filter>Исходные файлы\Lab3</Filter>
+    </ClInclude>
+    <ClInclude Include="Lab3.h">
+      <Filter>Исходные файлы\Lab3</Filter>
+    </ClInclude>
+    <ClInclude Include="SexLab3.h">
+      <Filter>Исходные файлы\Lab3</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Исходные файлы\Lab4</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>Исходные файлы\Lab4</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Исходные файлы\Lab4</Filter>
+    </ClInclude>
+    <ClInclude Include="SexLab4.h">
+      <Filter>Исходные файлы\Lab4</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonLab5.h">
+      <Filter>Исходные файлы\Lab5</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonListItem.h">
+      <Filter>Исходные файлы\Lab5</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonList.h">
+      <Filter>Исходные файлы\Lab5</Filter>
+    </ClInclude>
+    <ClInclude Include="AdultLab6.h">
+      <Filter>Исходные файлы\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildLab6.h">
+      <Filter>Исходные файлы\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLab5.h">
+      <Filter>Исходные файлы\Lab5</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLab6.h">
+      <Filter>Исходные файлы\Lab6</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,22 +99,34 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Lab1.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Lab1</Filter>
     </ClCompile>
     <ClCompile Include="Lab2.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Lab2</Filter>
     </ClCompile>
     <ClCompile Include="Lab3.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Lab3</Filter>
     </ClCompile>
     <ClCompile Include="Person.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="PersonList.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Lab4</Filter>
     </ClCompile>
     <ClCompile Include="PersonLab5.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Lab5</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonList.cpp">
+      <Filter>Исходные файлы\Lab5</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuLab5.cpp">
+      <Filter>Исходные файлы\Lab5</Filter>
+    </ClCompile>
+    <ClCompile Include="AdultLab6.cpp">
+      <Filter>Исходные файлы\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuLab6.cpp">
+      <Filter>Исходные файлы\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildLab6.cpp">
+      <Filter>Исходные файлы\Lab6</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

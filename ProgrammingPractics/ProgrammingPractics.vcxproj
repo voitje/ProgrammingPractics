@@ -143,11 +143,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AdultLab6.h" />
     <ClInclude Include="CheckNameSurname.h" />
+    <ClInclude Include="ChildLab6.h" />
     <ClInclude Include="lab1.h" />
     <ClInclude Include="Lab2.h" />
     <ClInclude Include="Lab3.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="MenuLab5.h" />
+    <ClInclude Include="MenuLab6.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="PersonLab3.h" />
@@ -160,9 +164,13 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdultLab6.cpp" />
+    <ClCompile Include="ChildLab6.cpp" />
     <ClCompile Include="Lab1.cpp" />
     <ClCompile Include="Lab2.cpp" />
     <ClCompile Include="Lab3.cpp" />
+    <ClCompile Include="MenuLab5.cpp" />
+    <ClCompile Include="MenuLab6.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="PersonLab5.cpp" />
     <ClCompile Include="PersonList.cpp" />
