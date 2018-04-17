@@ -264,13 +264,13 @@ namespace lab3
 			case 'f':
 			{
 				cout << 'F';
-				newPerson.Gender = Female;
+				newPerson.Gender = lab4::Female;
 				break;
 			}
 			case 'm':
 			{
 				cout << 'M';
-				newPerson.Gender = Male;
+				newPerson.Gender = lab4::Male;
 				break;
 		}
 		default:

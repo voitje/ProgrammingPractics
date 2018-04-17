@@ -1,22 +1,31 @@
-	#pragma once
+#pragma once
 #include "PersonLab5.h"
 
 namespace lab5
 {
 	class PersonListItem
 	{
-		private://TODO: Именование приватного поля не по RSDN!
-			Person* Value;
-		public://TODO: Где деструктор?
+		private:
+			Person* _value;
+		public:
 			PersonListItem(Person* person)
-			{//TODO: Никакой защиты приватных полей!
-				Value = person;
+			{
+				if (person != nullptr)
+				{
+					_value = person;
+				}
 			}
 			Person* GetValue()
 			{
-				return Value;
+				return _value;
 			}
-			PersonListItem* Next = NULL;
-			PersonListItem* Prev = NULL;
+			PersonListItem* Next = nullptr;
+			PersonListItem* Prev = nullptr;
+			~PersonListItem()
+			{
+				PersonListItem* Next = nullptr;
+				PersonListItem* Prev = nullptr;
+				_value = nullptr;
+			}
 	};
 }

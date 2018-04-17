@@ -31,6 +31,9 @@
     <Filter Include="Исходные файлы\Lab6">
       <UniqueIdentifier>{debbd4e2-da48-4e02-b964-590d5ffe4e3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Lab7">
+      <UniqueIdentifier>{198dfe48-8f5d-481c-b3df-ec0ae14d00ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -52,9 +55,6 @@
       <Filter>Исходные файлы\Lab3</Filter>
     </ClInclude>
     <ClInclude Include="Lab3.h">
-      <Filter>Исходные файлы\Lab3</Filter>
-    </ClInclude>
-    <ClInclude Include="SexLab3.h">
       <Filter>Исходные файлы\Lab3</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
@@ -89,6 +89,24 @@
     </ClInclude>
     <ClInclude Include="MenuLab6.h">
       <Filter>Исходные файлы\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolsForLabs.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLab4.h">
+      <Filter>Исходные файлы\Lab4</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionsLab4.h">
+      <Filter>Исходные файлы\Lab4</Filter>
+    </ClInclude>
+    <ClInclude Include="ListLab7.h">
+      <Filter>Исходные файлы\Lab7</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLab7.h">
+      <Filter>Исходные файлы\Lab7</Filter>
+    </ClInclude>
+    <ClInclude Include="Operators.h">
+      <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +145,21 @@
     </ClCompile>
     <ClCompile Include="ChildLab6.cpp">
       <Filter>Исходные файлы\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolsForLabs.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuLab4.cpp">
+      <Filter>Исходные файлы\Lab4</Filter>
+    </ClCompile>
+    <ClCompile Include="ListItemLab7.h">
+      <Filter>Исходные файлы\Lab7</Filter>
+    </ClCompile>
+    <ClCompile Include="ListLaba7.cpp">
+      <Filter>Исходные файлы\Lab7</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuLab7.cpp">
+      <Filter>Исходные файлы\Lab7</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

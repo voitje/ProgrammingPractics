@@ -3,10 +3,11 @@
 #include "PersonList.h"
 #include "PersonLab5.h"
 #include "CheckNameSurname.h"
+#include "ToolsForLabs.h"
 
 namespace lab6
 {
-	Adult::Adult(string name, string surname, int age, enum lab4::Sex sex,Person* marriedOn, string workPlace)
+	Adult::Adult(string name, string surname, unsigned int age, enum lab4::Sex sex, Person* marriedOn, string workPlace)
 	{
 		SetName(name);
 		SetSurname(surname);
@@ -15,27 +16,35 @@ namespace lab6
 		SetMarriedOn(marriedOn);
 		SetWorkPlace(workPlace);
 	}
-	//TODO: Лучше беззнаковое
-	void Adult::SetAge(int age)
+	
+	void Adult::SetAge(unsigned int age)
 	{
 		if (age >= 18)
 		{
 			_age = age;
 		}
-		else//TODO: Правильно ли присваивать значение по умолчанию, ничего не сообщая пользователю?
+		else
 		{
+			char temp = _getch();
+			cout << "\nThe entered age does not meet the requirements, by default it will be assigned to 18\n";
 			_age = 18;
 		}
 	}
 
 	void Adult::SetMarriedOn(Person* marriedOn)
-	{//TODO: Никакой защиты приватных полей!
-		_marriedOn = marriedOn;
+	{
+		if (marriedOn != nullptr)
+		{
+			_marriedOn = marriedOn;
+		}
 	}
 
 	void Adult::SetWorkPlace(string workPlace)
-	{//TODO: Никакой защиты приватных полей!
-		_workPlace = workPlace;
+	{
+		if (workPlace != "")
+		{
+			_workPlace = workPlace;
+		}
 	}
 
 	lab5::Person* Adult::GetMarriedOn()
@@ -48,7 +57,7 @@ namespace lab6
 		return _workPlace;
 	};
 
-	string Adult::GetDescriptionAdult()
+	string Adult::GetDescription()
 	{
 		string result = Person::GetDescription();
 		char* ageStr = new char[10];
@@ -60,11 +69,11 @@ namespace lab6
 			result = result + "single, " + GetWorkPlace();
 		}
 		else
-		{//TODO: Длинная строка
-			result = result + "mirried on, " + GetMarriedOn()->GetName() + " " + GetMarriedOn()->GetSurname() + ", " + GetWorkPlace();
+		{
+			result = result + "mirried on, " + GetMarriedOn()->GetName() + " " + 
+				GetMarriedOn()->GetSurname() + ", " + GetWorkPlace();
 		}
 		return result;
-		//добавить рандомное добавление то же самое для класса Child
 	}
 
 	Adult* Adult::GetRandom()
@@ -77,9 +86,9 @@ namespace lab6
 		};
 		string FemaleName[] = 
 		{
-			"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
-			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
-			"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
+			"Yuliya", "Olya", "Viktoriya", "Elizaveta", "Lana",
+			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sofya"
+			"Anna", "Varvara", "Irina", "Tatyana", "Kristina"
 		};
 		string MaleSurname[] = 
 		{
@@ -96,9 +105,15 @@ namespace lab6
 
 		string WorkPlaces[] = 
 		{
-			"programmer in Microsoft", "settler in the settler in the hostel", "consultant in DNS",
-			"accountant in bank", "rescuer in the Ministry of Emergency Situations", "seller in Yarche",
-			"barber in the Big Bro", "football player in Manchester United", "director of the Gazprom"
+			"programmer in Microsoft", 
+			"settler in the settler in the hostel", 
+			"consultant in DNS",
+			"accountant in bank", 
+			"rescuer in the Ministry of Emergency Situations", 
+			"seller in Yarche",
+			"barber in the Big Bro", 
+			"football player in Manchester United", 
+			"director of the Gazprom"
 		};
 
 		string tempName;
@@ -106,7 +121,7 @@ namespace lab6
 		string tempWorkPlace;
 		int tempAge = 18 + rand() % 80;
 		enum lab4::Sex tempSex = enum lab4::Sex(rand() % 2);
-		Person* tempMarriedOn = lab5::PersonList::MakeRandomPerson((lab4::Sex)!tempSex);
+		Person* tempMarriedOn = MakeRandomPerson((lab4::Sex)!tempSex);
 
 		if (rand() % 5)
 		{
@@ -127,5 +142,10 @@ namespace lab6
 			tempSurname = MaleSurname[rand() % 15];
 		}
 		return new Adult(tempName, tempSurname, tempAge, tempSex, tempMarriedOn, tempWorkPlace);
+	}
+	Adult::~Adult()
+	{
+		delete &_marriedOn;
+		delete &_workPlace;
 	}
 }

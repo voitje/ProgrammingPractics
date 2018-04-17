@@ -10,15 +10,15 @@ namespace lab6
 	private:
 		Person* _marriedOn = nullptr;
 		string _workPlace;
-	public://TODO: Где деструктор?
-		Adult(string name, string surname, int age, enum lab4::Sex sex, Person* marriedOn, string workPlace);
-		string GetDescriptionAdult();
-		void SetAge(int age);
+	public:
+		Adult(string name, string surname, unsigned int age, enum lab4::Sex sex, Person* marriedOn, string workPlace);
+		virtual string GetDescription();
+		virtual void SetAge(unsigned int age);
 		void SetMarriedOn(Person* marriedOn);
 		void SetWorkPlace(string workPlace);
 		Person* GetMarriedOn();
 		string GetWorkPlace();
-		//TODO: Этого метода тут не должно быть!
 		static Adult* GetRandom();
+		Adult::~Adult();
 	};
 }

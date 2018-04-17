@@ -4,24 +4,11 @@
 
 namespace lab4
 {
-	//TODO: Должно быть в отдельном файле! 
+	//TODO: Должно быть в отдельном файле! \ DONE
 	struct List
 	{
 		Node* Head;
 		Node* Tail;
 	};
-
-	void MenuPerson(List* list);
-	void Create(List* list);
-	Person ReadPerson();
-	Node* GetPointer(List* list, int index);
-	Person MakeRandomPerson();
-	void Add(List* list);
-	void Show(List* list);
-	void AddRandomPerson(List* list);
-	void Remove(List* list, int index);
-	void Insert(List* list, Person& person, int index);
-	void ClearList(List* list);
-	bool IsEmpty(List* list);
 }
 

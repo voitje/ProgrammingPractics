@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "MenuLab6.h"
-#include "AdultLab6.h"
-
 
 namespace lab6
 {
@@ -14,7 +12,6 @@ namespace lab6
 		int numberCase;
 		int asciiValue = 0;
 		lab5::PersonList p1;
-		lab5::Person* person = new lab5::Person;
 		
 		while (asciiValue != escapeSymbol)	
 		{

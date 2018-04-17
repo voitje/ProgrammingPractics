@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PersonList.h"
 #include "CheckNameSurname.h"
+#include "ToolsForLabs.h"
 
 
 namespace lab5
@@ -18,16 +19,6 @@ namespace lab5
 	void PersonList::SetCountList()
 	{
 		_count++;
-	}
-
-	void PersonList::SetHead(PersonListItem* item)
-	{//TODO: Никакой защиты приватных полей!
-		_head = item;
-	}
-
-	void PersonList::SetTail(PersonListItem* item)
-	{//TODO: Никакой защиты приватных полей!
-		_tail = item;
 	}
 
 	void PersonList::Add(Person* person)
@@ -226,130 +217,6 @@ namespace lab5
 		}
 		cout << endl;
 	}
-	//TODO: Этот метод и метод ниже - дублируются, зачем?
-	Person* PersonList::MakeRandomPerson()
-	{
-		Person* newPerson = new Person();
-		string MaleName[] =
-		{
-			"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
-			"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
-			"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
-		};
-
-		string MaleSurname[] =
-		{
-			"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
-			"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
-			"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
-		};
-
-		string FemaleName[] =
-		{
-			"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
-			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
-			"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
-		};
-
-		string FemaleSurname[] =
-		{
-			"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
-			"Mayer", "Vladova", "Evans", "Brown", "Weber",
-			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
-		};
-		switch (rand() % 2 + 1)
-		{//TODO: Ниже дублирование, исправить.
-			case 1:
-			{
-				newPerson->SetSex(lab4::Male);
-				newPerson->SetName(MaleName[rand() % 15]);
-				newPerson->SetSurname(MaleSurname[rand() % 15]);
-				break;
-			}
-			case 2:
-			{
-				newPerson->SetSex(lab4::Female);
-				newPerson->SetName(FemaleName[rand() % 15]);
-				newPerson->SetSurname(FemaleSurname[rand() % 15]);
-				break;
-			}
-			default:
-				break;
-		}
-		newPerson->SetAge(1 + rand() % 100);
-		return newPerson;
-	}
-
-	Person* PersonList::MakeRandomPerson(lab4::Sex tempSex)
-	{
-		Person* newPerson = new Person();
-		string MaleName[] =
-		{
-			"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
-			"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
-			"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
-		};
-
-		string MaleSurname[] =
-		{
-			"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
-			"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
-			"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
-		};
-
-		string FemaleName[] =
-		{
-			"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
-			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
-			"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
-		};
-
-		string FemaleSurname[] =
-		{
-			"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
-			"Mayer", "Vladova", "Evans", "Brown", "Weber",
-			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
-		};
-		switch (tempSex)
-		{
-		case Male:
-		{
-			newPerson->SetSex(lab4::Male);
-			newPerson->SetName(MaleName[rand() % 15]);
-			newPerson->SetSurname(MaleSurname[rand() % 15]);
-			break;
-		}
-		case Female:
-		{
-			newPerson->SetSex(lab4::Female);
-			newPerson->SetName(FemaleName[rand() % 15]);
-			newPerson->SetSurname(FemaleSurname[rand() % 15]);
-			break;
-		}
-		default:
-			break;
-		}
-		newPerson->SetAge(1 + rand() % 100);
-		return newPerson;
-	}
-	//TODO: Person тут даже не используется.
-	void PersonList::AddRandomPerson(Person* person)
-	{
-		PersonListItem* newItem = new PersonListItem(MakeRandomPerson());
-		if (_head != nullptr)
-		{
-			_tail->Next = newItem;
-			newItem->Prev = _tail;
-			_tail = newItem;
-			_count++;
-		}
-		else
-		{
-			_head = newItem;
-			_tail = newItem;
-			_count++;
-		}
-	}
 
 	void PersonList::ShowDescriptions()
 	{
@@ -363,12 +230,11 @@ namespace lab5
 				if (temp->GetValue()->GetAge() < 18)
 				{
 					lab6::Child* child = (lab6::Child*)temp->GetValue();
-					cout << child->GetDescriptionChild() << endl;
 				}
 				else
 				{
 					lab6::Adult* adult = (lab6::Adult*)temp->GetValue();
-					cout << adult->GetDescriptionAdult() << endl;
+					cout << adult->GetDescription() << endl;
 				}
 				temp = temp->Next;
 			}
@@ -378,5 +244,15 @@ namespace lab5
 			cout << "No person found\n";
 		}
 		cout << endl;
+	}
+
+	PersonList::PersonList() 
+	{
+
+	}
+
+	PersonList::~PersonList()
+	{
+		Clear();
 	}
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "SexLab3.h"
+#include "SexLab4.h"
 
 namespace lab3
 {
@@ -7,7 +7,7 @@ namespace lab3
 	{
 		char Surname[40];
 		char Name[20];
-		Sex Gender;
+		lab4::Sex Gender;
 		int Age;
 	};
 }

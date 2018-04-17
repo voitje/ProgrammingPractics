@@ -47,6 +47,60 @@ namespace lab5
 			{
 				case '1':
 				{
+					string name;
+					string surname;
+					cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
+					cin >> name; cin >> surname;
+					person->SetName(name);
+					person->SetSurname(surname);
+					if (person->GetName() == "" || person->GetSurname() == "")
+					{
+						cout << "\nPress any key to continue working\n";
+						key = _getch();
+						break;
+					}
+					cout << "\nInsert Sex - Male(M)/Female(F):\n>";
+					int n;
+					char key = NULL;
+					const char escapeSymbol = 27;
+					int asciiValue = 0;
+					key = _getch();
+					asciiValue = key;
+					char newKey = key;
+					while ((key != 'f') && (key != 'm'))
+					{
+						cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'F' or Button 'M'):\n>");
+						newKey = _getch();
+						key = newKey;
+					}
+					asciiValue = newKey;
+					switch (asciiValue)
+					{
+					case 'f':
+					{
+						cout << 'F';
+						person->SetSex(lab4::Female);
+						break;
+					}
+					case 'm':
+					{
+						cout << 'M';
+						person->SetSex(lab4::Male);
+						break;
+					}
+					default:
+						break;
+					}
+					int age;
+					cout << "\nInsert Age(0 - 100)\n>";
+					cin >> age;
+					if (age < 0 || age > 100)
+					{
+						cout << "\nPress any key to continue working\n";
+						key = _getch();
+						break;
+					}
+					person->SetAge(age);
 					p1.Add(person);
 					cout << "\nPerson added\n";
 					break;
@@ -107,10 +161,8 @@ namespace lab5
 				}
 				case '8':
 				{
-					p1.AddRandomPerson(person);
-					cout << "\nPress any key to continue working\n";
-					key = _getch();
-					break;
+					enum lab4::Sex tempSex = enum lab4::Sex(rand() % 2);
+					p1.Add(MakeRandomPerson(tempSex));
 				}
 			}
 		}

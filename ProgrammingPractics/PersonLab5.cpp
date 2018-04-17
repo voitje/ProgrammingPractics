@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "PersonLab5.h"
+#include "ToolsForLabs.h"
 namespace lab5
 {
 	string Person::GetName()
@@ -18,8 +19,13 @@ namespace lab5
 	}
 
 	void Person::SetName(string name)
-	{//TODO: Нет никакой защиты для поля, всё присваивается без проверок! Нарушается инкапсуляция.
-		_name = name;
+	{
+		if (CheckName(name) == true)
+		{
+			_name = name;
+			return;
+		}
+		cout << "\nEnter the correct name\n";
 	}
 
 	lab4::Sex Person::GetSex()
@@ -28,14 +34,18 @@ namespace lab5
 	}
 
 	void Person::SetSurname(string surname)
-	{//TODO: Нет никакой защиты для поля, всё присваивается без проверок! Нарушается инкапсуляция.
-		_surname = surname;
+	{
+		if (CheckSurname(surname) == true)
+		{
+			_surname = surname;
+			return;
+		}
+		cout << "\nEnter the correct surname\n";
 	}
-	//TODO: Правильнее использовать беззнаковый тип!
-	void Person::SetAge(int age)
-	{//TODO: Нет ограничения сверху
-		//TODO: Возраст может быть = 0!
-		if (age <= 0)
+
+	void Person::SetAge(unsigned int age)
+	{
+		if (age < 0  || age > 100)
 		{
 			cout << "\nNegative age\n";
 			return;
@@ -49,8 +59,21 @@ namespace lab5
 	}
 
 	string Person::GetDescription()
-	{//TODO: Можно не создавать отдельную переменную, а сразу возвращать строку.
-		string result = _name + " " + " " + _surname;
-		return result;
+	{
+		return _name + " " + " " + _surname;
+	}
+
+	Person::Person(string name, string surname, unsigned int age, enum lab4::Sex sex)
+	{
+		SetName(name);
+		SetSurname(surname);
+		SetAge(age);
+		SetSex(sex);
+	}
+
+	Person::~Person()
+	{
+		delete &_surname;
+		delete &_name;
 	}
 }

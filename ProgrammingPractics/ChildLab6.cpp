@@ -2,6 +2,7 @@
 #include "ChildLab6.h"
 #include "PersonList.h"
 #include "PersonLab5.h"
+#include "ToolsForLabs.h"
 
 namespace lab6
 {
@@ -16,25 +17,33 @@ namespace lab6
 	};
 
 	void Child::SetAge(int age)
-	{//TODO: Замечания такие же, как и в Adult
+	{
 		if (age <= 17)
 		{
 			_age = age;
 		}
 		else
 		{
+			char temp = _getch();
+			cout << "\nThe entered age does not meet the requirements, by default it will be assigned to 18\n";
 			_age = 17;
 		}
 	}
 
 	void Child::SetMother(Person* mother)
-	{//TODO: Никакой защиты приватных полей!
-		_mother = mother;
+	{
+		if (_mother != nullptr)
+		{
+			_mother = mother;
+		}
 	}
 
 	void Child::SetFather(Person* father)
-	{//TODO: Никакой защиты приватных полей!
-		_father = father;
+	{
+		if (father != nullptr)
+		{
+			_father = father;
+		}
 	}
 
 	lab5::Person* Child::GetMother()
@@ -65,9 +74,10 @@ namespace lab6
 
 		string FemaleName[] =
 		{
-			"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
-			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
-			"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
+
+			"Yuliya", "Olya", "Viktoriya", "Elizaveta", "Lana",
+			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sofya"
+			"Anna", "Varvara", "Irina", "Tatyana", "Kristina"
 		};
 
 		string FemaleSurname[] =
@@ -79,16 +89,15 @@ namespace lab6
 
 		string tempName;
 		string tempSurname;
-		//TODO: 17 используется несколько раз - правильнее вынести число в приватную константу
-		int tempAge = 1 + rand() % 17;
+		const int minor = 17;
+		int tempAge = 1 + rand() % minor;
 		lab4::Sex tempSex = lab4::Sex(rand() % 2);
 
 		Person* tempMother;
 		Person* tempFather;
-		//TODO: Дублируется ниже!
 		if (rand() % 3)
 		{
-			tempMother = lab5::PersonList::MakeRandomPerson((lab4::Sex)1);
+			tempMother = MakeRandomPerson((lab4::Sex)1);
 		}
 		else
 		{
@@ -97,13 +106,12 @@ namespace lab6
 
 		if (rand() % 3)
 		{
-			tempFather = lab5::PersonList::MakeRandomPerson((lab4::Sex)0);
+			tempFather = MakeRandomPerson((lab4::Sex)0);
 		}
 		else
 		{
 			tempFather = nullptr;
 		}
-		//TODO: Дублируется ниже
 		if (tempSex)
 		{
 			tempName = FemaleName[rand() % 15];
@@ -117,7 +125,7 @@ namespace lab6
 		return new Child(tempName, tempSurname, tempAge, tempSex, tempMother, tempFather);
 	}
 
-	string Child::GetDescriptionChild()
+	string Child::GetDescription()
 	{
 		string result = Person::GetDescription();
 		string parents;
@@ -126,7 +134,7 @@ namespace lab6
 		result = result + " " + ageStr + " years old,  ";
 		delete ageStr;
 
-		if (_sex == Male)
+		if (_sex == lab4::Male)
 		{
 			result = result + "Male, ";
 		}
@@ -140,7 +148,7 @@ namespace lab6
 			parents = parents + "Parents are not specified…";
 		}
 		else if (_mother == nullptr)
-		{//TODO: Дублируется ниже!
+		{
 			parents = parents + "Father is " + _father->GetName() + ' ' + _father->GetSurname() + "\n\n";
 		}
 		else if (_father == nullptr)
@@ -154,5 +162,11 @@ namespace lab6
 		}
 
 		return result + parents;
+	}
+	Child::~Child()
+	{
+		delete &_mother;
+		delete &_father;
+		delete &_school;
 	}
 }
