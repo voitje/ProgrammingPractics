@@ -4,7 +4,6 @@
 
 namespace lab4
 {
-	//TODO: Должно быть в отдельном файле! \ DONE
 	struct List
 	{
 		Node* Head;

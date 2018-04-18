@@ -7,7 +7,7 @@
 namespace lab6
 {
 	Child::Child(string name, string surname, int age, lab4::Sex sex, Person* mother, Person* father)
-	{
+	{//TODO: многое пересекается с adult - можно было бы устранить дублирование с помощью конструктора базового класса.
 		SetName(name);
 		SetSurname(surname);
 		SetAge(age);
@@ -15,7 +15,7 @@ namespace lab6
 		SetMother(mother);
 		SetFather(father);
 	};
-
+	//TODO: Почему тип знаковый?
 	void Child::SetAge(int age)
 	{
 		if (age <= 17)
@@ -55,7 +55,7 @@ namespace lab6
 	{
 		return _father;
 	}
-
+	//TODO: Этот метод не должен быть тут!
 	Child* Child::GetRandom()
 	{
 		string MaleName[] =
@@ -86,7 +86,7 @@ namespace lab6
 			"Mayer", "Vladova", "Evans", "Brown", "Weber",
 			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
 		};
-
+		//TODO: Дубли и магические числа.
 		string tempName;
 		string tempSurname;
 		const int minor = 17;
@@ -142,7 +142,7 @@ namespace lab6
 		{
 			result = result + "Female, ";
 		}
-
+		//TODO: Дубли ниже.
 		if (_mother == nullptr && _father == nullptr)
 		{
 			parents = parents + "Parents are not specified…";
@@ -162,9 +162,9 @@ namespace lab6
 		}
 
 		return result + parents;
-	}
+	}//TODO: Пустая строка
 	Child::~Child()
-	{
+	{//TODO: почему адреса указателей?
 		delete &_mother;
 		delete &_father;
 		delete &_school;

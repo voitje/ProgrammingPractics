@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 static bool CheckNameSurname(string name, string surname)
-{
+{//TODO: Дублируется с TolsForLabs.cpp
 	if (!(name[0] >= 'A' && name[0] <= 'Z') || !(surname[0] >= 'A' && surname[0] <= 'Z'))
 	{
 		cout << "\nEnter the correct name and surname (with a capital letter)\n";

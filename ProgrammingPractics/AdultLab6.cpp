@@ -8,7 +8,7 @@
 namespace lab6
 {
 	Adult::Adult(string name, string surname, unsigned int age, enum lab4::Sex sex, Person* marriedOn, string workPlace)
-	{
+	{//TODO: многое пересекается с children - можно было бы устранить дублирование с помощью конструктора базового класса.
 		SetName(name);
 		SetSurname(surname);
 		SetAge(age);
@@ -75,7 +75,7 @@ namespace lab6
 		}
 		return result;
 	}
-
+	//TODO: Этот метод не должен быть тут.
 	Adult* Adult::GetRandom()
 	{
 		string MaleName[] = 
@@ -115,7 +115,7 @@ namespace lab6
 			"football player in Manchester United", 
 			"director of the Gazprom"
 		};
-
+		//TODO: Теже дубли и магические числа, которые нужно было исправлять в Person. Исправляйте тут.
 		string tempName;
 		string tempSurname;
 		string tempWorkPlace;
@@ -142,9 +142,11 @@ namespace lab6
 			tempSurname = MaleSurname[rand() % 15];
 		}
 		return new Adult(tempName, tempSurname, tempAge, tempSex, tempMarriedOn, tempWorkPlace);
-	}
+	}//TODO: Пустая строка.
+
 	Adult::~Adult()
 	{
+		//TODO: Почему адреса указателей?
 		delete &_marriedOn;
 		delete &_workPlace;
 	}

@@ -10,4 +10,5 @@ bool CheckName(string name);
 bool CheckSurname(string surname);
 void IsAppropriation(string name, string surname, lab4::Sex gender, lab5::Person* person);
 lab5::Person* MakeRandomPerson(lab4::Sex tempSex);
+//TODO: Нет такого метода!"
 void AddRandomPerson();

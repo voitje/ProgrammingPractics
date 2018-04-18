@@ -33,6 +33,8 @@ void MenuLabSeven()
 
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		cout.width(20); cout << "Work with list of double:\n";
+
+		//TODO: Выводятся адреса - это не правильно!
 		SetConsoleTextAttribute(hStdOut, 2);
 		link.Show();
 
@@ -52,7 +54,7 @@ void MenuLabSeven()
 			<< "\n6. Delete fourt element from List<double>"
 			<< "\n7. Delete fourt element from Person"
 			<< "\n8. Delete fourt element from double"
-			<< "\n7. Clear List"
+			<< "\n7. Clear List" // TODO: Непонятно, какой из листов очищаем!
 			<< "\n------List of Person : Main Menu------";
 
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);

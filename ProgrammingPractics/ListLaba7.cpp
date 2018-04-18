@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ListLab7.h"
-
+//TODO: Зачем?
 //template <class Type>
 //void List<Type>::Add(Type data)
 //{

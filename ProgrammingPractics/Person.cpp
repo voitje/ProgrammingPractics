@@ -11,7 +11,9 @@ namespace lab4
 		cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
 		cin >> newPerson.Name; cin >> newPerson.Surname;
 		cout << "\nInsert Sex - Male(M)/Female(F):\n>";
+		//TODO: Не используется n
 		int n;
+		//TODO: Объявление и инициализацию лучше не разносить, если есть такая возможность
 		char key = NULL;
 		const char escapeSymbol = 27;
 		int asciiValue = 0;
@@ -20,6 +22,7 @@ namespace lab4
 		char newKey = key;
 		while ((key != 'f') && (key != 'm'))
 		{
+			//TODO: Некорректное сообщение, т.к. просите ввести заглавные буквы.
 			cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'F' or Button 'M'):\n>");
 			newKey = _getch();
 			key = newKey;
@@ -52,6 +55,7 @@ namespace lab4
 		cout << "\nName: " << person.Name << endl;
 		switch (person.Gender)
 		{
+			//TODO: Неправильно. Нужно использовать перечисление.
 			case 0:
 				cout << "\nSexPerson: " << "Male" << endl;
 				break;
@@ -122,7 +126,7 @@ namespace lab4
 		int asciiValue = key;
 		char newKey = key;
 		if (IsEmpty(list) == true)
-		{
+		{//TODO: Много дублей связанных с вводом символов ниже. Лучше собрать в один метод.
 			while ((key != 'e'))
 			{
 				cout << ("\nList is empty, press the E button to exit the function.\n>");
@@ -191,7 +195,7 @@ namespace lab4
 			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
 		};
 
-		//TODO: Дублирование \ DONE
+		//TODO: Повторяющиеся магические цифры - лучше вынести в константу
 		switch (rand() % 2 + 1)
 		{
 			case 1:
@@ -234,6 +238,7 @@ namespace lab4
 	{
 		Node *newNode = list->Head;
 		int newIndex;
+		//TODO: Можно не сравнивать
 		if (IsEmpty(list) == true)
 		{
 			char key = _getch();
@@ -241,6 +246,7 @@ namespace lab4
 			char newKey = key;
 			while ((key != 'e'))
 			{
+				//TODO: Опять некорректное сообщение.
 				cout << ("\nList is empty, press the E button to exit the function.\n>");
 				newKey = _getch();
 				key = newKey;

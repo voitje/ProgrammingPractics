@@ -8,7 +8,7 @@ class ListItem
 		Type _data;
 	public:
 		ListItem<Type>(Type data)
-		{
+		{//TODO: Ниже nullptr!
 			if (data != NULL)
 			{
 				_data = data;

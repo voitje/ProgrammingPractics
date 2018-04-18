@@ -24,6 +24,7 @@ namespace lab5
 			void Show();
 			PersonListItem* GetHead();
 			PersonListItem* GetTail();
+			//TODO: Неправильное именование. Название не должно включать List, т.к. объект и так список.
 			void SetCountList();
 			void ShowDescriptions();
 			PersonList();

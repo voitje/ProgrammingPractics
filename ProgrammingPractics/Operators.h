@@ -10,6 +10,7 @@ static std::ostream& operator << (std::ostream &os, lab5::Person* person)
 
 static ostream & operator <<(ostream & os, double* d)
 {
+	//TODO: почему гвоздями прибито 5?
 	for (int i = 0; i < 5; i++)
 	{
 		os << d[i] << ' ';

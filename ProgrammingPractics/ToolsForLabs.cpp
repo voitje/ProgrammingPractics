@@ -87,10 +87,11 @@ lab5::Person* MakeRandomPerson(lab4::Sex tempSex)
 	};
 
 	switch (tempSex)
-	{
+	{//TODO: Отступы
 	case lab4::Male:
-	{
+	{//TODO: Магические строки, дубли
 		return new lab5::Person(MaleName[rand() % 15], MaleSurname[rand() % 15], (1 + rand() % 100), lab4::Male);
+		//TODO: Зачем тут break?
 		break;
 	}
 	case lab4::Female:

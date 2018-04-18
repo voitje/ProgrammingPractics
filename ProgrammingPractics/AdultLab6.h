@@ -11,6 +11,7 @@ namespace lab6
 		Person* _marriedOn = nullptr;
 		string _workPlace;
 	public:
+		//TODO: Длинная строка
 		Adult(string name, string surname, unsigned int age, enum lab4::Sex sex, Person* marriedOn, string workPlace);
 		virtual string GetDescription();
 		virtual void SetAge(unsigned int age);

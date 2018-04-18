@@ -8,6 +8,7 @@ class List
 private:
 	ListItem<Type>* _head = nullptr;
 	ListItem<Type>* _tail = nullptr;
+	//TODO: Шта? о_О
 	int _count = NULL;
 public:
 	void Add(Type data);
@@ -25,7 +26,6 @@ public:
 		}
 		return os;
 	}
-
 };
 
 template <class Type>

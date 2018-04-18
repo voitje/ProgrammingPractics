@@ -26,6 +26,7 @@ namespace lab6
 			p1.Show();
 			
 			SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			//TODO: Список должен поддерживать всё тоже, что и в предыдущей лабе, только мы должны выбирать - кого в этот список класть - Adult или Child.
 			cout << "\n------List of Person: Main Menu------"
 				<< "\n1. Add Adult"
 				<< "\n2. Add Child"
@@ -34,6 +35,7 @@ namespace lab6
 				<< "\n------List of Person : Main Menu------";
 
 			SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			//TODO: Некорректное меню - пишет, что до 7
 			cout << "\n\n\nChoose action (1-7):\n>";
 			key = _getch();
 			asciiValue = key;

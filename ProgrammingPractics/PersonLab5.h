@@ -2,6 +2,7 @@
 #include "SexLab4.h"
 namespace lab5
 {
+	//TODO: Нужно программно ограничить возможность воздания экземпляра.
 	class Person
 	{
 		protected:

@@ -6,7 +6,7 @@
 namespace lab4
 {
 	void MenuPerson(List* list)
-	{//TODO: Совмещение менюшек и целевой функциональности - усложняет понимание программы \ DONE
+	{
 		HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 		const char escapeSymbol = 27;
 		char key;
