@@ -11,19 +11,15 @@ namespace lab4
 		cout << "\nPlease enter name and surname (ex. \"Jack Bauer\"):\n>";
 		cin >> newPerson.Name; cin >> newPerson.Surname;
 		cout << "\nInsert Sex - Male(M)/Female(F):\n>";
-		//TODO: Не используется n
-		int n;
-		//TODO: Объявление и инициализацию лучше не разносить, если есть такая возможность
-		char key = NULL;
+
 		const char escapeSymbol = 27;
 		int asciiValue = 0;
-		key = _getch();
+		char key = _getch();
 		asciiValue = key;
 		char newKey = key;
 		while ((key != 'f') && (key != 'm'))
 		{
-			//TODO: Некорректное сообщение, т.к. просите ввести заглавные буквы.
-			cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'F' or Button 'M'):\n>");
+			cout << ("\nINCORRECT SYMBOL!!!\nPlease, enter (Button 'f' or Button 'm'):\n>");
 			newKey = _getch();
 			key = newKey;
 		}
@@ -55,11 +51,10 @@ namespace lab4
 		cout << "\nName: " << person.Name << endl;
 		switch (person.Gender)
 		{
-			//TODO: Неправильно. Нужно использовать перечисление.
-			case 0:
+			case Male:
 				cout << "\nSexPerson: " << "Male" << endl;
 				break;
-			case 1:
+			case Female:
 				cout << "\nSexPerson: " << "Female" << endl;
 				break;
 		}
@@ -126,13 +121,8 @@ namespace lab4
 		int asciiValue = key;
 		char newKey = key;
 		if (IsEmpty(list) == true)
-		{//TODO: Много дублей связанных с вводом символов ниже. Лучше собрать в один метод.
-			while ((key != 'e'))
-			{
-				cout << ("\nList is empty, press the E button to exit the function.\n>");
-				newKey = _getch();
-				key = newKey;
-			}
+		{
+			PrintEmptyList();
 			return NULL;
 		}
 		if (index < 0)
@@ -164,61 +154,11 @@ namespace lab4
 		string1[i] = '\0';
 	}
 
-	Person MakeRandomPerson()
-	{
-		Person newPerson;
-		string MaleName[] =
-		{
-			"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
-			"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
-			"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
-		};
-
-		string MaleSurname[] =
-		{
-			"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
-			"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
-			"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
-		};
-
-		string FemaleName[] =
-		{
-			"Yuliya", "Olya", "Viktoriya", "ELizaveta", "Lana",
-			"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sof'ya"
-			"Anna", "Varvara", "Irina", "Tat'yana", "Kristina"
-		};
-
-		string FemaleSurname[] =
-		{
-			"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
-			"Mayer", "Vladova", "Evans", "Brown", "Weber",
-			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
-		};
-
-		//TODO: Повторяющиеся магические цифры - лучше вынести в константу
-		switch (rand() % 2 + 1)
-		{
-			case 1:
-			{
-				IsAppropriation(MaleName[rand () % 15], MaleSurname[rand() % 15], Female, newPerson);
-				break;	
-			}
-			case 2:
-			{
-				IsAppropriation(FemaleName[rand() % 15], FemaleSurname[rand() % 15], Male, newPerson);
-				break;
-			}
-			default:
-				break;
-		}
-		return newPerson;
-	}
-
 	void AddRandomPerson(List* list)
 	{
 		Node *newNode = new Node();
 		newNode->NextItem = NULL;
-		newNode->Person = MakeRandomPerson();
+		newNode->Person = GetRandomPerson();
 		if (list->Head != NULL)
 		{
 			newNode->PrevItem = list->Tail;
@@ -238,19 +178,10 @@ namespace lab4
 	{
 		Node *newNode = list->Head;
 		int newIndex;
-		//TODO: Можно не сравнивать
-		if (IsEmpty(list) == true)
+		if (IsEmpty(list))
 		{
 			char key = _getch();
-			int asciiValue = key;
-			char newKey = key;
-			while ((key != 'e'))
-			{
-				//TODO: Опять некорректное сообщение.
-				cout << ("\nList is empty, press the E button to exit the function.\n>");
-				newKey = _getch();
-				key = newKey;
-			}
+			PrintEmptyList();
 			return;
 		}
 		if (index < 0)
@@ -294,12 +225,7 @@ namespace lab4
 		char newKey = key;
 		if (IsEmpty(list) == true)
 		{
-			while ((key != 'e'))
-			{
-				cout << ("\nList is empty, press the E button to exit the function.\n>");
-				newKey = _getch();
-				key = newKey;
-			}
+			PrintEmptyList();
 			return;
 		}
 		if (index > list->Tail->Index || index < list->Head->Index)
@@ -329,9 +255,7 @@ namespace lab4
 			char newKey = key;
 			while ((key != 'e'))
 			{
-				cout << ("\nList is empty, press the E button to exit the function.\n>");
-				newKey = _getch();
-				key = newKey;
+				PrintEmptyList();
 			}
 			return;
 		}

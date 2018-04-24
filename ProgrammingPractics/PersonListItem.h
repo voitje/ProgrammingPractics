@@ -21,11 +21,5 @@ namespace lab5
 			}
 			PersonListItem* Next = nullptr;
 			PersonListItem* Prev = nullptr;
-			~PersonListItem()
-			{//TODO: Некорректный деструктор, никак не выполняет свою функцию!
-				PersonListItem* Next = nullptr;
-				PersonListItem* Prev = nullptr;
-				_value = nullptr;
-			}
 	};
 }

@@ -6,8 +6,8 @@
 
 namespace lab6
 {
-	Child::Child(string name, string surname, int age, lab4::Sex sex, Person* mother, Person* father)
-	{//TODO: многое пересекается с adult - можно было бы устранить дублирование с помощью конструктора базового класса.
+	Child::Child(string name, string surname, unsigned int age, lab4::Sex sex, Person* mother, Person* father)
+	{
 		SetName(name);
 		SetSurname(surname);
 		SetAge(age);
@@ -15,8 +15,8 @@ namespace lab6
 		SetMother(mother);
 		SetFather(father);
 	};
-	//TODO: Почему тип знаковый?
-	void Child::SetAge(int age)
+
+	void Child::SetAge(unsigned int age)
 	{
 		if (age <= 17)
 		{
@@ -32,7 +32,7 @@ namespace lab6
 
 	void Child::SetMother(Person* mother)
 	{
-		if (_mother != nullptr)
+		if (mother != nullptr)
 		{
 			_mother = mother;
 		}
@@ -55,8 +55,42 @@ namespace lab6
 	{
 		return _father;
 	}
-	//TODO: Этот метод не должен быть тут!
-	Child* Child::GetRandom()
+	
+
+	string Child::GetDescription()
+	{
+		string result = Person::GetDescription();
+		string parents;
+		char* ageStr = new char[10];
+		_itoa_s(_age, ageStr, 10, 10);
+		result = '@' + result + " " + ageStr + " years old,  ";
+		delete ageStr;
+
+		if (_sex == lab4::Male)
+		{
+			result = result + "Male, ";
+		}
+		else
+		{
+			result = result + "Female, ";
+		}
+
+		if (_mother == nullptr && _father == nullptr)
+		{
+			parents = parents + "Parents are not specified…\n\n@";
+		}
+		if (_mother != nullptr)
+		{
+			parents = parents + "Mother is " + PrintMother(_mother) + "\n\n";
+		}
+		if (_father != nullptr)
+		{
+			parents = parents + "Father is " + PrintFather(_father) + "\n\n";
+		}
+		return result + parents;
+	}
+	//Я переношу функцию ниже ее в FamilyTools.h делаю исправления и не могу исправить ошибки
+	Child* Child::GetRandomChild()
 	{
 		string MaleName[] =
 		{
@@ -86,15 +120,16 @@ namespace lab6
 			"Mayer", "Vladova", "Evans", "Brown", "Weber",
 			"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
 		};
-		//TODO: Дубли и магические числа.
+
+		const int arrayLength = 15;
 		string tempName;
 		string tempSurname;
 		const int minor = 17;
 		int tempAge = 1 + rand() % minor;
 		lab4::Sex tempSex = lab4::Sex(rand() % 2);
 
-		Person* tempMother;
-		Person* tempFather;
+		lab5::Person* tempMother;
+		lab5::Person* tempFather;
 		if (rand() % 3)
 		{
 			tempMother = MakeRandomPerson((lab4::Sex)1);
@@ -112,61 +147,24 @@ namespace lab6
 		{
 			tempFather = nullptr;
 		}
-		if (tempSex)
+		if (tempSex == 1)
 		{
-			tempName = FemaleName[rand() % 15];
-			tempSurname = FemaleSurname[rand() % 15];;
+			tempName = FemaleName[rand() % arrayLength];
+			tempSurname = FemaleSurname[rand() % arrayLength];;
 		}
 		else
 		{
-			tempName = MaleName[rand() % 15];
-			tempSurname = MaleSurname[rand() % 15];
+			tempName = MaleName[rand() % arrayLength];
+			tempSurname = MaleSurname[rand() % arrayLength];
 		}
-		return new Child(tempName, tempSurname, tempAge, tempSex, tempMother, tempFather);
+		return new lab6::Child(tempName, tempSurname, tempAge, tempSex,
+			tempMother, tempFather);
 	}
 
-	string Child::GetDescription()
-	{
-		string result = Person::GetDescription();
-		string parents;
-		char* ageStr = new char[10];
-		_itoa_s(_age, ageStr, 10, 10);
-		result = result + " " + ageStr + " years old,  ";
-		delete ageStr;
-
-		if (_sex == lab4::Male)
-		{
-			result = result + "Male, ";
-		}
-		else
-		{
-			result = result + "Female, ";
-		}
-		//TODO: Дубли ниже.
-		if (_mother == nullptr && _father == nullptr)
-		{
-			parents = parents + "Parents are not specified…";
-		}
-		else if (_mother == nullptr)
-		{
-			parents = parents + "Father is " + _father->GetName() + ' ' + _father->GetSurname() + "\n\n";
-		}
-		else if (_father == nullptr)
-		{
-			parents = parents + "Mother is " + _mother->GetName() + ' ' + _mother->GetSurname() + "\n\n";
-		}
-		else
-		{
-			parents = parents + "Father is " + _father->GetName() + ' ' + _father->GetSurname();
-			parents = parents + "\nMother is " + _mother->GetName() + ' ' + _mother->GetSurname() + "\n\n";
-		}
-
-		return result + parents;
-	}//TODO: Пустая строка
 	Child::~Child()
-	{//TODO: почему адреса указателей?
-		delete &_mother;
-		delete &_father;
+	{
+		delete _mother;
+		delete _father;
 		delete &_school;
 	}
 }

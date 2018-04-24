@@ -1,5 +1,5 @@
 #pragma once
-#include "AdultLab6.h"
+#include "FamilyTools.h"
 
 namespace lab6
 {

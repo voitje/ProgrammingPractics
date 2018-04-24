@@ -22,6 +22,5 @@ namespace lab5
 			virtual string GetDescription();
 			Person() { };
 			Person(string name, string surname, unsigned int age, enum lab4::Sex sex);
-			Person::~Person();
 	};
 }

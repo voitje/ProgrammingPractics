@@ -144,8 +144,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AdultLab6.h" />
-    <ClInclude Include="CheckNameSurname.h" />
     <ClInclude Include="ChildLab6.h" />
+    <ClInclude Include="FamilyTools.h" />
     <ClInclude Include="FunctionsLab4.h" />
     <ClInclude Include="lab1.h" />
     <ClInclude Include="Lab2.h" />
@@ -175,7 +175,6 @@
     <ClCompile Include="Lab2.cpp" />
     <ClCompile Include="Lab3.cpp" />
     <ClCompile Include="ListItemLab7.h" />
-    <ClCompile Include="ListLaba7.cpp" />
     <ClCompile Include="MenuLab4.cpp" />
     <ClCompile Include="MenuLab5.cpp" />
     <ClCompile Include="MenuLab6.cpp" />

@@ -5,27 +5,26 @@
 template <class Type>
 class List
 {
-private:
-	ListItem<Type>* _head = nullptr;
-	ListItem<Type>* _tail = nullptr;
-	//TODO: ÿÚ‡? Ó_Œ
-	int _count = NULL;
-public:
-	void Add(Type data);
-	void RemoveAt(int index);
-	int GetCount();
-	void Show();
-	friend std::ostream& operator<<(std::ostream& os, List<Type>& list)
-	{
-		ListItem<Type>* temp = list._head;
-		cout << "Sub-listings: ";
-		while (temp != nullptr)
+	private:
+		ListItem<Type>* _head = nullptr;
+		ListItem<Type>* _tail = nullptr;
+		int _count = 0;
+	public:
+		void Add(Type data);
+		void RemoveAt(int index);
+		int GetCount();
+		void Show();
+		friend std::ostream& operator<<(std::ostream& os, List<Type>& list)
 		{
-			cout << temp->GetData() << "  ";
-			temp = temp->Next;
+			ListItem<Type>* temp = list._head;
+			cout << "Sub-listings: ";
+			while (temp != nullptr)
+			{
+				cout << temp->GetData() << "  ";
+				temp = temp->Next;
+			}
+			return os;
 		}
-		return os;
-	}
 };
 
 template <class Type>

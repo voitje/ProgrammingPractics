@@ -34,7 +34,7 @@ void MenuLabSeven()
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		cout.width(20); cout << "Work with list of double:\n";
 
-		//TODO: Выводятся адреса - это не правильно!
+		//TODO: Выводятся адреса - это не правильно! / Пегрузка не вызывается 
 		SetConsoleTextAttribute(hStdOut, 2);
 		link.Show();
 
@@ -53,12 +53,11 @@ void MenuLabSeven()
 			<< "\n5. Delete fourt element from double[5]"
 			<< "\n6. Delete fourt element from List<double>"
 			<< "\n7. Delete fourt element from Person"
-			<< "\n8. Delete fourt element from double"
-			<< "\n7. Clear List" // TODO: Непонятно, какой из листов очищаем!
+			<< "\n8. Delete fourt element from double" 
 			<< "\n------List of Person : Main Menu------";
 
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << "\n\n\nChoose action (1-6):\n>";
+		cout << "\n\n\nChoose action (1-8):\n>";
 		key = _getch();
 		asciiValue = key;
 		switch (asciiValue)

@@ -15,7 +15,7 @@ namespace lab5
 			int _count = NULL;
 		public:
 			void Add(Person* person);
-			Person* Find(int index);
+			Person* Find(unsigned int index);
 			int IndexOf();
 			void Remove(Person* person);
 			void RemoveAt(int index);
@@ -24,10 +24,11 @@ namespace lab5
 			void Show();
 			PersonListItem* GetHead();
 			PersonListItem* GetTail();
-			//TODO: Неправильное именование. Название не должно включать List, т.к. объект и так список.
-			void SetCountList();
+			void SetCount();
 			void ShowDescriptions();
-			PersonList();
-			~PersonList();
+			PersonList::~PersonList()
+			{
+				Clear();
+			}
 	};
 }

@@ -70,10 +70,4 @@ namespace lab5
 		SetAge(age);
 		SetSex(sex);
 	}
-
-	Person::~Person()
-	{
-		delete &_surname;
-		delete &_name;
-	}
 }

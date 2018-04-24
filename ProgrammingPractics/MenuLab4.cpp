@@ -45,79 +45,79 @@ namespace lab4
 			asciiValue = key;
 			switch (asciiValue)
 			{
-			case '1':
-			{
-				cout << '1';
-				Add(list);
-				cout << "\nPerson added\n";
-				break;
-			}
-			case '2':
-			{
-				cout << '2';
-				AddRandomPerson(list);
-				break;
-			}
-			case '3':
-			{
-				cout << '3';
-				int index;
-				cout << "\nInsert index:\n>";
-				cin >> index;
-				cout << "\n Enter a person from the keyboard or generate randomly?"
-					<< "\nPress the R button to randomly generate"
-					<< "\nPress the K button to enter from the keyboard\n>";
-				char key = _getch();
-				asciiValue = key;
-				switch (asciiValue)
+				case '1':
 				{
-				case 'r':
-				{
-					Insert(list, MakeRandomPerson(), index);
+					cout << '1';
+					Add(list);
+					cout << "\nPerson added\n";
 					break;
 				}
-				case 'k':
+				case '2':
 				{
-					Insert(list, ReadPerson(), index);
+					cout << '2';
+					AddRandomPerson(list);
 					break;
 				}
-				}
-				break;
-			}
-			case '4':
-			{
-				cout << '4';
-				int index;
-				cout << "\n Insert index:\n>";
-				cin >> index;
-				if (GetPointer(list, index) == NULL)
+				case '3':
 				{
-					cout << "\nPlease insert correct date!\n";
+					cout << '3';
+					int index;
+					cout << "\nInsert index:\n>";
+					cin >> index;
+					cout << "\n Enter a person from the keyboard or generate randomly?"
+						<< "\nPress the R button to randomly generate"
+						<< "\nPress the K button to enter from the keyboard\n>";
+					char key = _getch();
+					asciiValue = key;
+					switch (asciiValue)
+					{
+					case 'r':
+					{
+						Insert(list, GetRandomPerson(), index);
+						break;
+					}
+					case 'k':
+					{
+						Insert(list, ReadPerson(), index);
+						break;
+					}
+					}
+					break;
 				}
-				else
+				case '4':
 				{
-					cout << GetPointer(list, index);
+					cout << '4';
+					int index;
+					cout << "\n Insert index:\n>";
+					cin >> index;
+					if (GetPointer(list, index) == NULL)
+					{
+						cout << "\nPlease insert correct date!\n";
+					}
+					else
+					{
+						cout << GetPointer(list, index);
+					}
+					char key = _getch();
+					asciiValue = key;
+					break;
 				}
-				char key = _getch();
-				asciiValue = key;
-				break;
-			}
-			case '5':
-			{
-				cout << '5';
-				int index;
-				cout << "\nInsert index:\n>";
-				cin >> index;
-				Remove(list, index);
-				break;
-			}
-			case '6':
-			{
-				cout << '6';
-				ClearList(list);
-				cout << "\nList is empty";
-				break;
-			}
+				case '5':
+				{
+					cout << '5';
+					int index;
+					cout << "\nInsert index:\n>";
+					cin >> index;
+					Remove(list, index);
+					break;
+				}
+				case '6':
+				{
+					cout << '6';
+					ClearList(list);
+					cout << "\nList is empty";
+					break;
+				}
 			}
 		}
 	}

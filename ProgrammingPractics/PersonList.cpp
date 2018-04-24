@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "PersonList.h"
-#include "CheckNameSurname.h"
 #include "ToolsForLabs.h"
 
 
@@ -16,7 +15,7 @@ namespace lab5
 		return _tail;
 	}
 
-	void PersonList::SetCountList()
+	void PersonList::SetCount()
 	{
 		_count++;
 	}
@@ -29,7 +28,6 @@ namespace lab5
 			_tail->Next = newItem;
 			newItem->Prev = _tail;
 			_tail = newItem;
-			//TODO: Часть дублируется ниже.
 			_count++;
 			cout << "\nPress any key to continue working\n";
 			char key = _getch();
@@ -46,9 +44,9 @@ namespace lab5
 		}
 	}
 
-	Person* PersonList::Find(int index)
-	{	//TODO: Зачем использовать int, если можно использовать беззнаковое число?
-		while (GetCount() != 0 && index <= _count)
+	Person* PersonList::Find(unsigned int index)
+	{
+		while ((GetCount() != 0) && (index <= GetCount()))
 		{
 			PersonListItem* newItem = _head;
 			int indexItem = 1;
@@ -75,7 +73,7 @@ namespace lab5
 			cout << "\nWho u want find?\n";
 			cout << "Name\n>"; cin >> name;
 			cout << "Surname\n>"; cin >> surname;
-			if (CheckNameSurname(name, surname) == 0)
+			if ((CheckName(name) == 0) && (CheckSurname(surname) == 0))
 			{
 				cout << "\nPress any key to continue working\n";
 				char key = _getch();
@@ -83,8 +81,9 @@ namespace lab5
 			}
 			int indexItem = 0;
 			while (newItem != nullptr)
-			{//TODO: Длинная строка.
-				if (name == newItem->GetValue()->GetName() && surname == newItem->GetValue()->GetSurname())
+			{
+				if (name == newItem->GetValue()->GetName() && 
+					surname == newItem->GetValue()->GetSurname())
 				{
 					return indexItem;
 				}
@@ -95,21 +94,26 @@ namespace lab5
 			return NULL;
 		}
 		cout << "\nLIST IS EMPTY!\n";
-	}//TODO: Пробел между методами.
+	}
+
 	void PersonList::Remove(Person* person)
 	{
 		if (GetCount() == 0)
 		{
 			cout.width(12); cout << "\n\nLIST IS EMPTY\n";
 			return;
-		}//TODO: Не объявлять в одну строку.
-		string name; string surname;
+		}
+		
 		cout << "\nWho u want delete?\n";
+		string name;
 		cout << "Name\n>"; cin >> name;
+
+		string surname;
 		cout << "Surname\n>"; cin >> surname;
+
 		PersonListItem* newItem = _head;
-		//TODO: Длинная строка.
-		if ((name == _head->GetValue()->GetName()) && (surname == _head->GetValue()->GetSurname()))
+		if ((name == _head->GetValue()->GetName()) && 
+			(surname == _head->GetValue()->GetSurname()))
 		{
 			PersonListItem* tmp = _head->Next;
 			delete _head;
@@ -117,8 +121,9 @@ namespace lab5
 			_count--;
 			return;
 		}
-		//TODO: Длинная строка.
-		if (name == _tail->GetValue()->GetName() && surname == _tail->GetValue()->GetSurname())
+
+		if (name == _tail->GetValue()->GetName() && 
+			surname == _tail->GetValue()->GetSurname())
 		{
 			PersonListItem* tmp = _tail->Prev;
 			delete _tail;
@@ -128,8 +133,9 @@ namespace lab5
 			return;
 		}
 		while (newItem != nullptr)
-		{//TODO: Длинная строка.
-			if ((name == newItem->GetValue()->GetName()) && (surname == newItem->GetValue()->GetSurname()))
+		{
+			if ((name == newItem->GetValue()->GetName()) && 
+				(surname == newItem->GetValue()->GetSurname()))
 			{
 				newItem->Prev->Next = newItem->Next;
 				newItem->Next->Prev = newItem->Prev;
@@ -209,9 +215,12 @@ namespace lab5
 		}
 		while (newItem != nullptr)
 		{
-			cout.width(12); cout << newItem->GetValue()->GetSurname();
-			cout.width(12); cout << newItem->GetValue()->GetName();
-			cout.width(12); cout << newItem->GetValue()->GetAge();
+			cout.width(12); 
+			cout << newItem->GetValue()->GetSurname();
+			cout.width(12); 
+			cout << newItem->GetValue()->GetName();
+			cout.width(12); 
+			cout << newItem->GetValue()->GetAge();
 			cout.width(12);
 			newItem = newItem->Next;
 			cout << endl;
@@ -228,15 +237,7 @@ namespace lab5
 			cout << "\n\nPersons:\n";
 			while (temp)
 			{//TODO: Этого приведения не должно быть здесь! Программировать надо на основе интерфейсо, а не реализации.
-				if (temp->GetValue()->GetAge() < 18)
-				{
-					lab6::Child* child = (lab6::Child*)temp->GetValue();
-				}
-				else
-				{
-					lab6::Adult* adult = (lab6::Adult*)temp->GetValue();
-					cout << adult->GetDescription() << endl;
-				}
+				cout << temp->GetValue()->GetDescription();
 				temp = temp->Next;
 			}
 		}
@@ -246,14 +247,5 @@ namespace lab5
 		}
 		cout << endl;
 	}
-
-	PersonList::PersonList() 
-	{
-		//TODO: Не нужен пустой конструктор.
-	}
-
-	PersonList::~PersonList()
-	{
-		Clear();
-	}
 }
+
