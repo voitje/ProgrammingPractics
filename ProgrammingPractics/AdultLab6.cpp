@@ -8,7 +8,7 @@ namespace lab6
 {
 	Adult::Adult(string name, string surname, unsigned int age, 
 		enum lab4::Sex sex, Person* marriedOn, string workPlace)
-	{  
+	{  //TODO: дублируется между наследниками, устраните.
 		SetName(name);
 		SetSurname(surname);
 		SetAge(age);
@@ -76,6 +76,7 @@ namespace lab6
 		return result;
 	}
 	//Я переношу функцию ниже ее в FamilyTools.h делаю исправления и не могу исправить ошибки
+	//TODO: Решите проблемы с циклическими зависимостями.
 	Adult* Adult::GetRandomAdult()
 	{
 		string MaleName[] =

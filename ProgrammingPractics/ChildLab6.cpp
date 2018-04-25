@@ -6,8 +6,9 @@
 
 namespace lab6
 {
+	//TODO: Длинная строка
 	Child::Child(string name, string surname, unsigned int age, lab4::Sex sex, Person* mother, Person* father)
-	{
+	{//TODO: дублируется между наследниками, устраните.
 		SetName(name);
 		SetSurname(surname);
 		SetAge(age);
@@ -79,7 +80,7 @@ namespace lab6
 		{
 			parents = parents + "Parents are not specified…\n\n@";
 		}
-		if (_mother != nullptr)
+		if (_mother != nullptr)//TODO: Дублирование так и осталось.
 		{
 			parents = parents + "Mother is " + PrintMother(_mother) + "\n\n";
 		}
@@ -90,6 +91,7 @@ namespace lab6
 		return result + parents;
 	}
 	//Я переношу функцию ниже ее в FamilyTools.h делаю исправления и не могу исправить ошибки
+	//TODO: Решите проблемы с циклическими зависимостями.
 	Child* Child::GetRandomChild()
 	{
 		string MaleName[] =

@@ -8,6 +8,7 @@ namespace lab4
 	void Create(List* list);
 	Person ReadPerson();
 	Node* GetPointer(List* list, int index);
+	//TODO: Нет такого метода!
 	Person MakeRandomPerson();
 	void Add(List* list);
 	void Show(List* list);

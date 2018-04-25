@@ -236,7 +236,7 @@ namespace lab5
 		{
 			cout << "\n\nPersons:\n";
 			while (temp)
-			{//TODO: Этого приведения не должно быть здесь! Программировать надо на основе интерфейсо, а не реализации.
+			{
 				cout << temp->GetValue()->GetDescription();
 				temp = temp->Next;
 			}

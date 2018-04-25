@@ -7,7 +7,7 @@ void IsAppropriationPerson(string name, string surname, lab4::Sex gender, lab4::
 	person.Surname = surname;
 	person.Gender = gender;
 }
-
+//TODO: Ниже два дубля!
 bool CheckName(string name)
 {
 	if (!(name[0] >= 'A' && name[0] <= 'Z'))
@@ -56,7 +56,7 @@ void IsAppropriation(string name, string surname, lab4::Sex gender, lab5::Person
 	person->SetSurname(surname);
 	person->SetSex(gender);
 }
-
+//TODO: Дублируется ниже!
 lab5::Person* MakeRandomPerson(lab4::Sex tempSex)
 {
 	string MaleName[] =

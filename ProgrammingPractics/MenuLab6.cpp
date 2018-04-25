@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "MenuLab6.h"
+#include "FamilyTools.h"
 
 
 namespace lab6

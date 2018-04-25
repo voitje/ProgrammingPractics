@@ -149,7 +149,7 @@
 //	return new lab6::Adult(tempName, tempSurname, tempAge, tempSex,
 //		tempMarriedOn, tempWorkPlace);
 //}
-
+//TODO: Ниже 2 абсолютно идентичных метода!
 static string PrintMother(lab5::Person* person)
 {
 	string mother = person->GetName() + ' ' + person->GetSurname();

@@ -35,6 +35,7 @@ void MenuLabSeven()
 		cout.width(20); cout << "Work with list of double:\n";
 
 		//TODO: Выводятся адреса - это не правильно! / Пегрузка не вызывается 
+		//TODO: Так и не исправили.
 		SetConsoleTextAttribute(hStdOut, 2);
 		link.Show();
 
