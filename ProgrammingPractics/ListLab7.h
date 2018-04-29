@@ -14,10 +14,9 @@ class List
 		void RemoveAt(int index);
 		int GetCount();
 		void Show();
-		friend std::ostream& operator<<(std::ostream& os, List<Type>& list)
+		friend std::ostream& operator<<(std::ostream& os, List* list)
 		{
-			ListItem<Type>* temp = list._head;
-			cout << "Sub-listings: ";
+			ListItem<Type>* temp = list->_head;
 			while (temp != nullptr)
 			{
 				cout << temp->GetData() << "  ";
@@ -30,6 +29,8 @@ class List
 template <class Type>
 void List<Type>::Add(Type data)
 {
+	List* list;
+	list->_head;
 	ListItem<Type>* newItem = new ListItem<Type>(data);
 	if (_head != nullptr)
 	{

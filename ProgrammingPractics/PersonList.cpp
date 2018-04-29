@@ -73,7 +73,7 @@ namespace lab5
 			cout << "\nWho u want find?\n";
 			cout << "Name\n>"; cin >> name;
 			cout << "Surname\n>"; cin >> surname;
-			if ((CheckName(name) == 0) && (CheckSurname(surname) == 0))
+			if ((CheckNameSurname(name) == 0) && (CheckNameSurname(surname) == 0))
 			{
 				cout << "\nPress any key to continue working\n";
 				char key = _getch();

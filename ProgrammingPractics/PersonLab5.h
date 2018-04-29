@@ -3,7 +3,7 @@
 namespace lab5
 {
 	//TODO: Нужно программно ограничить возможность воздания экземпляра.
-	//TODO: Так и не решили вопрос!
+	//TODO: Так и не решили вопрос! / Ниже
 	class Person
 	{
 		protected:
@@ -23,5 +23,7 @@ namespace lab5
 			virtual string GetDescription();
 			Person() { };
 			Person(string name, string surname, unsigned int age, enum lab4::Sex sex);
+			//virtual void func() = 0; / дабы ограничить создание экземпляров (сделать абстрактным)
+			//но мне в других лабах требуется создавать экземпляры
 	};
 }

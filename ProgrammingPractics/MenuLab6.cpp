@@ -49,13 +49,13 @@ namespace lab6
 			{
 				case '1':
 				{
-					p1.Add(Adult::GetRandomAdult());
+					p1.Add(GetRandomAdult());
 					cout << "\nPerson added\n";
 					break;
 				}
 				case '2':
 				{
-					p1.Add(Child::GetRandomChild());
+					p1.Add(GetRandomChild());
 					cout << "\nPerson added\n";
 					break;
 				}

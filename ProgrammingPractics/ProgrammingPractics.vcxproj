@@ -171,6 +171,7 @@
   <ItemGroup>
     <ClCompile Include="AdultLab6.cpp" />
     <ClCompile Include="ChildLab6.cpp" />
+    <ClCompile Include="FamilyTools.cpp" />
     <ClCompile Include="Lab1.cpp" />
     <ClCompile Include="Lab2.cpp" />
     <ClCompile Include="Lab3.cpp" />

@@ -18,9 +18,10 @@ namespace lab6
 		virtual void SetAge(unsigned int age);
 		void SetMarriedOn(Person* marriedOn);
 		void SetWorkPlace(string workPlace);
-		static Adult* GetRandomAdult();
 		Person* GetMarriedOn();
 		string GetWorkPlace();
 		Adult::~Adult();
+		//TODO: override  переопределяеть func()
+		//virtual void func() override;
 	};
 }

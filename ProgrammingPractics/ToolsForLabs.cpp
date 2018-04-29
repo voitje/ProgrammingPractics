@@ -1,14 +1,15 @@
 #include "stdafx.h"
 #include "ToolsForLabs.h"
 
-void IsAppropriationPerson(string name, string surname, lab4::Sex gender, lab4::Person person)
+lab4::Person IsAppropriationPerson(string name, string surname, lab4::Sex gender, lab4::Person person)
 {
 	person.Name = name;
 	person.Surname = surname;
 	person.Gender = gender;
+	return person;
 }
-//TODO: Ниже два дубля!
-bool CheckName(string name)
+
+bool CheckNameSurname(string name)
 {
 	if (!(name[0] >= 'A' && name[0] <= 'Z'))
 	{
@@ -29,26 +30,6 @@ bool CheckName(string name)
 	return true;
 }
 
-bool CheckSurname(string surname)
-{
-	if (!(surname[0] >= 'A' && surname[0] <= 'Z'))
-	{
-		cout << "\nEnter the correct name(with a capital letter)\n";
-		return false;
-	}
-
-	int i = 1;
-	while (surname[i] != '\0')
-	{
-		if (!(surname[i] >= 'a' && surname[i] <= 'z'))
-		{
-			cout << "Enter the correct name (only Latin is accepted)";
-			return false;
-		}
-		i++;
-	}
-	return true;
-}
 
 void IsAppropriation(string name, string surname, lab4::Sex gender, lab5::Person* person)
 {
@@ -56,49 +37,79 @@ void IsAppropriation(string name, string surname, lab4::Sex gender, lab5::Person
 	person->SetSurname(surname);
 	person->SetSex(gender);
 }
-//TODO: Дублируется ниже!
+
+string GetName(lab4::Sex sex)
+{
+	switch (sex)
+	{
+		case(lab4::Male):
+			{
+				string MaleName[] =
+				{
+					"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
+					"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
+					"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
+				};
+				const int arrayLength = 15;
+				return MaleName[rand() % arrayLength];
+			}
+		case (lab4::Female):
+			{
+				string FemaleName[] =
+				{
+					"Yuliya", "Olya", "Viktoriya", "Elizaveta", "Lana",
+					"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sofya"
+					"Anna", "Varvara", "Irina", "Tatyana", "Kristina"
+				};
+				const int arrayLength = 15;
+				return FemaleName[rand() % arrayLength];
+			}
+	}
+}
+
+string GetSurname(lab4::Sex sex)
+{
+	switch (sex)
+	{
+		case(lab4::Male):
+		{
+			string MaleSurname[] =
+			{
+				"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
+				"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
+				"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
+			};
+			const int arrayLength = 15;
+			return MaleSurname[rand() % arrayLength];
+		}
+		case (lab4::Female):
+		{
+			string FemaleSurname[] =
+			{
+				"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
+				"Mayer", "Vladova", "Evans", "Brown", "Weber",
+				"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
+			};
+			const int arrayLength = 15;
+			return FemaleSurname[rand() % arrayLength];
+		}
+	}
+}
 lab5::Person* MakeRandomPerson(lab4::Sex tempSex)
 {
-	string MaleName[] =
-	{
-		"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
-		"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
-		"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
-	};
-
-	string MaleSurname[] =
-	{
-		"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
-		"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
-		"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
-	};
-
-	string FemaleName[] =
-	{
-		"Yuliya", "Olya", "Viktoriya", "Elizaveta", "Lana",
-		"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sofya"
-		"Anna", "Varvara", "Irina", "Tatyana", "Kristina"
-	};
-
-	string FemaleSurname[] =
-	{
-		"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
-		"Mayer", "Vladova", "Evans", "Brown", "Weber",
-		"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
-	};
 	const int arrayLength = 15;
 	const int oldAge = 100;
 	switch (tempSex)
 	{
 		case lab4::Male:
 		{
-			return new lab5::Person(MaleName[rand() % arrayLength],
-				MaleSurname[rand() % arrayLength], (1 + rand() % oldAge), lab4::Male);
+			return new lab5::Person(GetSurname(lab4::Male), GetName(lab4::Male),
+				(1 + rand() % oldAge), lab4::Male);
 		}
 		case lab4::Female:
 		{
-			return new lab5::Person(FemaleName[rand() % arrayLength],
-				FemaleSurname[rand() % arrayLength], (1 + rand() % oldAge), lab4::Female);
+			return new lab5::Person(GetSurname(lab4::Female), GetName(lab4::Female),
+				(1 + rand() % oldAge), lab4::Female);
 		}
 		default:
 			break;
@@ -120,59 +131,27 @@ void PrintEmptyList()
 lab4::Person GetRandomPerson()
 {
 	lab4::Person newPerson;
-	string MaleName[] =
-	{
-		"Igor", "Semen", "Alexander", "Slavyan", "Mirey",
-		"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
-		"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
-	};
-
-	string MaleSurname[] =
-	{
-		"Borozdin", "Ivanov", "Renev", "Isanov", "Ahanov",
-		"Sobolev", "Morozov", "Almazov", "Derzhavin", "Bogatirev",
-		"Lyubimov", "Voroncov", "Admiralov", "Mayorov", "Gromov"
-	};
-
-	string FemaleName[] =
-	{
-		"Yuliya", "Olya", "Viktoriya", "Elizaveta", "Lana",
-		"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sofya"
-		"Anna", "Varvara", "Irina", "Tatyana", "Kristina"
-	};
-
-	string FemaleSurname[] =
-	{
-		"Kudryavceva", "Evsyukova", "Morozova", "Rukosueva", "Polienko",
-		"Mayer", "Vladova", "Evans", "Brown", "Weber",
-		"Sokolovskaya", "Ellis", "Lemann", "Lewandovskaya", "Smith"
-	};
-	const int arrayLength = 15;
 	switch (rand() % 2 + 1)
 	{
 		case 1:
 		{
-			// Не работают хотя делают то ниже написанно
-			/*IsAppropriationPerson(MaleName[rand() % arrayLength],
-				MaleSurname[rand() % arrayLength], lab4::Male, newPerson);*/
-			newPerson.Name = MaleName[rand() % arrayLength];
-			newPerson.Surname = MaleSurname[rand() % arrayLength];
-			newPerson.Gender = lab4::Male;
-
+			newPerson = IsAppropriationPerson(GetName(lab4::Male), 
+				GetSurname(lab4::Male), lab4::Male, newPerson);
 			break;
 		}
 		case 2:
 		{
-			// Не работают хотя делают то ниже написанно
-			/*IsAppropriationPerson(FemaleName[rand() % arrayLength],
-				FemaleSurname[rand() % arrayLength], lab4::Female, newPerson);*/
-			newPerson.Name = FemaleName[rand() % arrayLength];
-			newPerson.Surname = FemaleSurname[rand() % arrayLength];
-			newPerson.Gender = lab4::Female;
+			newPerson = IsAppropriationPerson(GetName(lab4::Female),
+				GetSurname(lab4::Female), lab4::Female, newPerson);
 			break;
 		}
 		default:
 			break;
 	}
 	return newPerson;
+}
+
+string GetParents(string parents, string text)
+{
+	return parents = parents + ' ' + text;
 }

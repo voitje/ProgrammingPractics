@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "PersonLab5.h"
-#include "FamilyTools.h"
+
 
 namespace lab6
 {
@@ -20,7 +20,8 @@ namespace lab6
 			void SetFather(Person* father);
 			Person* GetMother();
 			Person* GetFather();
-			static Child* GetRandomChild();
 			Child::~Child();
+			//TODO: override  переопределяеть func()
+			//virtual void func() override;
 	};
 }

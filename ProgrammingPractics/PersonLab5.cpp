@@ -20,7 +20,7 @@ namespace lab5
 
 	void Person::SetName(string name)
 	{
-		if (CheckName(name) == true)
+		if (CheckNameSurname(name) == true)
 		{
 			_name = name;
 			return;
@@ -35,7 +35,7 @@ namespace lab5
 
 	void Person::SetSurname(string surname)
 	{
-		if (CheckSurname(surname) == true)
+		if (CheckNameSurname(surname) == true)
 		{
 			_surname = surname;
 			return;
