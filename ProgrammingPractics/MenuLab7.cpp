@@ -13,6 +13,7 @@ void MenuLabSeven()
 	int temp = 1;
 	int numberCase;
 	int asciiValue = 0;
+	//TODO: Именования!
 	List<double> fl;
 	List<lab5::Person*> pers;
 	List<double*> mas;
@@ -34,8 +35,6 @@ void MenuLabSeven()
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		cout.width(20); cout << "Work with list of double:\n";
 
-		//TODO: Выводятся адреса - это не правильно! / Пегрузка не вызывается 
-		//TODO: Так и не исправили. \  DONE
 		SetConsoleTextAttribute(hStdOut, 2);
 		link.Show();
 
@@ -65,6 +64,7 @@ void MenuLabSeven()
 		{
 			case '1':
 			{
+				//TODO: Не обработан пользовательский ввод совсем
 				cout << '1';
 				double data;
 				cout << "\nInsert value\n>";
@@ -120,7 +120,7 @@ void MenuLabSeven()
 				break;
 			}
 			case '5':
-			{
+			{//TODO: Индекс дублируется 4 раза.
 				cout << '5';
 				int index = 3;
 				mas.RemoveAt(index);

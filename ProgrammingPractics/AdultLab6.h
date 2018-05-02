@@ -21,6 +21,7 @@ namespace lab6
 		Person* GetMarriedOn();
 		string GetWorkPlace();
 		Adult::~Adult();
+		//TODO: Зачем это тут?
 		//TODO: override  переопределяеть func()
 		//virtual void func() override;
 	};

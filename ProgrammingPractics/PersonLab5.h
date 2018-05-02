@@ -25,5 +25,6 @@ namespace lab5
 			Person(string name, string surname, unsigned int age, enum lab4::Sex sex);
 			//virtual void func() = 0; / дабы ограничить создание экземпл€ров (сделать абстрактным)
 			//но мне в других лабах требуетс€ создавать экземпл€ры
+			//TODO: ƒругие лабы проверены - эта ещЄ нет. ¬ыкашивайте остальные лабы.
 	};
 }

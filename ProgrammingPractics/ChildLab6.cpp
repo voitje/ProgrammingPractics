@@ -77,7 +77,7 @@ namespace lab6
 		{
 			parents = parents + "Parents are not specified…\n\n@";
 		}
-		if (_mother != nullptr)//TODO: Дублирование так и осталось. \ Вынес в функцию
+		if (_mother != nullptr)
 		{
 			parents = GetParents(parents, "Mother is") + Person::GetDescription() + "\n\n";
 		}
