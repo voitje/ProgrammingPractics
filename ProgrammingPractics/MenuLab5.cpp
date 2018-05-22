@@ -11,7 +11,7 @@ namespace lab5
 		int temp = 1;
 		int numberCase;
 		int asciiValue = 0;
-		//Person* person = new Person();
+		Person* person = new Person();
 		PersonList p1;
 
 		while (asciiValue != escapeSymbol)
@@ -43,7 +43,7 @@ namespace lab5
 
 			key = _getch();
 			asciiValue = key;
-			/*switch (asciiValue)
+			switch (asciiValue)
 			{
 				case '1':
 				{
@@ -133,8 +133,8 @@ namespace lab5
 					cout << "\nPress any key to continue working\n";
 					key = _getch();
 					break;
-				}*/
-				/*case '5':
+				}
+				case '5':
 				{
 					int index;
 					cout << "\nInsert index:\n>";
@@ -163,8 +163,8 @@ namespace lab5
 				{
 					enum lab4::Sex tempSex = enum lab4::Sex(rand() % 2);
 					p1.Add(MakeRandomPerson(tempSex));
-				}*/
+				}
 			}
 		}
 	}
-//}
+}

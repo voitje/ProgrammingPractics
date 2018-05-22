@@ -147,6 +147,7 @@
     <ClInclude Include="ChildLab6.h" />
     <ClInclude Include="FamilyTools.h" />
     <ClInclude Include="FunctionsLab4.h" />
+    <ClInclude Include="PersonListItemLab6.h" />
     <ClInclude Include="lab1.h" />
     <ClInclude Include="Lab2.h" />
     <ClInclude Include="Lab3.h" />
@@ -161,8 +162,10 @@
     <ClInclude Include="Person.h" />
     <ClInclude Include="PersonLab3.h" />
     <ClInclude Include="PersonLab5.h" />
+    <ClInclude Include="PersonLab6.h" />
     <ClInclude Include="PersonList.h" />
     <ClInclude Include="PersonListItem.h" />
+    <ClInclude Include="PersonListLab6.h" />
     <ClInclude Include="SexLab4.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -182,7 +185,9 @@
     <ClCompile Include="MenuLab7.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="PersonLab5.cpp" />
+    <ClCompile Include="PersonLab6.cpp" />
     <ClCompile Include="PersonList.cpp" />
+    <ClCompile Include="PersonListLab6.cpp" />
     <ClCompile Include="ProgrammingPractics.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

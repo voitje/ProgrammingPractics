@@ -14,3 +14,4 @@ lab4::Person GetRandomPerson();
 string GetSurname(lab4::Sex);
 string GetName(lab4::Sex);
 string GetParents(string parents, string text);
+lab6::Adult* MakeRandomPersonForLabSix(lab4::Sex tempSex);

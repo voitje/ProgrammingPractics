@@ -115,6 +115,30 @@ lab5::Person* MakeRandomPerson(lab4::Sex tempSex)
 	}
 	return NULL;
 }
+lab6::Adult* MakeRandomPersonForLabSix(lab4::Sex tempSex)
+{
+	const int arrayLength = 15;
+	const int oldAge = 100;
+	lab6::Adult* tempMarriedOn = NULL; 
+	string tempWorkPlace = "Without work";
+	switch (tempSex)
+	{
+		case lab4::Male:
+		{
+
+			return new lab6::Adult(GetSurname(lab4::Male), GetName(lab4::Male), (1 + rand() % oldAge), lab4::Male,
+				tempMarriedOn, tempWorkPlace);
+		}
+		case lab4::Female:
+		{
+			return new lab6::Adult(GetSurname(lab4::Female), GetName(lab4::Female), (1 + rand() % oldAge), lab4::Female,
+				tempMarriedOn, tempWorkPlace);
+		}
+		default:
+			break;
+	}
+	return NULL;
+}
 
 void PrintEmptyList()
 {

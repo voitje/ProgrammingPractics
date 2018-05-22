@@ -108,6 +108,15 @@
     <ClInclude Include="FamilyTools.h">
       <Filter>Исходные файлы\Lab6</Filter>
     </ClInclude>
+    <ClInclude Include="PersonLab6.h">
+      <Filter>Исходные файлы\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonListItemLab6.h">
+      <Filter>Исходные файлы\Lab6</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonListLab6.h">
+      <Filter>Исходные файлы\Lab6</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -159,6 +168,12 @@
       <Filter>Исходные файлы\Lab7</Filter>
     </ClCompile>
     <ClCompile Include="FamilyTools.cpp">
+      <Filter>Исходные файлы\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonLab6.cpp">
+      <Filter>Исходные файлы\Lab6</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonListLab6.cpp">
       <Filter>Исходные файлы\Lab6</Filter>
     </ClCompile>
   </ItemGroup>

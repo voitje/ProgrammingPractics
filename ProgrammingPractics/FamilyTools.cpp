@@ -10,11 +10,11 @@ lab6::Child* GetRandomChild()
 	int tempAge = 1 + rand() % minor;
 	lab4::Sex tempSex = lab4::Sex(rand() % 2);
 
-	lab5::Person* tempMother;
-	lab5::Person* tempFather;
+	lab6::Person* tempMother;
+	lab6::Person* tempFather;
 	if (rand() % 3)
 	{
-		tempMother = MakeRandomPerson((lab4::Sex)1);
+		tempMother = MakeRandomPersonForLabSix((lab4::Sex)1);
 	}
 	else
 	{
@@ -23,7 +23,7 @@ lab6::Child* GetRandomChild()
 
 	if (rand() % 3)
 	{
-		tempFather = MakeRandomPerson((lab4::Sex)0);
+		tempFather = MakeRandomPersonForLabSix((lab4::Sex)0);
 	}
 	else
 	{
@@ -67,7 +67,7 @@ lab6::Adult* GetRandomAdult()
 	const int eld = 80;
 	int tempAge = minor + rand() % eld;
 	enum lab4::Sex tempSex = enum lab4::Sex(rand() % 2);
-	lab5::Person* tempMarriedOn = MakeRandomPerson((lab4::Sex)!tempSex);
+	lab6::Adult* tempMarriedOn = MakeRandomPersonForLabSix((lab4::Sex)!tempSex);
 
 	if (rand() % 5)
 	{

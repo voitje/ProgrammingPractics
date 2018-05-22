@@ -45,12 +45,12 @@ namespace lab6
 		}
 	}
 
-	lab5::Person* Child::GetMother()
+	lab6::Person* Child::GetMother()
 	{
 		return _mother;
 	}
 
-	lab5::Person* Child::GetFather()
+	lab6::Person* Child::GetFather()
 	{
 		return _father;
 	}

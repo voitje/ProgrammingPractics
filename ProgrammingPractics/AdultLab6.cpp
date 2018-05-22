@@ -7,7 +7,7 @@
 namespace lab6
 {
 	Adult::Adult(string name, string surname, unsigned int age, 
-		enum lab4::Sex sex, Person* marriedOn, string workPlace) : Person(name, surname, age, sex)
+		enum lab4::Sex sex, Adult* marriedOn, string workPlace) : Person(name, surname, age, sex)
 	{
 		SetSex(sex);
 		SetMarriedOn(marriedOn);
@@ -28,7 +28,7 @@ namespace lab6
 		}
 	}
 
-	void Adult::SetMarriedOn(Person* marriedOn)
+	void Adult::SetMarriedOn(Adult* marriedOn)
 	{
 		if (marriedOn != nullptr)
 		{
@@ -44,7 +44,7 @@ namespace lab6
 		}
 	}
 
-	lab5::Person* Adult::GetMarriedOn()
+	Adult* Adult::GetMarriedOn()
 	{
 		return _marriedOn;
 	};
