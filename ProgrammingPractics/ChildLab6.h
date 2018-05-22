@@ -21,7 +21,5 @@ namespace lab6
 			Person* GetMother();
 			Person* GetFather();
 			Child::~Child();
-			//TODO: override  переопределяеть func()
-			//virtual void func() override;
 	};
 }

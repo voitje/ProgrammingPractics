@@ -13,11 +13,11 @@ void MenuLabSeven()
 	int temp = 1;
 	int numberCase;
 	int asciiValue = 0;
-	//TODO: Именования!
-	List<double> fl;
-	List<lab5::Person*> pers;
-	List<double*> mas;
-	List<List<double>*> link;
+	//TODO: Именования! \ DONE
+	List<double> listDouble;
+	List<lab5::Person*> listPerson;
+	List<double*> listArrayOfDouble;
+	List<List<double>*> listOfList;
 	while (asciiValue != escapeSymbol)
 	{
 		system("cls");
@@ -25,23 +25,23 @@ void MenuLabSeven()
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		cout << "Work with double:\n";
 		SetConsoleTextAttribute(hStdOut, 2);
-		fl.Show();
+		listDouble.Show();
 
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		cout.width(20); cout << "Work with array of double:\n";
 		SetConsoleTextAttribute(hStdOut, 2);
-		mas.Show();
+		listArrayOfDouble.Show();
 
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		cout.width(20); cout << "Work with list of double:\n";
 
 		SetConsoleTextAttribute(hStdOut, 2);
-		link.Show();
+		listOfList.Show();
 
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		cout.width(20); cout << "Work with list of Person:\n";
 		SetConsoleTextAttribute(hStdOut, 2);
-		pers.Show();
+		listPerson.Show();
 
 
 		SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -60,23 +60,29 @@ void MenuLabSeven()
 		cout << "\n\n\nChoose action (1-8):\n>";
 		key = _getch();
 		asciiValue = key;
+		int index = 3;
 		switch (asciiValue)
 		{
 			case '1':
 			{
-				//TODO: Не обработан пользовательский ввод совсем
+				//TODO: Не обработан пользовательский ввод совсем \ DONE
 				cout << '1';
 				double data;
 				cout << "\nInsert value\n>";
-				cin >> data;
-				fl.Add(data);
+				while (!(cin >> data))
+				{
+					cin.clear();
+					cin.ignore(cin.rdbuf()->in_avail());
+					cout << "Incorrect value!!! Insert value : ";
+				}
+				listDouble.Add(data);
 				break;
 			}
 			case '2':
 			{
 				cout << '2';
 				enum lab4::Sex tempSex = enum lab4::Sex(rand() % 2);
-				pers.Add(MakeRandomPerson(tempSex));
+				listPerson.Add(MakeRandomPerson(tempSex));
 				break;
 			}
 			case '3':
@@ -93,13 +99,11 @@ void MenuLabSeven()
 				data3.Add(3);
 				data4.Add(4);
 
-				link.Add(&data);
-				link.Add(&data1);
-				link.Add(&data2);
-				link.Add(&data3);
-				link.Add(&data4);
-				char temp = _getch();
-				
+				listOfList.Add(&data);
+				listOfList.Add(&data1);
+				listOfList.Add(&data2);
+				listOfList.Add(&data3);
+				listOfList.Add(&data4);
 				break;
 			}
 			case '4':
@@ -110,38 +114,34 @@ void MenuLabSeven()
 				double arr3[] = { 1.23, 2.23, 3.23, 4.23, 5.24 };
 				double arr4[] = { 1.09, 2.45, 3.1415, 4.28, 5.0 };
 				double arr5[] = { 1.0, 2.0, 3.0, 4.0, 5.9 };
-				mas.Add(arr1);
-				mas.Add(arr2);
-				mas.Add(arr3);
-				mas.Add(arr4);
-				mas.Add(arr5);
+				listArrayOfDouble.Add(arr1);
+				listArrayOfDouble.Add(arr2);
+				listArrayOfDouble.Add(arr3);
+				listArrayOfDouble.Add(arr4);
+				listArrayOfDouble.Add(arr5);
 				char key = _getch();
 				asciiValue = key;
 				break;
 			}
 			case '5':
-			{//TODO: Индекс дублируется 4 раза.
+			{
 				cout << '5';
-				int index = 3;
-				mas.RemoveAt(index);
+				listArrayOfDouble.RemoveAt(index);
 				break;
 			}
 			case '6':
 			{
-				int index = 3;
-				link.RemoveAt(index);
+				listOfList.RemoveAt(index);
 				break;
 			}
 			case '7':
 			{
-				int index = 3;
-				pers.RemoveAt(index);
+				listPerson.RemoveAt(index);
 				break;
 			}
 			case '8':
 			{
-				int index = 3;
-				fl.RemoveAt(index);
+				listDouble.RemoveAt(index);
 				break;
 			}
 		}

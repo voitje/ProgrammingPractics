@@ -14,7 +14,7 @@ namespace lab6
 		int numberCase;
 		int asciiValue = 0;
 		lab5::PersonList p1;
-		lab5::Person* person = new lab5::Person();
+		//lab5::Person* person = new lab5::Person();
 		
 		while (asciiValue != escapeSymbol)	
 		{
@@ -91,7 +91,7 @@ namespace lab6
 				case '6':
 				{
 					int index;
-					p1.Remove(person);
+					//p1.Remove(person);
 					cout << "\nPress any key to continue working\n";
 					key = _getch();
 					break;

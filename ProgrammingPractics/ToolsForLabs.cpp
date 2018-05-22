@@ -40,6 +40,7 @@ void IsAppropriation(string name, string surname, lab4::Sex gender, lab5::Person
 
 string GetName(lab4::Sex sex)
 {
+	const int arrayLength = 15;
 	switch (sex)
 	{
 		case(lab4::Male):
@@ -50,7 +51,6 @@ string GetName(lab4::Sex sex)
 					"Andrey", "Boris", "Bogdan", "Vadim", "Vladimir",
 					"Alexey", "Anatoliy", "Vasiliy", "Georgiy", "Genadiy"
 				};
-				const int arrayLength = 15;
 				return MaleName[rand() % arrayLength];
 			}
 		case (lab4::Female):
@@ -58,10 +58,9 @@ string GetName(lab4::Sex sex)
 				string FemaleName[] =
 				{
 					"Yuliya", "Olya", "Viktoriya", "Elizaveta", "Lana",
-					"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sofya"
+					"Anastasiya", "Mariya", "Ekaterina", "Angelina", "Sofya",
 					"Anna", "Varvara", "Irina", "Tatyana", "Kristina"
 				};
-				const int arrayLength = 15;
 				return FemaleName[rand() % arrayLength];
 			}
 	}
@@ -114,6 +113,7 @@ lab5::Person* MakeRandomPerson(lab4::Sex tempSex)
 		default:
 			break;
 	}
+	return NULL;
 }
 
 void PrintEmptyList()
